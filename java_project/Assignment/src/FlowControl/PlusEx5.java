@@ -12,11 +12,9 @@ public class PlusEx5 {
 //				System.out.print("*");
 //				System.out.println();
 //		}
-		 // end of main
-		 // end ofclass
 
-		int i=1;
-		int j=1;
+		int i=0;
+		int j=0;
 		while(i<=10) {
 			while(j<=i) {
 				System.out.print("*");
@@ -24,7 +22,6 @@ public class PlusEx5 {
 				j++;
 			}
 			i++;
-			
 		}
 		
 		
