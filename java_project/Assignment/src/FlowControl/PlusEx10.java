@@ -17,7 +17,6 @@ public class PlusEx10 {
 				sum = sum + (int)((num%(10*i))/i);
 			}		
 		}
-		sum = sum + num%10;
 		System.out.println("sum="+sum);
 	
 

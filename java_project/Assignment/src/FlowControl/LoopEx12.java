@@ -15,10 +15,10 @@ public class LoopEx12 {
 			if (num % 2 != 0) {
 				Odd = num;
 			}
-			
 			if (num%2==0 && num%3==0) {
 				ThreeCross = num;
-			}
+			} // 두 if문을 묶어서 || 로 더해 주기.
+			
 			sum = sum + (Odd+ThreeCross);
 			num ++;
 			if (sum >1000) {

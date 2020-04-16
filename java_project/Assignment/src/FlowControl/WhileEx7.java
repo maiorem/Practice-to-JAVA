@@ -10,13 +10,13 @@ public class WhileEx7 {
 
 		int i = 1;
 		while (i<=100) {
-			System.out.println(i);
+			System.out.println(i); // 여기에 i++을 해줘도 됨...
 			i++;
 		}
 		System.out.println("---------------");
 		do {
 			i--;
-			System.out.println(i);
+			System.out.println(i); // 여기에 --i 해줘도 됨
 		} while(i>1);
 	}
 

@@ -23,9 +23,9 @@ public class MethodEx4 {
 		
 		for (int i=3; i<num; i++) {
 			if (num%i!=0) {
-				result = false;
-			} else {
 				result = true;
+			} else {
+				result = false;
 			}
 		}
 				

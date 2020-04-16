@@ -8,7 +8,7 @@ public class FruitSeller {
 	// : 사과의 가격
 	int numOfApple = 20;	// 사과의 갯수
 	int myMoney = 0;		// 수입
-	final int price = 1000;	// 사과의 가격.
+	final int PRICE = 1000;	// 사과의 가격.
 	
 	// 판매 기능 => 메서드
 	// 1. 돈을 받는다. --> 매개변수 int money
@@ -17,7 +17,7 @@ public class FruitSeller {
 	// 4. 받은 금액은 나의 수입으로 더해준다.
 	// 5. 사과의 갯수를 반환한다. --> 반환데이터. int return 사과의 갯수
 	int saleApple(int money) {
-		int num = money/price;
+		int num = money/PRICE;
 		numOfApple -= num; 	// numOfApple = numOfApple - num
 		myMoney += money; 	// myMoney = myMoney + money
 		return num;
