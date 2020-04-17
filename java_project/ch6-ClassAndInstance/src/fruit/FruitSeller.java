@@ -42,7 +42,7 @@ public class FruitSeller {
 //	}
 
 	
-	//Source-Gererate로 자동 생성한 생성자
+	//Source-Generate로 자동 생성한 생성자
 	FruitSeller(int numOfApple, int myMoney, int aPPLE_PRICE) {
 		this.numOfApple = numOfApple;
 		this.myMoney = myMoney;
