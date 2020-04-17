@@ -4,9 +4,9 @@ public class StringEx2 {
 
 	public static void main(String[] args) {
 		
-		String str = "ABCDEFGHIJKLMN";
+		String str = "990929-1010123";
 		StringBuffer str1 = new StringBuffer(str);
-		System.out.println(str1.reverse());
+		System.out.println(str1.deleteCharAt(6));
 
 	}
 
