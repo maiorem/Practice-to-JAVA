@@ -1,4 +1,4 @@
-package ClassAndInstance;
+package ex;
 
 public class Triangle {
 
