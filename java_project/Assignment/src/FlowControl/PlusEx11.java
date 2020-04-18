@@ -14,14 +14,12 @@ public class PlusEx11 {
 		int num3 = 0; // 세번째 값
 		System.out.print(num1+","+num2);
 		for (int i = 0 ; i < 8 ; i++ ) {
-			
-			num3 = num1 + num2;
-			
-			
+			num3 = num2 + num1;
+			num1 = num2;
+			num2 = num3;
+			System.out.print(","+num3);
 		}
-//		} // end of main
-//		} // end ofclass
-//		 
+	 
 //		[실행결과]
 //		1,1,2,3,5,8,13,21,34,55
 

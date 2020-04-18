@@ -13,15 +13,15 @@ public class PlusEx15 {
 		int result =0; // 변수 number를 거꾸로 변환해서 담을 변수
 		while(tmp != 0) {
 			
-			result = (tmp%10)*10000 + (tmp%100)/10 ;
+			result = result*10 + tmp%10;
+			tmp /= 10;			
 					
 		}
 		if(number == result)
 			System.out.println( number + "는 회문수 입니다.");
 		else
 			System.out.println( number + "는 회문수가 아닙니다.");
-//		} // main
-//		}
+
 //		[실행결과]
 //		12321는 회문수 입니다.
 
