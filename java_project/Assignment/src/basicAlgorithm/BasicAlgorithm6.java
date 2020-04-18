@@ -19,7 +19,6 @@ public class BasicAlgorithm6 {
 			bigOne = bigNum(bigOne, Num[i]);
 		}
 		System.out.println(bigOne);	
-		
 	}
 
 	static int bigNum (int a, int b) { // 두개의 숫자 중 더 큰 값이 찾아내는 메서드
