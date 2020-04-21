@@ -14,7 +14,7 @@ int형 배열에 채워질 정수는 프로그램 사용자로부터 입력 받�
 
 import java.util.Scanner;
 
-public class ArrayEx1 {
+public class ArrayP1 {
 	
 	static int min;
 	static int max;
