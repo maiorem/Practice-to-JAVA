@@ -17,18 +17,37 @@ public class PhoneInfor {
 	}
 	
 	PhoneInfor(String name, String number) {
-		
 		this(name, number, "--");		
-
 	}
 	
-	
-	void outputData() {
+	public PhoneInfor() {}
 
-		System.out.println("이름 : "+name+", 전화번호 : "+phoneNumber+ ", 생년월일 : "+birthday);		
-		
+	@Override
+	public String toString() {
+		return "PhoneInfor [name=" + name + ", phoneNumber=" + phoneNumber + ", birthday=" + birthday + "]";
+	}
+	
+	public void showInfor() {
+		System.out.println("이름 : "+name);
+		System.out.println("전화번호 : "+phoneNumber);
+		System.out.println("생년월일 : "+birthday);
 	}
 		
+	
+	PhoneInfor[] p = new PhoneInfor[100];
+
+	public void searchArr(String name) {
+
+		for (int i=0; i<p.length; i++) {
+			if(p[i].name==name) {
+				p[i].showInfor();
+			}
+		}
+	
+	}
+
+
+
 
 }
 
