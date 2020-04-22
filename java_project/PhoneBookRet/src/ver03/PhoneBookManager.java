@@ -8,11 +8,17 @@ public class PhoneBookManager {
 	PhoneInfo[] info;
 	int count;
 	
-	PhoneBookManager() {
-		
+	private PhoneBookManager() {
 		sc=new Scanner(System.in);
 		info=new PhoneInfo[100];
 		count=0;
+	}
+	
+	public static PhoneBookManager m = new PhoneBookManager();
+	
+	
+	public static PhoneBookManager getInstance() {
+		return m;
 	}
 	
 	//저장기능

@@ -2,9 +2,9 @@ package ver03;
 
 public class PhoneInfo {
 
-	String name;		//이름 
-	String phoneNumber;	//전화번호
-	String birthday;	//생년월일
+	private String name;		//이름 
+	private String phoneNumber;	//전화번호
+	private String birthday;	//생년월일
 	
 	
 	

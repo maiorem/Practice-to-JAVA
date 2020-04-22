@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Interface {
 
 	Scanner sc = new Scanner(System.in);
-	PhoneBookManager manage = new PhoneBookManager();
+	PhoneBookManager manage = PhoneBookManager.getInstance();
 	
 	// 메뉴 출력
 	void showMenu() {
