@@ -6,7 +6,7 @@ public class PhoneMain {
 
 	public static void main(String[] args) {
 	
-		Scanner kb = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		PhoneInfor[] phone = new PhoneInfor[100];
 
 		int num = 0;
@@ -15,24 +15,26 @@ public class PhoneMain {
 			
 			System.out.println("무엇을 하시겠습니까?");
 			System.out.println("1.저장  2.검색  3.삭제  4.종료");
-			num = kb.nextInt();
+			num = sc.nextInt();
 			
 			if (num==1) {			
 				
 				System.out.println("이름을 입력하세요 : ");
-				phone[i].name = kb.nextLine();
-				System.out.println("전화번호를 입력하세요 : ");
-				phone[i].phoneNumber = kb.nextLine();
-				System.out.println("생년월일을 입력하세요 : ");
-				phone[i].birthday = kb.nextLine();
+				String name = sc.nextLine();
 				
-				phone[i] = new PhoneInfor (phone[i].name, phone[i].phoneNumber, phone[i].birthday);
+				System.out.println("전화번호를 입력하세요 : ");
+				String phoneNumber = sc.nextLine();
+				
+				System.out.println("생년월일을 입력하세요 : ");
+				String birthday = sc.nextLine();
+				
+				phone[i] = new PhoneInfor (name, phoneNumber, birthday);
 				continue;
 				
 			}
 			else if (num==2) {
 				System.out.println("검색할 이름을 입력하세요 : ");
-				phone[i].name = kb.nextLine();
+				phone[i].name = sc.nextLine();
 				phone[i].search(phone[i].name);
 				continue;
 			}

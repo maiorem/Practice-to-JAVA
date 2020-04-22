@@ -17,11 +17,13 @@ public class ArrayP3 {
 	}
 
 	static void switchArr(int[][] arr) {
-		int[][] temp = {{0}};
-		temp[0] = arr[0];
-		arr[0] = arr[2];
-		arr[2] = arr[1];
-		arr[1] = temp[0];
+		int[] temp = new int[arr[0].length];
+		temp = arr[arr.length-1];
+		
+		for (int i=arr.length-1; i>0; i--) {
+			arr[i] = arr[i-1];
+		}
+		arr[0] = temp;
 	}
 
 }

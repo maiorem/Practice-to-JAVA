@@ -16,12 +16,11 @@ import java.util.Scanner;
 
 public class ArrayP1 {
 	
-	static int min;
-	static int max;
+	static Scanner ar = new Scanner(System.in);
 	
 	public static int miniValue(int[] arr) {
 		
-		min = arr[0];
+		int min = arr[0];
 		for(int i=0; i<arr.length; i++) {
 			if (min>arr[i]) {
 				min=arr[i];
@@ -31,7 +30,7 @@ public class ArrayP1 {
 	}
 	
 	public static int maxValue(int[] arr) {
-		max = arr[0];
+		int max = arr[0];
 		for(int i=0; i<arr.length; i++) {
 			if (max<arr[i]) {
 				max=arr[i];
@@ -44,17 +43,14 @@ public class ArrayP1 {
 	
 	public static void main(String[] args) {
 	
-		Scanner ar = new Scanner(System.in);
 		int [] array = new int[5];
 		for(int i=0; i<array.length; i++) {
 			System.out.print("배열에 들어갈 정수를 입력하세요 : ");
 			array[i] = ar.nextInt();
 		}
 		
-		miniValue(array);
-		maxValue(array);
-		System.out.println("최대값 : "+max);
-		System.out.println("최소값 : "+min);
+		System.out.println("최대값 : "+maxValue(array));
+		System.out.println("최소값 : "+miniValue(array));
 		
 		
 	}
