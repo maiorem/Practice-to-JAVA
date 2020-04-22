@@ -46,7 +46,7 @@ public class PhoneInfor {
 //		if (this.birthday == null) {
 //			System.out.println("생년월일 : 입력값이 없습니다.");
 //		} else {
-			System.out.println("생년월일 : " + this.birthday);
+		System.out.println("생년월일 : " + this.birthday);
 //		}
 		
 	}
