@@ -12,12 +12,12 @@ public class MethodEx3 {
 	}
 	
 	static double roundArea(int r) {
-		double area = 2*3.14*r;
+		double area = 2*3.14*r; // Math.PI.
 		return area;
 	}
 	
 	static double round(int r) {
-		double round = 3.14*(r^2);
+		double round = 3.14*(r^2); //Math.pow(r,2)
 		return round;
 	}
 
