@@ -6,13 +6,10 @@ public class PhoneInfo {
 	private String phoneNumber;	//전화번호
 	private String birthday;	//생년월일
 	
-	
-	
 	PhoneInfo(String name, String phoneNumber, String birthday) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.birthday = birthday;
-
 	}
 	
 	PhoneInfo(String name, String phoneNumber) {

@@ -45,7 +45,7 @@ public class PhoneBookManager {
 	
 	//이름을 기준으로 검색 후 출력
 	void output() {
-		System.out.println("검색할 이름을 입력하세요. >>");
+		System.out.println("검색할 이름을 입력하세요. >> ");
 		String name = sc.nextLine();
 		
 		int searchIndex = searchInfo(name);
@@ -62,7 +62,7 @@ public class PhoneBookManager {
 	//검색 후 삭제
 	void delete() {
 		
-		System.out.println("삭제할 이름을 입력하세요. >>");
+		System.out.println("삭제할 이름을 입력하세요. >> ");
 		String name = sc.nextLine();
 		
 		int searchIndex = searchInfo(name);

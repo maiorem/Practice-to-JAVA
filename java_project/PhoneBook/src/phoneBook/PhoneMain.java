@@ -16,6 +16,7 @@ public class PhoneMain {
 			System.out.println("무엇을 하시겠습니까?");
 			System.out.println("1.저장  2.검색  3.삭제  4.종료");
 			num = sc.nextInt();
+			sc.nextLine();
 			
 			if (num==1) {			
 				
