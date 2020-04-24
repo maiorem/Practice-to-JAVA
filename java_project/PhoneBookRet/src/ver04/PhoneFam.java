@@ -3,28 +3,25 @@ package ver04;
 public class PhoneFam extends PhoneInfo {
 
 
-	private String call;
+	private String rel;
 	
-	PhoneFam (String name, String phoneNumber, String address, String email, String call) {
+	PhoneFam (String name, String phoneNumber, String address, String email, String rel) {
 		super(name, phoneNumber, address, email);
-		this.call = call;
+		this.rel = rel;
 		
 	}
 
 	void showInfo() {
-		System.out.println("이름 : "+ super.getName());
-		System.out.println("전화번호 : "+super.getPhoneNumber());
-		System.out.println("주소 : "+super.getAddress());
-		System.out.println("이메일 : "+super.getEmail());
-		System.out.println("호칭 : "+this.call);
+		super.showInfo();
+		System.out.println("관계 : "+this.rel);
 	}
 	
-	public String getCall() {
-		return call;
+	public String getRel() {
+		return rel;
 	}
 	
-	public void setCall(String call) {
-		this.call = call;
+	public void setRel(String rel) {
+		this.rel = rel;
 	}
 
 

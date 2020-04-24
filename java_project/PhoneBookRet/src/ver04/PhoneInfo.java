@@ -14,12 +14,17 @@ public class PhoneInfo {
 		this.email = email;
 	}
 	
+	void showBasicInfo() {
+		System.out.println("이름 : "+ this.getName());
+		System.out.println("전화번호 : "+this.getPhoneNumber());
+	}
+	
 		
 	void showInfo() {
 		System.out.println("이름 : "+ this.getName());
-		System.out.println("전화번호 : "+this.phoneNumber);
-		System.out.println("주소 : "+this.address);
-		System.out.println("이메일 : "+this.email);
+		System.out.println("전화번호 : "+this.getPhoneNumber());
+		System.out.println("주소 : "+this.getAddress());
+		System.out.println("이메일 : "+this.getEmail());
 	}
 	
 	boolean checkName(String name) {

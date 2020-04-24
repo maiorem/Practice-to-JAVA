@@ -8,6 +8,7 @@ public class PhoneBookManager {
 	PhoneInfo[] info;
 	int count;
 	
+	
 	private PhoneBookManager() {
 		sc=new Scanner(System.in);
 		info=new PhoneInfo[100];
@@ -22,9 +23,51 @@ public class PhoneBookManager {
 	}
 	
 	//저장기능
-	void saveData() {
-		info[count] = creatInst();
+	void saveData(int choice) {
+		info[count] = creatInst(choice);
 		count++;
+	}
+	
+	// 정보 입력으로 인스턴스 생성
+	PhoneInfo creatInst(int choice) {
+
+		PhoneInfo info = null;
+						
+		System.out.println("이름을 입력하세요. >> ");
+		String name = sc.nextLine();
+		System.out.println("전화번호를 입력하세요. >> ");
+		String phoneNumber = sc.nextLine();
+		System.out.println("주소를 입력하세요. >> ");
+		String address = sc.nextLine();
+		System.out.println("이메일을 입력하세요. >> ");
+		String email = sc.nextLine();
+		
+		switch(choice) {
+		case 1:
+			System.out.println("전공을 입력하세요. >>");
+			String major = sc.nextLine();
+			System.out.println("학번을 입력하세요. >>");
+			String grade = sc.nextLine();
+			info = new PhoneUnivInfo(name, phoneNumber, address, email, major, grade);
+			break;
+		case 2:
+			System.out.println("분야를 입력하세요. >>");
+			String position = sc.nextLine();
+			info = new PhoneThea(name, phoneNumber, address, email, position);
+			break;
+		case 3:
+			System.out.println("직업을 입력하세요. >>");
+			String job = sc.nextLine();
+			info = new PhoneFriend(name, phoneNumber, address, email, job);
+			break;
+		case 4:
+			System.out.println("관계를 입력하세요. >>");
+			String rel = sc.nextLine();
+			info = new PhoneFam(name, phoneNumber, address, email, rel);
+			break;
+		}		
+		return info;
+		
 	}
 	
 	
@@ -78,30 +121,19 @@ public class PhoneBookManager {
 		
 	}
 	
-	
-	// 정보 입력으로 인스턴스 생성
-	PhoneInfo creatInst() {
-		
-		PhoneInfo info = null;
-		
-		System.out.println("이름을 입력하세요. >> ");
-		String name = sc.nextLine();
-		System.out.println("전화번호를 입력하세요. >> ");
-		String phoneNumber = sc.nextLine();
-		System.out.println("생년월일을 입력하세요. >> ");
-		String birthday = sc.nextLine();
-
-		if (birthday==null || birthday.isEmpty()) {
-			info = new PhoneInfo(name, phoneNumber);
-		} else {
-			info = new PhoneInfo(name, phoneNumber, birthday);
+	void showAllSimpleData() {
+		System.out.println("기본 정보를 출력합니다.=======================");
+		for(int i=0; i<count; i++) {
+			info[i].showBasicInfo();
+			System.out.println("---------------------------------");
 		}
-		
-		return info;
+
 	}
+	
 	
 	void showAllData() {
 		for(int i=0; i<count; i++) {
+			System.out.println("상세 정보를 출력합니다.=====================");
 			info[i].showInfo();
 			System.out.println("-------------------");
 		}

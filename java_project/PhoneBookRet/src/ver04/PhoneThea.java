@@ -9,13 +9,10 @@ public class PhoneThea extends PhoneInfo {
 		this.position = position;
 		
 	}
-
+	
 	void showInfo() {
-		System.out.println("이름 : "+ super.getName());
-		System.out.println("전화번호 : "+super.getPhoneNumber());
-		System.out.println("주소 : "+super.getAddress());
-		System.out.println("이메일 : "+super.getEmail());
-		System.out.println("역할 : "+this.position);
+		super.showInfo();
+		System.out.println("분야 : "+this.getPosition());
 	}
 	
 	public String getPosition() {
