@@ -114,7 +114,7 @@ public class PhoneBookManager {
 			System.out.println("찾으시는 정보가 없습니다.");
 		} else {
 			for(int i=searchIndex; i<count-1; i++) {
-				info[searchIndex] = info[searchIndex+1];
+				info[i] = info[i+1];
 			}
 			count--;
 		}
@@ -132,10 +132,23 @@ public class PhoneBookManager {
 	
 	
 	void showAllData() {
+		System.out.println("상세 정보를 출력합니다.=====================");
 		for(int i=0; i<count; i++) {
-			System.out.println("상세 정보를 출력합니다.=====================");
 			info[i].showInfo();
 			System.out.println("-------------------");
+		}
+	}
+	
+	void editInfo() {
+		System.out.println("변경할 정보의 이름을 입력하세요 >> ");
+		String editName=sc.nextLine();
+		
+		int searchIndex = searchInfo(editName);
+		
+		if(searchIndex<0) {
+			System.out.println("찾으시는 정보가 없습니다.");
+		} else {
+			
 		}
 	}
 	

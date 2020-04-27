@@ -15,12 +15,4 @@ public class PhoneFriend extends PhoneInfo {
 		System.out.println("직업 : "+this.job);
 	}
 	
-	public String getYear() {
-		return job;
-	}
-	
-	public void setYear(String job) {
-		this.job = job;
-	}
-
 }

@@ -14,17 +14,8 @@ public class PhoneUnivInfo extends PhoneInfo {
 	void showInfo() {
 		super.showInfo();
 		System.out.println("전공 : "+this.major);
+		System.out.println("학번 : "+this.grade);
 	}
-	
-	public String getMajor() {
-		return major;
-	}
-	
-	public void setMajor(String major) {
-		this.major = major;
-	}
-
-
 	
 	
 }

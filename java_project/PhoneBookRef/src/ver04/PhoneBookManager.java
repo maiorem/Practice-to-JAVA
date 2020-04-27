@@ -97,7 +97,7 @@ public class PhoneBookManager {
 		System.out.println("전체 정보를 출력합니다.================");
 		for(int i=0; i<numOfInfo; i++) {
 			books[i].showAllInfo();
-			
+			System.out.println("-------------------------");
 		}
 	}
 	
@@ -175,9 +175,7 @@ public class PhoneBookManager {
 			PhoneInfo info = null;
 			
 			//저장된 인스턴스가 기본인지 대학친구인지, 회사인지, 동호회인지
-			if (books[index] instanceof PhoneInfo) {
-				info = new PhoneInfo(editName, phoneNum, addr, email);
-			} else if(books[index] instanceof PhoneUnivInfo) {
+			if(books[index] instanceof PhoneUnivInfo) {
 				System.out.println("전공을 입력하세요 >> ");
 				String major=kb.nextLine();
 				System.out.println("학년을 입력하세요 >> ");
@@ -197,6 +195,8 @@ public class PhoneBookManager {
 				System.out.println("닉네임을 입력하세요 >> ");
 				String nickName=kb.nextLine();
 				info = new PhoneCafeInfo(editName, phoneNum, addr, email, cafeName, nickName);
+			} else if (books[index] instanceof PhoneInfo) {
+				info = new PhoneInfo(editName, phoneNum, addr, email);
 			}
 			// 배열에 새로운 인스턴스를 저장
 			books[index] = info;

@@ -16,14 +16,5 @@ public class PhoneFam extends PhoneInfo {
 		System.out.println("관계 : "+this.rel);
 	}
 	
-	public String getRel() {
-		return rel;
-	}
-	
-	public void setRel(String rel) {
-		this.rel = rel;
-	}
-
-
 	
 }

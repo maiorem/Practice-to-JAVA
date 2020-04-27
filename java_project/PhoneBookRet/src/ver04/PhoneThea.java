@@ -12,18 +12,8 @@ public class PhoneThea extends PhoneInfo {
 	
 	void showInfo() {
 		super.showInfo();
-		System.out.println("분야 : "+this.getPosition());
+		System.out.println("분야 : "+this.position);
 	}
-	
-	public String getPosition() {
-		return position;
-	}
-	
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-
 	
 	
 }

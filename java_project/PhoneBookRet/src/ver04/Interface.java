@@ -1,10 +1,10 @@
 package ver04;
 
-import java.util.Scanner;
+
 
 public class Interface {
 
-	Scanner sc = new Scanner(System.in);
+	
 	PhoneBookManager manage = PhoneBookManager.getInstance();
 	
 	// 메뉴 출력
@@ -26,9 +26,9 @@ public class Interface {
 		while (true) {
 			showMenu();
 			
-			int num = sc.nextInt();
+			int num = manage.sc.nextInt();
 			
-			sc.nextLine();
+			manage.sc.nextLine();
 			
 			switch(num) {
 			case 1:
@@ -39,8 +39,12 @@ public class Interface {
 				System.out.println("	3. 친구");
 				System.out.println("	4. 친척");
 				System.out.println("------------------------------");
-				int choice = sc.nextInt();
-				sc.nextLine();
+				int choice = manage.sc.nextInt();
+				manage.sc.nextLine();
+				if(!(choice>0&&choice<5)) {
+					System.out.println("잘못된 메뉴 선택입니다.");
+					return;
+				}
 				manage.saveData(choice);
 				break;
 			case 2:
