@@ -13,7 +13,7 @@ public class PhoneCafeInfo extends PhoneInfo {
 
 	@Override
 	void showAllInfo() {
-		showAllInfo();
+		super.showAllInfo();
 		System.out.println("동호회이름 : "+cafeName);
 		System.out.println("닉네임 : "+nickName);
 	}

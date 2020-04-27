@@ -97,6 +97,7 @@ public class PhoneBookManager {
 		System.out.println("전체 정보를 출력합니다.================");
 		for(int i=0; i<numOfInfo; i++) {
 			books[i].showAllInfo();
+			
 		}
 	}
 	

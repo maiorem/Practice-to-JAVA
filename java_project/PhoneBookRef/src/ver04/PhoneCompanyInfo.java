@@ -16,7 +16,7 @@ public class PhoneCompanyInfo extends PhoneInfo {
 	
 	@Override
 	void showAllInfo() {
-		showAllInfo();
+		super.showAllInfo();
 		System.out.println("회사 : "+company);
 		System.out.println("부서 : " +dept);
 		System.out.println("직급 : "+job);
