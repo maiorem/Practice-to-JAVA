@@ -11,7 +11,7 @@ public class PhoneFriend extends PhoneInfo {
 	}
 
 	void showInfo() {
-		super.showInfo();
+		super.showBasicInfo();
 		System.out.println("직업 : "+this.job);
 	}
 	

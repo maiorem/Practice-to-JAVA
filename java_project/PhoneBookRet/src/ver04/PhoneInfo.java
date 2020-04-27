@@ -1,6 +1,6 @@
 package ver04;
 
-public class PhoneInfo {
+public abstract class PhoneInfo {
 
 	private String name;		//이름 
 	private String phoneNumber;	//전화번호
@@ -17,15 +17,12 @@ public class PhoneInfo {
 	void showBasicInfo() {
 		System.out.println("이름 : "+ this.name);
 		System.out.println("전화번호 : "+this.phoneNumber);
-	}
-	
-		
-	void showInfo() {
-		System.out.println("이름 : "+ this.name);
-		System.out.println("전화번호 : "+this.phoneNumber);
 		System.out.println("주소 : "+this.address);
 		System.out.println("이메일 : "+this.email);
 	}
+	
+		
+	abstract void showInfo();
 	
 	boolean checkName(String name) {
 		return this.getName().equals(name);

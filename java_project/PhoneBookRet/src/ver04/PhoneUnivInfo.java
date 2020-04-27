@@ -12,7 +12,7 @@ public class PhoneUnivInfo extends PhoneInfo {
 	}
 
 	void showInfo() {
-		super.showInfo();
+		super.showBasicInfo();
 		System.out.println("전공 : "+this.major);
 		System.out.println("학번 : "+this.grade);
 	}
