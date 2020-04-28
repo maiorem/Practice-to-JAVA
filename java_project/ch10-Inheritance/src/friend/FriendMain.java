@@ -1,5 +1,7 @@
 package friend;
 
+import java.util.InputMismatchException;
+
 public class FriendMain {
 
 	public static void main(String[] args) {
@@ -14,8 +16,24 @@ public class FriendMain {
 			System.out.println(" "+Menu.PRINT_ALL+". 상세 정보 출력");
 			System.out.println(" "+Menu.EXIT+". 프로그램 종료");
 			System.out.println("=============================");
-
-			int choice = handler.sc.nextInt();
+			int choice=0;
+			
+			try { // 위험지역. 여기서 선언되는 변수는 실행되지 않을 수도 있음.
+				choice = handler.sc.nextInt(); 
+				
+			//그냥 Exception 클래스를 가져와도 됨(상위클래스)
+			} catch(InputMismatchException e) {
+				System.out.println("정상적인 메뉴의 번호 입력이 되지 않았습니다.");
+				System.out.println("메뉴를 다시 입력 해 주세요.");
+				handler.sc.nextLine(); 
+				continue;
+			} catch(Exception e) {
+				System.out.println("예외 발생");
+				handler.sc.nextLine(); 
+				continue;
+			}
+			
+			
 			handler.sc.nextLine(); // 앞의 버퍼를 클리어
 			
 			switch(choice) {
