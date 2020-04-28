@@ -1,6 +1,6 @@
 package ver05;
 
-public abstract class PhoneInfo {
+public abstract class PhoneInfo implements Info {
 
 	private String name;		//이름 
 	private String phoneNumber;	//전화번호
@@ -21,9 +21,7 @@ public abstract class PhoneInfo {
 		System.out.println("이메일 : "+this.email);
 	}
 	
-		
-	abstract void showInfo();
-	
+
 	boolean checkName(String name) {
 		return this.getName().equals(name);
 	}
@@ -31,7 +29,5 @@ public abstract class PhoneInfo {
 	public String getName() {
 		return name;
 	}
-
-	
 	
 }

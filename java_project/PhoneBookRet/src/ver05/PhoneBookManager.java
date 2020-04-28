@@ -1,4 +1,4 @@
-package ver04;
+package ver05;
 
 import java.util.Scanner;
 
@@ -43,24 +43,24 @@ public class PhoneBookManager {
 		String email = sc.nextLine();
 		
 		switch(choice) {
-		case 1:
+		case Interface.INSERT_UNIV:
 			System.out.println("전공을 입력하세요. >>");
 			String major = sc.nextLine();
 			System.out.println("학번을 입력하세요. >>");
 			String grade = sc.nextLine();
 			info = new PhoneUnivInfo(name, phoneNumber, address, email, major, grade);
 			break;
-		case 2:
+		case Interface.INSERT_THEATER:
 			System.out.println("분야를 입력하세요. >>");
 			String position = sc.nextLine();
 			info = new PhoneThea(name, phoneNumber, address, email, position);
 			break;
-		case 3:
+		case Interface.INSERT_FRIEND:
 			System.out.println("직업을 입력하세요. >>");
 			String job = sc.nextLine();
 			info = new PhoneFriend(name, phoneNumber, address, email, job);
 			break;
-		case 4:
+		case Interface.INSERT_FAMILY:
 			System.out.println("관계를 입력하세요. >>");
 			String rel = sc.nextLine();
 			info = new PhoneFam(name, phoneNumber, address, email, rel);
