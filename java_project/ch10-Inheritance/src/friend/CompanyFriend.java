@@ -7,7 +7,7 @@ public class CompanyFriend extends Friend {
 		// TODO Auto-generated constructor stub
 	}
 
-	void showData() {
+	public void showData() {
 		
 	}
 }

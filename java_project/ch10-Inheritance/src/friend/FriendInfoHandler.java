@@ -3,6 +3,23 @@ package friend;
 import java.util.Scanner;
 
 public class FriendInfoHandler {
+	//2020.04.28
+	//싱글톤 처리
+	//1> 생성자 접근제어 지시자 : private
+//    => 인스턴스 생성을 금지시킴
+    //2> 공동으로 사용할 인스턴스를 생성 : static private
+    //3> 참조변수 반환 메서드 : static public
+
+	
+	
+	
+	private static FriendInfoHandler handler 
+	= new FriendInfoHandler(100);
+	
+	public static FriendInfoHandler getInstance() {
+		
+		return handler;
+	}
 	
 
 	// Friend 타입의 정보를 저장할 배열을 가진다.
@@ -15,14 +32,13 @@ public class FriendInfoHandler {
 	Scanner sc; 
 	
 	//초기화 : 저장공간(사이즈) 크기를 받아서 배열 생성
-	FriendInfoHandler(int num) {
+	private FriendInfoHandler(int num) {
 		myFriends = new Friend[num];
 		numOfFriend=0;
 		sc = new Scanner(System.in);
 	}
 	
 	// 저장 기능
-	// 1. 배열에 저장하는 기능	
 	void addFriendInfo(Friend f) {	// 배열에 저장
 		myFriends[numOfFriend++]=f;
 	}

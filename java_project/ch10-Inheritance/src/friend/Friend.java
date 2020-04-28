@@ -6,10 +6,10 @@ package friend;
 기본 속성과 기능을 구성
  */
 
-public abstract class Friend {
+public abstract class Friend implements Info {
 
 	String name;	//친구의 이름
-	String phoneNum;//친구의 전화번호
+	String phoneNum;
 	String addr;	//친구의 주소
 	
 	// 생성자
@@ -29,6 +29,6 @@ public abstract class Friend {
 	
 	//상속의 목적으로 오버라이딩 할 메서드
 	//기본 데이터와 하위 클래스의 데이터를 출력하도록 오버라이딩한다
-	abstract void showData();
+	//abstract void showData();
 	
 }
