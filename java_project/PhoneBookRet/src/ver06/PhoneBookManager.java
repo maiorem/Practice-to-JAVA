@@ -22,6 +22,17 @@ public class PhoneBookManager {
 		return m;
 	}
 	
+	//공백 입력시 예외처리할 메서드
+	String readString() throws StringInputNoneException{
+		String str=sc.nextLine();
+		if (str.length()<1) {
+			StringInputNoneException except = new StringInputNoneException();
+			throw except;
+		}
+		return str;		
+	}
+	
+	
 	//저장기능
 	void saveData(int choice) {
 		info[count] = creatInst(choice);
@@ -32,40 +43,46 @@ public class PhoneBookManager {
 	PhoneInfo creatInst(int choice) {
 
 		PhoneInfo info = null;
-						
-		System.out.println("이름을 입력하세요. >> ");
-		String name = sc.nextLine();
-		System.out.println("전화번호를 입력하세요. >> ");
-		String phoneNumber = sc.nextLine();
-		System.out.println("주소를 입력하세요. >> ");
-		String address = sc.nextLine();
-		System.out.println("이메일을 입력하세요. >> ");
-		String email = sc.nextLine();
 		
-		switch(choice) {
-		case Interface.INSERT_UNIV:
-			System.out.println("전공을 입력하세요. >>");
-			String major = sc.nextLine();
-			System.out.println("학번을 입력하세요. >>");
-			String grade = sc.nextLine();
-			info = new PhoneUnivInfo(name, phoneNumber, address, email, major, grade);
-			break;
-		case Interface.INSERT_THEATER:
-			System.out.println("분야를 입력하세요. >>");
-			String position = sc.nextLine();
-			info = new PhoneThea(name, phoneNumber, address, email, position);
-			break;
-		case Interface.INSERT_FRIEND:
-			System.out.println("직업을 입력하세요. >>");
-			String job = sc.nextLine();
-			info = new PhoneFriend(name, phoneNumber, address, email, job);
-			break;
-		case Interface.INSERT_FAMILY:
-			System.out.println("관계를 입력하세요. >>");
-			String rel = sc.nextLine();
-			info = new PhoneFam(name, phoneNumber, address, email, rel);
-			break;
-		}		
+		try {
+			System.out.println("이름을 입력하세요. >> ");
+			String name = readString();
+			System.out.println("전화번호를 입력하세요. >> ");
+			String phoneNumber = readString();
+			System.out.println("주소를 입력하세요. >> ");
+			String address = readString();
+			System.out.println("이메일을 입력하세요. >> ");
+			String email = readString();
+
+			switch(choice) {
+			case Interface.INSERT_UNIV:
+				System.out.println("전공을 입력하세요. >>");
+				String major = readString();
+				System.out.println("학번을 입력하세요. >>");
+				String grade = readString();
+				info = new PhoneUnivInfo(name, phoneNumber, address, email, major, grade);
+				break;
+			case Interface.INSERT_THEATER:
+				System.out.println("분야를 입력하세요. >>");
+				String position = readString();
+				info = new PhoneThea(name, phoneNumber, address, email, position);
+				break;
+			case Interface.INSERT_FRIEND:
+				System.out.println("직업을 입력하세요. >>");
+				String job = readString();
+				info = new PhoneFriend(name, phoneNumber, address, email, job);
+				break;
+			case Interface.INSERT_FAMILY:
+				System.out.println("관계를 입력하세요. >>");
+				String rel = readString();
+				info = new PhoneFam(name, phoneNumber, address, email, rel);
+				break;
+			}		
+
+		} catch(StringInputNoneException e) {
+			System.out.println(e.getMessage());
+			
+		}
 		return info;
 		
 	}

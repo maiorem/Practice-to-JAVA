@@ -1,6 +1,6 @@
 package ver06;
 
-
+import java.util.InputMismatchException;
 
 public class Menu {
 
@@ -29,10 +29,15 @@ public class Menu {
 			
 			int num = 0;
 			try {
-				num=manage.sc.nextInt();
-			} catch (Exception e) {
-				System.out.println("잘못된 메뉴를 선택하셨습니다.");
+				num=readNum();
+			} catch (InputMismatchException e) {
+				System.out.println("숫자를 입력하셔야 합니다..");
 				System.out.println("다시 입력해주세요.");
+				manage.sc.nextLine();
+				continue;
+			} catch (MenuInputException e) {
+				System.out.println(e.getMessage());
+				System.out.println("처음으로 돌아갑니다.");
 				manage.sc.nextLine();
 				continue;
 			}
@@ -51,9 +56,14 @@ public class Menu {
 				int choice = 0;
 				
 				try {
-					choice=manage.sc.nextInt();
-				} catch(Exception e) {
-					System.out.println("잘못된 메뉴를 선택하셨습니다.");
+					choice=readChoice();
+				} catch(InputMismatchException e) {
+					System.out.println("숫자를 입력하셔야 합니다.");
+					System.out.println("처음으로 돌아갑니다.");
+					manage.sc.nextLine();
+					continue;
+				} catch (MenuInputException e) {
+					System.out.println(e.getMessage());
 					System.out.println("처음으로 돌아갑니다.");
 					manage.sc.nextLine();
 					continue;
@@ -82,9 +92,25 @@ public class Menu {
 				break;
 			}
 		
-
 		}
-		
+	
 	}
 	
+	int readNum () throws MenuInputException {
+		int num=manage.sc.nextInt();
+		if(num<0 || num>7) {
+			MenuInputException except = new MenuInputException();
+			throw except;
+		}
+		return num;
+	}
+	
+	int readChoice() throws MenuInputException {
+		int choice=manage.sc.nextInt();
+		if(choice<0 || choice>4) {
+			MenuInputException except = new MenuInputException();
+			throw except;
+		}
+		return choice;
+	}
 }
