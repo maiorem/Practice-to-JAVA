@@ -14,7 +14,7 @@ public abstract class PhoneInfo implements Info {
 		this.email = email;
 	}
 	
-	void showBasicInfo() {
+	public void showBasicInfo() {
 		System.out.println("이름 : "+ this.name);
 		System.out.println("전화번호 : "+this.phoneNumber);
 		System.out.println("주소 : "+this.address);
@@ -22,7 +22,7 @@ public abstract class PhoneInfo implements Info {
 	}
 	
 
-	boolean checkName(String name) {
+	public boolean checkName(String name) {
 		return this.getName().equals(name);
 	}
 
