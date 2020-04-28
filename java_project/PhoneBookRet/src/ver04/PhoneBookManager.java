@@ -148,7 +148,33 @@ public class PhoneBookManager {
 		if(searchIndex<0) {
 			System.out.println("찾으시는 정보가 없습니다.");
 		} else {
-			
+			System.out.println("이름 : "+editName);
+			System.out.println("전화번호를 입력하세요 >> ");
+			String phoneNumber=sc.nextLine();
+			System.out.println("주소를 입력하세요 >> ");
+			String address=sc.nextLine();
+			System.out.println("이메일을 입력하세요 >> ");
+			String email=sc.nextLine();
+			if (info[searchIndex] instanceof PhoneUnivInfo) {
+				System.out.println("전공을 입력하세요 >> ");
+				String major=sc.nextLine();
+				System.out.println("학번을 입력하세요 >> ");
+				String grade=sc.nextLine();
+				info[searchIndex] = new PhoneUnivInfo(editName, phoneNumber, address, email, major, grade);
+			} else if (info[searchIndex] instanceof PhoneThea) {
+				System.out.println("분야를 입력하세요 >> ");
+				String position=sc.nextLine();
+				info[searchIndex] = new PhoneThea(editName, phoneNumber, address, email, position);
+						
+			} else if (info[searchIndex] instanceof PhoneFam) {
+				System.out.println("관계를 입력하세요 >> ");
+				String rel=sc.nextLine();
+				info[searchIndex] = new PhoneFam(editName, phoneNumber, address, email, rel);
+			} else if (info[searchIndex] instanceof PhoneFriend) {
+				System.out.println("직업을 입력하세요 >> ");
+				String job=sc.nextLine();
+				info[searchIndex] = new PhoneFriend(editName, phoneNumber, address, email, job);
+			}
 		}
 	}
 	

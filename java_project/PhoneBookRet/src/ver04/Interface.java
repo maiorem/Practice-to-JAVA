@@ -13,10 +13,11 @@ public class Interface {
 		System.out.println("메뉴를 고르세요.");
 		System.out.println("   1. 번호 저장");
 		System.out.println("   2. 번호 검색");
-		System.out.println("   3. 번호 삭제");
-		System.out.println("   4. 전체 기본 정보 보기");
-		System.out.println("   5. 전체 상세 정보 보기");
-		System.out.println("   6. 프로그램 종료");
+		System.out.println("   3. 번호 수정");
+		System.out.println("   4. 번호 삭제");
+		System.out.println("   5. 전체 기본 정보 보기");
+		System.out.println("   6. 전체 상세 정보 보기");
+		System.out.println("   7. 프로그램 종료");
 		System.out.println("---------------------");
 	}
 	
@@ -51,15 +52,18 @@ public class Interface {
 				manage.output();
 				break;
 			case 3:
-				manage.delete();
+				manage.editInfo();
 				break;
 			case 4:
-				manage.showAllSimpleData();
+				manage.delete();
 				break;
 			case 5:
-				manage.showAllData();
+				manage.showAllSimpleData();
 				break;
 			case 6:
+				manage.showAllData();
+				break;
+			case 7:
 				System.out.println("프로그램 종료");
 				System.exit(0);
 				break;
