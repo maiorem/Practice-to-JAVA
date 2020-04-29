@@ -33,7 +33,7 @@ public class Menu {
 			try {
 				num=readNum();
 			} catch (InputMismatchException e) {
-				System.out.println("숫자를 입력하셔야 합니다..");
+				System.out.println("숫자를 입력하셔야 합니다.");
 				System.out.println("다시 입력해주세요.");
 				continue;
 			} catch (MenuInputException e) {
@@ -65,15 +65,15 @@ public class Menu {
 					choice=readChoice();
 				} catch(InputMismatchException e) {
 					System.out.println("숫자를 입력하셔야 합니다.");
-					System.out.println("다시 입력해주세요.");
+					System.out.println("처음으로 돌아갑니다.");
 					continue;
 				} catch (MenuInputException e) {
 					System.out.println(e.getMessage());
-					System.out.println("다시 입력해주세요.");
+					System.out.println("처음으로 돌아갑니다.");
 					continue;
 				} catch(Exception e) {
 					System.out.println("잘못된 메뉴 선택입니다.");
-					System.out.println("다시 입력해주세요.");
+					System.out.println("처음으로 돌아갑니다.");
 					continue;
 				} finally {
 					manage.sc.nextLine();
