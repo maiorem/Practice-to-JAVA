@@ -1,6 +1,10 @@
 package ver05;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import ver05.exception.BadNumberException;
+import ver05.exception.StringEmptyException;
 
 // PhoneInfo 타입의 배열로 정보를 저장, 수정, 삭제, 검색, 출력
 public class PhoneBookManager {
@@ -11,11 +15,18 @@ public class PhoneBookManager {
 	int numOfInfo;		//배열에 저장된 요소의 갯수
 	
 	//생성자를 통해서 배열을 생성, 요소의 갯수 초기화
-	PhoneBookManager(int num){
+	private PhoneBookManager(int num){
 		books = new PhoneInfo[num];	//배열생성
 		numOfInfo=0;				//요소갯수 초기화
 		kb=new Scanner(System.in);
 	}
+	
+	private static PhoneBookManager manager=new PhoneBookManager(100);
+	
+	public static PhoneBookManager getInstance() {
+		return manager;
+	}
+	
 	
 	//2. 배열에 정보를 저장
 	//2-1.배열에 추가
@@ -28,35 +39,87 @@ public class PhoneBookManager {
 	void createInfo() {
 		
 		//System.out.println("1.일반  2.대학  3.회사  4.동호회");
-		System.out.println("1.대학  2.회사  3.동호회");
-		System.out.println("저장할 메뉴를 선택하세요.");
+
 //		int select=kb.nextInt();
 //		kb.nextLine();
-		int select=Integer.parseInt(kb.nextLine());
-		if(!(select>0&&select<5)) { // 4이상의 메뉴를 선택하면 나오는 
-			System.out.println("정상적인 메뉴 선택이 아닙니다.\n 메뉴를 다시 선택해 주세요.");
-			return;
-		}
-		//2-2-1.기본 정보 수집 : 이름, 전번, 주소, 이메일
-		System.out.println("이름을 입력해주세요 >>");
-		String name=kb.nextLine();
-		System.out.println("전화번호를 입력해주세요 >>");
-		String phoneNum=kb.nextLine();
-		System.out.println("주소를 입력해주세요 >>");
-		String addr=kb.nextLine();
-		System.out.println("이메일을 입력해주세요 >>");
-		String email=kb.nextLine();
 		
+		int select=0;
+		while(true) {			
+				System.out.println("1.대학  2.회사  3.동호회");
+				System.out.println("저장할 메뉴를 선택하세요.");
+			try {
+				select=kb.nextInt();
+				// 정상범위 1~3
+				if (!(select>=MenuNum.UNIV && select<=MenuNum.CAFE)) {
+					BadNumberException ex = new BadNumberException("메뉴 범위를 벗어나는 번호입니다. \n다시 입력해 주세요.");
+					// 강제적인 예외 발생
+					throw ex;					
+				}
+								
+			} catch(InputMismatchException e) {
+				System.out.println("잘못된 메뉴 입력입니다.");
+				System.out.println("다시 입력해주세요.");
+				continue;
+			} catch(BadNumberException e) {
+				System.out.println(e.getMessage());
+				continue;
+			} catch(Exception e) {
+				System.out.println("잘못된 메뉴 입력입니다.");
+				System.out.println("다시 입력해주세요.");
+				continue;
+			} finally {
+				manager.kb.nextLine();
+			}
+				
+			break;
+		}
+		
+//		if(!(select>0&&select<5)) { // 4이상의 메뉴를 선택하면 나오는 
+//			System.out.println("정상적인 메뉴 선택이 아닙니다.\n 메뉴를 다시 선택해 주세요.");
+//			return;
+//		}
 		PhoneInfo info=null;
 		
+		String name=null, phoneNum=null, addr=null, email=null;
+		
+		
+		while (true) {
+			//2-2-1.기본 정보 수집 : 이름, 전번, 주소, 이메일
+			System.out.println("이름을 입력해주세요 >>");
+			name=kb.nextLine();
+			System.out.println("전화번호를 입력해주세요 >>");
+			phoneNum=kb.nextLine();
+			System.out.println("주소를 입력해주세요 >>");
+			addr=kb.nextLine();
+			System.out.println("이메일을 입력해주세요 >>");
+			email=kb.nextLine();
+
+			try {
+				//예외
+				if (
+						name.trim().isEmpty() || 
+						phoneNum.trim().isEmpty() ||
+						addr.trim().isEmpty() ||
+						email.trim().isEmpty()
+						) { 
+					StringEmptyException e = new StringEmptyException("기본 정보는 공백 없이 입력하셔야 합니다. \n다시 입력해주세요");
+					throw e;
+
+				}
+			} catch(StringEmptyException e) {
+				System.out.println(e.getMessage());
+				continue;
+			}
+			break;
+		}
+
 		switch(select) {
-		
-		
 		//2-2-2.기본클래스로 인스턴스 생성
-//		case 1:
-//			info = new PhoneInfo(name, phoneNum, addr, email);
-//			break;
-		
+		//		case 1:
+		//			info = new PhoneInfo(name, phoneNum, addr, email);
+		//			break;
+
+
 		//2-2-3.대학클래스 인스턴스 생성
 		case MenuNum.UNIV:
 			System.out.println("전공을 입력해주세요 >> ");
@@ -65,8 +128,10 @@ public class PhoneBookManager {
 			String grade=kb.nextLine();
 			info = new PhoneUnivInfo(name, phoneNum, addr, email, major, grade);
 			break;
-		
-		//2-2-4.회사 인스턴스
+
+
+			//예외
+			//2-2-4.회사 인스턴스
 		case MenuNum.COMPANY:
 			System.out.println("회사명을 입력해주세요 >> ");
 			String company=kb.nextLine();
@@ -76,8 +141,9 @@ public class PhoneBookManager {
 			String job=kb.nextLine();
 			info = new PhoneCompanyInfo(name, phoneNum, addr, email, company, dept, job);
 			break;
-		
-		//2-2-5.동호회 인스턴스
+
+			//예외
+			//2-2-5.동호회 인스턴스
 		case MenuNum.CAFE:
 			System.out.println("동호회명을 입력해주세요 >> ");
 			String cafeName=kb.nextLine();
@@ -86,9 +152,11 @@ public class PhoneBookManager {
 			info = new PhoneCafeInfo(name, phoneNum, addr, email, cafeName, nickName);
 			break;
 		}
+
 		//2-3.생성된 인스턴스를 배열에 저장
 		addInfo(info);
-		
+
+
 	}
 	
 	//3. 배열의 데이터 출력
@@ -204,4 +272,7 @@ public class PhoneBookManager {
 			books[index] = info;
 		}
 	}
+
+
+
 }
