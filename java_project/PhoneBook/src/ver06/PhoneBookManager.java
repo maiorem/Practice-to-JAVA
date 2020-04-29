@@ -28,7 +28,7 @@ public class PhoneBookManager {
 	//공백 입력시 예외처리할 메서드
 	String readString() throws StringInputNoneException{
 		String str=sc.nextLine();
-		if (str.length()<1) {
+		if (!(str.trim().isEmpty())) {
 			StringInputNoneException except = new StringInputNoneException();
 			throw except;
 		}
@@ -175,7 +175,7 @@ public class PhoneBookManager {
 		System.out.println("상세 정보를 출력합니다.=====================");
 		for(int i=0; i<count; i++) {
 			info[i].showInfo();
-			System.out.println("-------------------");
+			System.out.println("----------------------------------");
 		}
 	}
 	
