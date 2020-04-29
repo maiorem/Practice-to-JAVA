@@ -2,6 +2,7 @@ package ver06;
 
 import java.util.Scanner;
 
+import ver.exception.OnlyNumberException;
 import ver.exception.StringInputNoneException;
 
 public class PhoneBookManager {
@@ -51,8 +52,14 @@ public class PhoneBookManager {
 			try {
 				System.out.println("이름을 입력하세요. >> ");
 				name = readString();
-				System.out.println("전화번호를 입력하세요. >> ");
+				System.out.println("전화번호를 하이픈(-)을 제외한 숫자만 입력하세요. >> ");
 				phoneNumber = readString();
+				for(int i=0; i<phoneNumber.length(); i++) {
+					if (!(phoneNumber.charAt(i)>='0' && phoneNumber.charAt(i)<='9')) {
+						OnlyNumberException ex = new OnlyNumberException();
+						throw ex;
+					}
+				}
 				System.out.println("주소를 입력하세요. >> ");
 				address = readString();
 				System.out.println("이메일을 입력하세요. >> ");
@@ -60,6 +67,14 @@ public class PhoneBookManager {
 
 			} catch(StringInputNoneException e) {
 				System.out.println(e.getMessage());
+				System.out.println("다시 입력해주세요.");
+				continue;
+			} catch(OnlyNumberException e) {
+				System.out.println(e.getMessage());
+				System.out.println("다시 입력해주세요.");
+				continue;
+			} catch(Exception e) {
+				System.out.println("잘못된 입력입니다.");
 				System.out.println("다시 입력해주세요.");
 				continue;
 			}
@@ -179,14 +194,29 @@ public class PhoneBookManager {
 			while (true) {
 				try {
 					System.out.println("이름 : "+editName);
-					System.out.println("전화번호를 입력하세요 >> ");
+					System.out.println("전화번호를 하이픈(-)을 제외한 숫자만 입력하세요. >> ");
 					phoneNumber=readString();
-					System.out.println("주소를 입력하세요 >> ");
-					address=readString();
-					System.out.println("이메일을 입력하세요 >> ");
-					email=readString();
+					for(int i=0; i<phoneNumber.length(); i++) {
+						if (!(phoneNumber.charAt(i)>='0' && phoneNumber.charAt(i)<='9')) {
+							OnlyNumberException ex = new OnlyNumberException();
+							throw ex;
+						}
+					}
+					System.out.println("주소를 입력하세요. >> ");
+					address = readString();
+					System.out.println("이메일을 입력하세요. >> ");
+					email = readString();
+
 				} catch(StringInputNoneException e) {
 					System.out.println(e.getMessage());
+					System.out.println("다시 입력해주세요.");
+					continue;
+				} catch(OnlyNumberException e) {
+					System.out.println(e.getMessage());
+					System.out.println("다시 입력해주세요.");
+					continue;
+				} catch(Exception e) {
+					System.out.println("잘못된 입력입니다.");
 					System.out.println("다시 입력해주세요.");
 					continue;
 				}
