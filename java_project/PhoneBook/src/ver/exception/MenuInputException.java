@@ -1,4 +1,4 @@
-package ver06;
+package ver.exception;
 
 public class MenuInputException extends Exception {
 

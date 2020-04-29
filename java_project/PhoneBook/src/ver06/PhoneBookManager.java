@@ -2,6 +2,8 @@ package ver06;
 
 import java.util.Scanner;
 
+import ver.exception.StringInputNoneException;
+
 public class PhoneBookManager {
 
 	Scanner sc;
@@ -43,46 +45,52 @@ public class PhoneBookManager {
 	PhoneInfo creatInst(int choice) {
 
 		PhoneInfo info = null;
+		String name=null, phoneNumber=null, address=null, email=null;
 		
-		try {
-			System.out.println("이름을 입력하세요. >> ");
-			String name = readString();
-			System.out.println("전화번호를 입력하세요. >> ");
-			String phoneNumber = readString();
-			System.out.println("주소를 입력하세요. >> ");
-			String address = readString();
-			System.out.println("이메일을 입력하세요. >> ");
-			String email = readString();
+		while (true) {
+			try {
+				System.out.println("이름을 입력하세요. >> ");
+				name = readString();
+				System.out.println("전화번호를 입력하세요. >> ");
+				phoneNumber = readString();
+				System.out.println("주소를 입력하세요. >> ");
+				address = readString();
+				System.out.println("이메일을 입력하세요. >> ");
+				email = readString();
 
+			} catch(StringInputNoneException e) {
+				System.out.println(e.getMessage());
+				System.out.println("다시 입력해주세요.");
+				continue;
+			}
+			break;
+		}
 			switch(choice) {
 			case Interface.INSERT_UNIV:
 				System.out.println("전공을 입력하세요. >>");
-				String major = readString();
+				String major = sc.nextLine();
 				System.out.println("학번을 입력하세요. >>");
-				String grade = readString();
+				String grade = sc.nextLine();
 				info = new PhoneUnivInfo(name, phoneNumber, address, email, major, grade);
 				break;
 			case Interface.INSERT_THEATER:
 				System.out.println("분야를 입력하세요. >>");
-				String position = readString();
+				String position = sc.nextLine();
 				info = new PhoneThea(name, phoneNumber, address, email, position);
 				break;
 			case Interface.INSERT_FRIEND:
 				System.out.println("직업을 입력하세요. >>");
-				String job = readString();
+				String job = sc.nextLine();
 				info = new PhoneFriend(name, phoneNumber, address, email, job);
 				break;
 			case Interface.INSERT_FAMILY:
 				System.out.println("관계를 입력하세요. >>");
-				String rel = readString();
+				String rel = sc.nextLine();
 				info = new PhoneFam(name, phoneNumber, address, email, rel);
 				break;
 			}		
 
-		} catch(StringInputNoneException e) {
-			System.out.println(e.getMessage());
-			
-		}
+	
 		return info;
 		
 	}
@@ -165,13 +173,25 @@ public class PhoneBookManager {
 		if(searchIndex<0) {
 			System.out.println("찾으시는 정보가 없습니다.");
 		} else {
-			System.out.println("이름 : "+editName);
-			System.out.println("전화번호를 입력하세요 >> ");
-			String phoneNumber=sc.nextLine();
-			System.out.println("주소를 입력하세요 >> ");
-			String address=sc.nextLine();
-			System.out.println("이메일을 입력하세요 >> ");
-			String email=sc.nextLine();
+			
+			String phoneNumber=null, address=null, email=null;
+			
+			while (true) {
+				try {
+					System.out.println("이름 : "+editName);
+					System.out.println("전화번호를 입력하세요 >> ");
+					phoneNumber=readString();
+					System.out.println("주소를 입력하세요 >> ");
+					address=readString();
+					System.out.println("이메일을 입력하세요 >> ");
+					email=readString();
+				} catch(StringInputNoneException e) {
+					System.out.println(e.getMessage());
+					System.out.println("다시 입력해주세요.");
+					continue;
+				}
+				break;
+			}
 			if (info[searchIndex] instanceof PhoneUnivInfo) {
 				System.out.println("전공을 입력하세요 >> ");
 				String major=sc.nextLine();

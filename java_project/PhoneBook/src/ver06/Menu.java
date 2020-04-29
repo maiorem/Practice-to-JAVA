@@ -2,6 +2,8 @@ package ver06;
 
 import java.util.InputMismatchException;
 
+import ver.exception.MenuInputException;
+
 public class Menu {
 
 	
@@ -33,16 +35,20 @@ public class Menu {
 			} catch (InputMismatchException e) {
 				System.out.println("숫자를 입력하셔야 합니다..");
 				System.out.println("다시 입력해주세요.");
-				manage.sc.nextLine();
 				continue;
 			} catch (MenuInputException e) {
 				System.out.println(e.getMessage());
 				System.out.println("처음으로 돌아갑니다.");
-				manage.sc.nextLine();
 				continue;
+			} catch (Exception e) {
+				System.out.println("잘못된 메뉴 선택입니다.");
+				System.out.println("다시 입력해주세요.");
+				continue;
+			} finally {
+				manage.sc.nextLine();
 			}
 			
-			manage.sc.nextLine();
+		
 			
 			switch(num) {
 			case Interface.SAVE:
@@ -59,16 +65,20 @@ public class Menu {
 					choice=readChoice();
 				} catch(InputMismatchException e) {
 					System.out.println("숫자를 입력하셔야 합니다.");
-					System.out.println("처음으로 돌아갑니다.");
-					manage.sc.nextLine();
+					System.out.println("다시 입력해주세요.");
 					continue;
 				} catch (MenuInputException e) {
 					System.out.println(e.getMessage());
-					System.out.println("처음으로 돌아갑니다.");
-					manage.sc.nextLine();
+					System.out.println("다시 입력해주세요.");
 					continue;
+				} catch(Exception e) {
+					System.out.println("잘못된 메뉴 선택입니다.");
+					System.out.println("다시 입력해주세요.");
+					continue;
+				} finally {
+					manage.sc.nextLine();
 				}
-				manage.sc.nextLine();
+				
 				manage.saveData(choice);
 				break;
 			case Interface.SEARCH:
@@ -98,7 +108,7 @@ public class Menu {
 	
 	int readNum () throws MenuInputException {
 		int num=manage.sc.nextInt();
-		if(num<0 || num>7) {
+		if(!(num>=Interface.SAVE && num<=Interface.EXIT)) {
 			MenuInputException except = new MenuInputException();
 			throw except;
 		}
@@ -107,7 +117,7 @@ public class Menu {
 	
 	int readChoice() throws MenuInputException {
 		int choice=manage.sc.nextInt();
-		if(choice<0 || choice>4) {
+		if(!(choice>=Interface.INSERT_UNIV && choice<=Interface.INSERT_FAMILY)) {
 			MenuInputException except = new MenuInputException();
 			throw except;
 		}
