@@ -28,7 +28,7 @@ public class PhoneBookManager {
 	//공백 입력시 예외처리할 메서드
 	String readString() throws StringInputNoneException{
 		String str=sc.nextLine();
-		if (!(str.trim().isEmpty())) {
+		if (str.trim().isEmpty()) {
 			StringInputNoneException except = new StringInputNoneException();
 			throw except;
 		}
