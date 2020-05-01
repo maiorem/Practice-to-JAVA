@@ -223,19 +223,23 @@ public class PhoneBookManager {
 				String major=sc.nextLine();
 				System.out.println("학번을 입력하세요 >> ");
 				String grade=sc.nextLine();
+				info.remove(searchIndex);
 				info.add(new PhoneUnivInfo(editName, phoneNumber, address, email, major, grade));
 			} else if (info.get(searchIndex) instanceof PhoneThea) {
 				System.out.println("분야를 입력하세요 >> ");
 				String position=sc.nextLine();
+				info.remove(searchIndex);
 				info.add(new PhoneThea(editName, phoneNumber, address, email, position));
 						
 			} else if (info.get(searchIndex) instanceof PhoneFam) {
 				System.out.println("관계를 입력하세요 >> ");
 				String rel=sc.nextLine();
+				info.remove(searchIndex);
 				info.add(new PhoneFam(editName, phoneNumber, address, email, rel));
 			} else if (info.get(searchIndex) instanceof PhoneFriend) {
 				System.out.println("직업을 입력하세요 >> ");
 				String job=sc.nextLine();
+				info.remove(searchIndex);
 				info.add(new PhoneFriend(editName, phoneNumber, address, email, job));
 			}
 		}
