@@ -14,7 +14,7 @@ public class PhoneBookManager {
 	
 	private PhoneBookManager() {
 		sc=new Scanner(System.in);
-		info = new ArrayList<>();		
+		info = new ArrayList<PhoneInfo>();		
 	}
 	
 	private static PhoneBookManager m = new PhoneBookManager();
