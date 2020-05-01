@@ -1,6 +1,6 @@
 package ex;
 
-
+import java.util.Iterator;
 
 public class LinkedList {
 
@@ -26,7 +26,11 @@ public class LinkedList {
 		// 데이터의 저장 : 저장의 순서를 가지고 있다.
 		list.add(10); //Auto Boxing
 		list.add(new Integer(20));
+		list.add(new Integer(50));
+		list.add(new Integer(90));
 		list.add(new Integer(30)); // 순서대로 저장
+		list.add(1);
+		
 		
 		// 데이터의 참조
 		System.out.println("저장된 데이터를 확인합니다.");
@@ -41,7 +45,33 @@ public class LinkedList {
 		System.out.println("데이터 삭제 후 데이터를 확인합니다.");
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
+			
+			
 		}
+		
+		System.out.println("Iterator를 이용한 모든 요소 출력");	
+			
+		Iterator<Integer> itr = list.iterator();
+		
+		while(itr.hasNext()) {
+			int num = itr.next();
+			System.out.println(num);
+		}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 	}
-
 }
+
+
