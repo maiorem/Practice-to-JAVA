@@ -1,10 +1,10 @@
 package ver06;
 
-public class PhoneFriend extends PhoneInfo {
+public class PhoneFriendInfo extends PhoneInfo {
 
 	private String job;
 	
-	PhoneFriend(String name, String phoneNumber, String address, String email, String job) {
+	PhoneFriendInfo(String name, String phoneNumber, String address, String email, String job) {
 		super(name, phoneNumber, address, email);
 		this.job = job;
 		

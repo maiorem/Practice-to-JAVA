@@ -88,19 +88,19 @@ public class PhoneBookManager {
 				info = new PhoneUnivInfo(name, phoneNumber, address, email, major, grade);
 				break;
 			case Interface.INSERT_THEATER:
-				System.out.println("분야를 입력하세요. >>");
+				System.out.println("직책을 입력하세요. >>");
 				String position = sc.nextLine();
-				info = new PhoneThea(name, phoneNumber, address, email, position);
+				info = new PhoneCompanyInfo(name, phoneNumber, address, email, position);
 				break;
 			case Interface.INSERT_FRIEND:
 				System.out.println("직업을 입력하세요. >>");
 				String job = sc.nextLine();
-				info = new PhoneFriend(name, phoneNumber, address, email, job);
+				info = new PhoneFriendInfo(name, phoneNumber, address, email, job);
 				break;
 			case Interface.INSERT_FAMILY:
 				System.out.println("관계를 입력하세요. >>");
 				String rel = sc.nextLine();
-				info = new PhoneFam(name, phoneNumber, address, email, rel);
+				info = new PhoneFamilyInfo(name, phoneNumber, address, email, rel);
 				break;
 			}		
 
@@ -225,22 +225,22 @@ public class PhoneBookManager {
 				String grade=sc.nextLine();
 				info.remove(searchIndex);
 				info.add(new PhoneUnivInfo(editName, phoneNumber, address, email, major, grade));
-			} else if (info.get(searchIndex) instanceof PhoneThea) {
-				System.out.println("분야를 입력하세요 >> ");
+			} else if (info.get(searchIndex) instanceof PhoneCompanyInfo) {
+				System.out.println("직책을 입력하세요 >> ");
 				String position=sc.nextLine();
 				info.remove(searchIndex);
-				info.add(new PhoneThea(editName, phoneNumber, address, email, position));
+				info.add(new PhoneCompanyInfo(editName, phoneNumber, address, email, position));
 						
-			} else if (info.get(searchIndex) instanceof PhoneFam) {
+			} else if (info.get(searchIndex) instanceof PhoneFamilyInfo) {
 				System.out.println("관계를 입력하세요 >> ");
 				String rel=sc.nextLine();
 				info.remove(searchIndex);
-				info.add(new PhoneFam(editName, phoneNumber, address, email, rel));
-			} else if (info.get(searchIndex) instanceof PhoneFriend) {
+				info.add(new PhoneFamilyInfo(editName, phoneNumber, address, email, rel));
+			} else if (info.get(searchIndex) instanceof PhoneFriendInfo) {
 				System.out.println("직업을 입력하세요 >> ");
 				String job=sc.nextLine();
 				info.remove(searchIndex);
-				info.add(new PhoneFriend(editName, phoneNumber, address, email, job));
+				info.add(new PhoneFriendInfo(editName, phoneNumber, address, email, job));
 			}
 		}
 	}
