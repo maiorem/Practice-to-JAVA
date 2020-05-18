@@ -1,3 +1,23 @@
+-- 2020.05.18.
+
+select * from emp order by sal;
+select * from emp order by sal desc;
+
+
+-- 로그인한 계정이 소유한 테이블 확인
+select * from tab;
+
+-- 데이터 정의 확인.
+desc emp;
+
+
+
+select ename, job, sal, sal*12 as annsal,
+sal*12+nvl(comm, 0) as total
+from emp
+where sal>=2000;
+
+
 select ename, sal, sal/2
 from emp;
 
