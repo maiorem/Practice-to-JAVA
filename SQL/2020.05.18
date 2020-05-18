@@ -1,5 +1,8 @@
 -- 2020.05.18.
 
+SELECT * from emp;
+
+
 select * from emp order by sal;
 select * from emp order by sal desc;
 
@@ -9,7 +12,6 @@ select * from tab;
 
 -- 데이터 정의 확인.
 desc emp;
-
 
 
 select ename, job, sal, sal*12 as annsal,
@@ -36,7 +38,6 @@ from emp;
 -- 데이터베이스의 문자열 표현 -> 작은 따옴표를 이용한다.
 -- '문자열'
 -- 문자열을 붙여서 출력하는 연산 -> ||
-
 select ename || ' is a ' || job as msg
 from emp;
 
