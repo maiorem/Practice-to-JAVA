@@ -10,8 +10,26 @@ select * from emp order by sal desc;
 -- 로그인한 계정이 소유한 테이블 확인
 select * from tab;
 
--- 데이터 정의 확인.
+
+-- emp : 사원정보
+-- dept : 부서정보
+-- bonus : 임시테이블
+-- salgrade : 급여테이블
+
+
+-- 테이블 구조 확인.
 desc emp;
+desc dept;
+desc salgrade;
+
+
+--데이터 검색 질의
+select ename, sal, deptno, empno --컬럼 이름
+from emp --테이블 이름
+;
+
+--select의 결과는 새로운 테이블이다.
+--컬럼의 산술연산 가능 : +, -, *, /, mod함수(나머지)
 
 
 select ename, job, sal, sal*12 as annsal,
