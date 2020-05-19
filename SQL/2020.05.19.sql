@@ -180,3 +180,15 @@ select ename, deptno
 from emp
 order by deptno, ename
 ;
+
+select *
+from tab;
+
+desc book;
+desc customer;
+desc orders;
+
+select * from book;
+select * from customer;
+select * from orders;
+
