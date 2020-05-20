@@ -104,12 +104,12 @@ decode(deptno, 10, 'ACCOUNTING',
                20, 'RESEARCH',
                30, 'SALES',
                40, 'OPERATION'
-               ) as DEPTNAME,
-decode(deptno, 10, 'SEOUL',
-               20, 'LONDON',
-               30, 'NEWYORK',
-               40, 'BUSAN'
-               ) as local,
+               ) as DNAME,
+decode(deptno, 10, 'NEW YORK',
+               20, 'DALLAS',
+               30, 'CHICAGO',
+               40, 'BOSTON'
+               ) as LOC,
                count(*), round(avg(sal),0) as average
 from emp
 group by deptno
