@@ -1,4 +1,7 @@
 --16. SUBSTR 함수를 사용하여 사원들의 입사한 년도와 입사한 달만 출력하시오.
+--substr(원본문자열, 시작index, 갯수)
+--substr('STRING', 1, 2) -> 'TR'
+
 select substr(hiredate, 0, 5)
 from emp;
 
@@ -118,7 +121,7 @@ group by deptno
 
 
 --31. 업무를 표시한 다음 해당 업무에 대해 부서 번호별 급여 및 부서 10, 20, 30의 급여 총액을 각각 출력하시오. 별칭은 각 job, dno, 부서 10, 부서 20, 부서 30, 총액으로 지정하시오. ( hint. Decode, group by )
-select job, deptno as "DNO",
+select job, deptno as DNO,
 decode(deptno, 10, sum(sal)) as "부서10",
 decode(deptno, 20, sum(sal)) as "부서20",
 decode(deptno, 30, sum(sal)) as "부서30",
