@@ -66,3 +66,37 @@ from (select * from customer where custid<=2) cs, orders od
 where cs.custid=od.custid
 group by cs.name
 ;
+
+select rownum, ename, empno, sal from emp;
+
+select rownum, ename, empno, sal
+from (select ename, empno, job, deptno, sal from emp order by sal desc)
+where rownum<=3
+;
+
+--중첩질의
+--평균 주문금액 이하의 주문에 대해서 주문번호와 금액을 보이시오.
+select avg(saleprice) from orders;
+
+select orderid, saleprice
+from orders
+where saleprice <= (select avg(saleprice) from orders);
+
+--각 고객의 평균 주문금액보다 큰 금액의 주문 내역에 대해서 주문번호, 고객번호, 금액을 보이시오.
+select avg(saleprice) from orders where custid=1;
+
+select orderid, custid, o.saleprice
+from orders o
+where saleprice > (select avg(saleprice) from orders a where a.custid=o.custid)
+;
+
+--대한민국에 거주하는 고객에게 판매한 도서의 총판매액을 구하시오
+select custid from customer where address like '%대한민국%';
+
+select sum(saleprice) 
+from orders 
+where custid in (2, 3, 5);
+
+select sum(saleprice) 
+from orders 
+where custid in (select custid from customer where address like '%대한민국%');
