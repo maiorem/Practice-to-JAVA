@@ -1,0 +1,68 @@
+--2020.05.22.
+--sub query(서브쿼리=내부쿼리=부속질의)
+
+--평균 급여를 구하는 쿼리문을 서브 쿼리로 사용하여 
+--평균 급여보다 더 많은 급여를 받는 사원을 검색
+
+select avg(sal) from emp;
+
+select * from emp where sal > 2073.214285714285714285714285714285714286 ;
+
+select * from emp where sal > ( select avg(sal) from emp );
+
+--SCOTT과 같이 일하는 사람의 리스트
+select deptno from emp where ename='SCOTT';
+
+select *
+from emp
+where deptno = (select deptno from emp where ename='SCOTT'); --deptno=20
+
+-- IN :3000 이상 받는 사원이 소속된 부서(10번, 20번)와 동일한 부서에서 근무하는 사원
+select * from emp where deptno in (10, 20);
+
+select distinct deptno from emp where sal>=3000;
+
+select * from emp where deptno in (select distinct deptno from emp where sal>=3000);
+
+-- ALL : 30번 소속 사원들 중에서 급여를 가장 많이 받는 사원보다 더 많은 급여를 받는 사람의 이름, 급여
+select max(sal) from emp where deptno=30;
+select ename, sal from emp where sal > (select max(sal) from emp where deptno=30);
+select ename, sal from emp where sal > all(select sal from emp where deptno=30);
+
+-- ANY : 부서번호가 30번인 사원들의 급여 중 가장 작은 값(950)보다 많은 급여를 받는 사원의 이름, 급여
+select min(sal) from emp where deptno=30;
+select ename, sal from emp where sal > (select min(sal) from emp where deptno=30);
+select ename, sal from emp where sal > any(select sal from emp where deptno=30);
+
+-- ROWNUM : 입력순서의 번호
+select rownum, ename
+from emp;
+
+--스칼라 부속질의 : select 부속. 컬럼 표현
+
+--마당서점의 고객별 판매액
+--(결과는 고객이름과 고객별 판매액을 출력)
+select name, sum(saleprice)
+from orders o, customer c
+where o.custid=c.custid
+group by name
+;
+
+select custid, 
+(
+select name from customer where customer.custid=orders.custid
+)
+as custom_name, sum(saleprice)
+from orders
+group by custid
+;
+
+--고객번호가 2 이하인 고객의 판매액
+--(결과는 고객이름과 고객별 판매액 출력)
+select * from customer where custid<=2;
+
+select cs.name, sum(saleprice)
+from (select * from customer where custid<=2) cs, orders od
+where cs.custid=od.custid
+group by cs.name
+;
