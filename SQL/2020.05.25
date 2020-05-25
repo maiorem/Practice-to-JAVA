@@ -90,3 +90,14 @@ desc emp01;
 --alter table 테이블이름 drop column 컬럼이름
 alter table emp01 drop column sal;
 desc emp01;
+
+--테이블 객체 삭제 (ddl은 모두 물리적 반영. 자동 커밋. 복구 안되니 주의)
+--drop table 테이블이름
+drop table emp01;
+select * from tab;
+desc emp01;
+
+--테이블의 모든 로우를 삭제하는 truncate도 ddl이므로 물리적 반영... 가급적 delete를 사용
+select * from emp02;
+truncate table emp02;
+
