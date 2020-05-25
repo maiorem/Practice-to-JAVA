@@ -123,11 +123,8 @@ and b.publisher in (
 and c.name!='박지성';
 
 --(2) 두 개 이상의 서로 다른 출판사에서 도서를 구매한 고객의 이름
-select name 
-from (
-    select name, publisher 
-    from customer c, orders o, book b 
-    where c.custid=o.custid and b.bookid=o.bookid
-    )
+select name
+from customer c, orders o, book b 
+where c.custid=o.custid and b.bookid=o.bookid
 group by name
 having 2<=count(distinct publisher);
