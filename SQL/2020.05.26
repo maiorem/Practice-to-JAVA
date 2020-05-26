@@ -1,0 +1,43 @@
+--2020.05.26.
+
+--DML
+
+--부서테이블 양식만 복사
+create table dept01 as select * from dept where 1=0;
+
+desc dept01;
+select * from dept01;
+
+--새로운 부서 정보를 입력 : 행단위 입력
+--insert into 테이블이름 (입력하고자 하는 컬럼들) values (컬럼 안에 들어갈 데이터들);
+--입력 컬럼의 순서와 입력 데이터 순서는 일치해야 한다.
+insert into dept01(deptno, dname, loc) values (10, 'MARKETING', 'SEOUL') ;
+insert into dept01(loc, deptno, dname) values ('LONDON', 30, 'SALES') ;
+insert into dept01(deptno, dname) values (40, 'DEV'); -- 암시적 null값 입력
+insert into dept01 values (20, 'DESIGN','BUSAN');
+
+delete from dept01 where deptno=30 and loc is null;
+
+
+create table dept02 (
+    deptno number(2) not null,
+    dname varchar2(20) not null,
+    loc varchar2(20) default 'SEOUL'
+);
+
+insert into dept02(deptno, dname, loc) values (10, 'MARKETING', 'SEOUL') ;
+insert into dept02(deptno, dname) values (40, 'DEV');
+--null값 명시적 입력
+insert into dept02 values (20, 'DESIGN',null);
+insert into dept02(loc, deptno, dname) values ('', 30, 'SALES') ;
+
+--오류 발생
+insert into dept02(deptno, dname) values (40, 'DEV', 'JEJU');
+insert into dept02(deptno, dname, loc) values (40, 'DEV');
+insert into dept02 values (40, 'DEV');
+insert into dept02 (dname, loc) values ('TEST','locTEST');
+
+select * from dept02;
+
+desc dept02;
+
