@@ -40,7 +40,7 @@ create table emp01 (
 select * from tab;
 desc emp01;
 
--- 테이블의 복사 : 서브쿼리 이용 
+-- 테이블의 복사 : 서브쿼리 이용 -> as 서브쿼리
 -- 스키마 복사, 행 복사, 제약조건의 복사는 되지 않는다.
 create table emp02
 as
@@ -230,3 +230,81 @@ insert into emp07 values (2222, 'TEST', null, 10, 'M', 600, null);
 insert into emp07 (empno, ename, deptno, gender, sal)
             values (1113, 'TEST', 10, 'F', 1600);
 select * from emp07;
+
+
+--테이블 레벨에서의 제약 조건 정의
+drop table emp02;
+
+create table emp02(
+    empno number(4),
+    ename varchar2(10) constraint emp02_ename_NN not null, -- not null은 컬럼 옆에만 들어간다
+    job varchar2(10) not null,
+    deptno number(2),
+    
+    --제약의 정의
+    constraint emp02_empno_PK primary key(empno),
+    constraint emp02_ename_UK unique(ename),
+    constraint emp02_deptno_FK foreign key(deptno) REFERENCES dept(deptno)
+);
+
+
+--전화번호 관리 프로그램
+
+--이름, 전화번호, 생일, 이메일
+--전공, 학년
+--부서명, 직급
+--동호회이름, 닉네임
+--대리키 : 일련번호 -> member_idx, pIdx
+
+--전화번호부(Contact)
+
+create table contact(
+    pIdx number(6),
+    category varchar2(10) not null,
+    name varchar2(20) not null,
+    phone_num number(20) not null,
+    address varchar2(20) default 'SEOUL' not null,
+    email varchar2(20) default '@naver.com' not null,
+    
+    major varchar2(10),
+    grade number(2),
+    company varchar2(10),
+    dept varchar2(10),
+    job varchar2(10),
+    cafename varchar2(10),
+    nickname varchar2(10),
+    
+    constraint contact_pIdx_PK primary key(pIdx),
+    constraint contact_category_CK check (category in ('UNIV','COM','CAFE')),
+    constraint contact_phone_num_UK unique(phone_num)
+);
+
+select * from contact;
+
+create table phoneInfo_basic (
+    idx number(6),
+    fr_name varchar2(20) not null,
+    fr_phonenumber varchar2(20) not null,
+    fr_email varchar2(20),
+    fr_address VARCHAR2(20),
+    fr_regdate date default sysdate,    
+    constraint phoneInfo_basic_idx_PK primary key(idx)
+);
+
+create table phoneInfo_univ (
+    idx number(6),
+    fr_u_major varchar2(20) default 'N' not null,
+    fr_u_year number(1) default 1 not null,
+    fr_ref number(6),
+    constraint phoneInfo_univ_idx_PK primary key(idx),
+    constraint phoneInfo_univ_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)    
+);
+
+create table phoneInfo_com(
+    idx number(6),
+    fr_c_company varchar2(20) default 'N' not null,
+    fr_ref number(6),
+    
+    constraint phoneInfo_com_idx_PK primary key(idx),
+    constraint phoneInfo_com_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)  
+);
