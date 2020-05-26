@@ -14,9 +14,9 @@ create table contact(
     pIdx number(6),
     category varchar2(10) not null,
     name varchar2(20) not null,
-    phone_num number(20) not null,
-    address varchar2(20) default 'SEOUL' not null,
-    email varchar2(20) default '@naver.com' not null,
+    phone_num varchar2(20) not null,
+    address varchar2(20) default '입력없음' not null,
+    email varchar2(20) default '입력없음' not null,
     
     major varchar2(10),
     grade number(2),
@@ -70,3 +70,44 @@ create table phoneInfo_com(
 select * from phoneinfo_basic;
 select * from phoneinfo_univ;
 select * from phoneinfo_com;
+
+---------------------------------------------------------------------
+--정보 입력 SQL 작성
+--기본정보 입력
+--학교 친구 정보 입력
+--회사 친구 정보 입력
+--카페 친구 정보 입력
+
+insert into contact (pIdx, category, name, phone_num, address) values (1, 'UNIV', '홍세영', '010-0000-0000', 'CHANGWON');
+insert into contact (pIdx, category, name, phone_num, address, email, major, grade) values (2, 'UNIV','김소연','010-1111-4111','GOYANG', '@gmail.com', 'DESIGN', 2);
+insert into contact (pIdx, category, name, phone_num, email, company, dept, job) values (3, 'COM', '권영호', '000-2222-4444', '@cholian.com','PABULATOR','DIRECTING','DIRECTOR');
+insert into contact (pIdx, category, name, phone_num, address, cafename, nickname) values (4,'CAFE', '조현희','000-5555-6666','YANGPYEONG','PHOTOLOVE','JoeJan');
+
+select * from contact;
+
+truncate table contact;
+----------------------------------------------------------------------
+select * from phoneinfo_basic;
+select * from phoneinfo_univ;
+select * from phoneinfo_com;
+
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_email)values (1, '홍세영', '010-4607-1111','mai@naver.com');
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_address, fr_regdate) values (4, '강영수', '010-999-7373','서울', '20/01/01');
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate) values (5, '김유진', '010-8888-6666','kim@naver.com','마산', '15/04/27');
+insert into phoneinfo_univ values (1, 'PLAYWRIGHT', 3, 1);
+insert into phoneinfo_univ values (3, 'ENGLISH LITERATURE', 3, 4);
+insert into phoneinfo_com values(1, 'BIT', 1);
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate) values (2, '이가은','010-4660-1111','hy@gmail.com','TOKYO','13/06/18');
+insert into phoneinfo_univ (idx, fr_ref)values (2, 2);
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber) values (3, '송진주','010-888-7777');
+insert into phoneinfo_com (idx, fr_ref) values (3, 3);
+insert into phoneinfo_com values (2, 'MASAN HOSPITAL', 5);
+
+
+select * from phoneinfo_basic b, phoneinfo_univ u, phoneinfo_com c where b.idx=u.fr_ref(+) and b.idx=c.fr_ref(+);
+select * from phoneinfo_basic b natural join phoneinfo_univ u;
+select * from phoneinfo_basic b natural join phoneinfo_com c;
+
+select fr_name, fr_phonenumber, fr_u_major, fr_u_year from phoneinfo_basic natural join phoneinfo_univ;
+select fr_name, fr_phonenumber, fr_c_company, fr_regdate from phoneinfo_basic natural join phoneinfo_com where fr_c_company='BIT';
+select b.fr_name, c.fr_c_company from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref and b.fr_regdate < ( select fr_regdate from phoneinfo_basic where fr_name='홍세영');
