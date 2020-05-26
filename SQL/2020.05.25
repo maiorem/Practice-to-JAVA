@@ -281,6 +281,10 @@ create table contact(
 
 select * from contact;
 
+drop table phoneInfo_basic;
+drop table phoneInfo_univ;
+drop table phoneInfo_com;
+
 create table phoneInfo_basic (
     idx number(6),
     fr_name varchar2(20) not null,
@@ -288,8 +292,10 @@ create table phoneInfo_basic (
     fr_email varchar2(20),
     fr_address VARCHAR2(20),
     fr_regdate date default sysdate,    
-    constraint phoneInfo_basic_idx_PK primary key(idx)
+    constraint phoneInfo_basic_idx_PK primary key(idx),
+    unique(fr_phonenumber)
 );
+
 
 create table phoneInfo_univ (
     idx number(6),
@@ -297,6 +303,7 @@ create table phoneInfo_univ (
     fr_u_year number(1) default 1 not null,
     fr_ref number(6),
     constraint phoneInfo_univ_idx_PK primary key(idx),
+    constraint phoneInfo_univ_fr_u_year_CK check (fr_u_year>0 and fr_u_year<5),
     constraint phoneInfo_univ_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)    
 );
 
@@ -304,7 +311,7 @@ create table phoneInfo_com(
     idx number(6),
     fr_c_company varchar2(20) default 'N' not null,
     fr_ref number(6),
-    
     constraint phoneInfo_com_idx_PK primary key(idx),
     constraint phoneInfo_com_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)  
 );
+
