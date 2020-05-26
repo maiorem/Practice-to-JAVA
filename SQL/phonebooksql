@@ -105,8 +105,8 @@ insert into phoneinfo_com values (2, 'MASAN HOSPITAL', 5);
 
 
 select * from phoneinfo_basic b, phoneinfo_univ u, phoneinfo_com c where b.idx=u.fr_ref(+) and b.idx=c.fr_ref(+);
-select * from phoneinfo_basic b natural join phoneinfo_univ u;
-select * from phoneinfo_basic b natural join phoneinfo_com c;
+select * from phoneinfo_basic b, phoneinfo_univ u where b.idx=u.fr_ref;
+select * from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref;
 
 select fr_name, fr_phonenumber, fr_u_major, fr_u_year from phoneinfo_basic natural join phoneinfo_univ;
 select fr_name, fr_phonenumber, fr_c_company, fr_regdate from phoneinfo_basic natural join phoneinfo_com where fr_c_company='BIT';
