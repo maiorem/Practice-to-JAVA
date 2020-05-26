@@ -318,3 +318,4 @@ create table phoneInfo_com(
 select * from phoneinfo_basic;
 select * from phoneinfo_univ;
 select * from phoneinfo_com;
+
