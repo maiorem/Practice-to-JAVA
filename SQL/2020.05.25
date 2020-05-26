@@ -254,9 +254,10 @@ create table emp02(
 --전공, 학년
 --부서명, 직급
 --동호회이름, 닉네임
---대리키 : 일련번호 -> member_idx, pIdx
+--대리키 : 일련번호 -> member_idx, pIdx ==> 기본키로 만들기 위한 목적
 
 --전화번호부(Contact)
+drop table contact;
 
 create table contact(
     pIdx number(6),
@@ -304,7 +305,7 @@ create table phoneInfo_univ (
     fr_ref number(6),
     constraint pu_idx_PK primary key(idx),
     constraint pu_fr_u_year_CK check (fr_u_year>0 and fr_u_year<5),
-    constraint pu_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)    
+    constraint pu_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)    --외래키로는 부모테이블의 PK만 들어갈 수 있음.
 );
 
 create table phoneInfo_com(
@@ -319,3 +320,7 @@ select * from phoneinfo_basic;
 select * from phoneinfo_univ;
 select * from phoneinfo_com;
 
+
+--사용자정의 제약조건을 저장하는 딕셔너리 테이블
+desc user_constraints;
+select * from user_constraints where table_name='CONTACT';
