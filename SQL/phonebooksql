@@ -108,7 +108,6 @@ select * from phoneinfo_basic b, phoneinfo_univ u, phoneinfo_com c where b.idx=u
 select * from phoneinfo_basic b, phoneinfo_univ u where b.idx=u.fr_ref;
 select * from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref;
 
-select fr_name, fr_phonenumber, fr_c_company, fr_regdate from phoneinfo_basic natural join phoneinfo_com where fr_c_company='BIT';
 select b.fr_name, c.fr_c_company from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref(+) and b.fr_regdate < ( select fr_regdate from phoneinfo_basic where fr_name='홍세영');
 
 
