@@ -156,6 +156,7 @@ delete from phoneinfo_com where fr_ref=3;
 delete from phoneinfo_basic where fr_name='김유진';
 
 --2.학교친구 정보 삭제
+delete from phoneinfo_univ where idx=3;
 delete from phoneinfo_basic where fr_name='강영수';
 
 -------------------------------------------------------
