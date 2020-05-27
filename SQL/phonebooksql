@@ -37,6 +37,17 @@ drop table phoneInfo_basic;
 drop table phoneInfo_univ;
 drop table phoneInfo_com;
 
+
+
+--외래키 설정시 부모의 행이 삭제될 때를 설정
+--REFERENCES phoneInfo_basic(idx) ON delete [설정 옵션]; 
+--ON : 이벤트에 대한 정의
+--no action : 모두 삭제 불가
+--cascade : 부모를 참조하고 있는 자식테이블의 모든 행도 삭제
+--set null : 부모를 참조하고 있는 자식테이블의 모든 행의 외래키 컬럼의 값을 null로 변경
+--set default : 부모를 참조하고 있는 자식테이블의 모든 행의 외래키 컬럼의 값을 기본값으로 변경
+
+
 create table phoneInfo_basic (
     idx number(6),
     fr_name varchar2(20) not null,
@@ -56,7 +67,7 @@ create table phoneInfo_univ (
     fr_ref number(6),
     constraint pu_idx_PK primary key(idx),
     constraint pu_fr_u_year_CK check (fr_u_year>0 and fr_u_year<5),
-    constraint pu_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)    --외래키로는 부모테이블의 PK만 들어갈 수 있음.
+    constraint pu_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx) on delete cascade    --외래키로는 부모테이블의 PK만 들어갈 수 있음.
 );
 
 create table phoneInfo_com(
@@ -64,7 +75,8 @@ create table phoneInfo_com(
     fr_c_company varchar2(20) default 'N' not null,
     fr_ref number(6),
     constraint pc_idx_PK primary key(idx),
-    constraint pc_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx)  
+    constraint pc_fr_ref_FK foreign key(fr_ref) REFERENCES phoneInfo_basic(idx) on delete cascade
+    
 );
 
 select * from phoneinfo_basic;
@@ -140,9 +152,9 @@ where fr_ref = (select idx from phoneinfo_basic where fr_name='홍세영');
 --삭제를 위한 SQL
 ---------------------------------------------------
 --1.회사친구 정보 삭제
-delete from phoneinfo_com where fr_ref = (select idx from phoneinfo_basic where fr_name='김유진');
+delete from phoneinfo_com where fr_ref=3;
 delete from phoneinfo_basic where fr_name='김유진';
 
 --2.학교친구 정보 삭제
-delete from phoneinfo_univ where fr_u_major like '%ENGLISH%';
+delete from phoneinfo_univ where idx=3';
 delete from phoneinfo_basic where fr_name='강영수';
