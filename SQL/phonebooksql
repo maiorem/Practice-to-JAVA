@@ -209,3 +209,34 @@ select b.fr_name,
 from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref;
 
 select * from phoneinfo_com_view;
+
+
+--------------------------------------------------------------------
+--SEQUENCE 생성
+--------------------------------------------------------------------
+--1.basic 테이블 seq
+create sequence pb_idx_seq
+start with 0
+minvalue 0
+;
+
+--2.com 테이블 seq
+create sequence pc_idx_seq
+start with 0
+minvalue 0
+;
+
+--3.univ 테이블 seq
+create sequence pu_idx_seq
+start with 0
+minvalue 0
+;
+
+
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_email)
+values (PB_IDX_SEQ.nextval, '홍세영', '010-4607-1111','mai@naver.com');
+insert into phoneinfo_com values(PC_IDX_SEQ.nextval, 'BIT', pb_idx_seq.currval);
+
+insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate) 
+values (PB_IDX_SEQ.nextval, '이가은','010-4660-1111','hy@gmail.com','TOKYO','13/06/18');
+insert into phoneinfo_univ (idx, fr_ref)values (PU_IDX_SEQ.nextval, pb_idx_seq.currval);
