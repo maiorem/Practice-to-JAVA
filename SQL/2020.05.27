@@ -1,0 +1,67 @@
+--2020.05.27.
+
+-- DML : 수정, 삭제
+
+drop table emp01;
+
+create table emp01 as select * from emp;
+
+-- 컬럼의 데이터 변경(수정)
+-- update 테이블이름 set 컬럼이름1=값, 컬럼이름2=값, ... where 행을 찾는 조건식;
+-- where 절이 없는 경우 테이블의 모든 행이 영향을 받는다.
+
+select * from emp01;
+
+-- 1.모든 사원의 부서번호를 30번으로 수정합니다.
+update emp01
+set deptno=30;
+
+-- 2.모든 사원의 급여를 10% 인상
+update emp01
+set sal=sal+sal*0.1;
+--sal=sal*1.1;
+
+-- 3.모든 사원의 입사일을 오늘로 수정
+update emp01
+set hiredate=sysdate;
+
+--트랜잭션
+rollback; --처음 테이블을 create 했을 때의 단계, 마지막 커밋 시점으로 복귀.
+commit; --커밋한 후에는 롤백해도 복귀할 수 없음.
+
+
+-- 1.부서번호가 10번인 사원의 
+--부서번호를 30번으로 수정합시다.
+update emp01
+set deptno=30
+where deptno=10;
+
+-- 2. 급여가 3000 이상인 사원만 
+--급여를 10% 인상합시다.
+update emp01 set sal=sal*1.1 where sal>=3000;
+
+select * from emp01 
+--where hiredate between '1987/01/01' and '1987/12/31';
+where substr(hiredate, 1, 2)='87';
+-- 3. 1987년에 입사한 사원의 입사일이 오늘로 수정합시다.
+update emp01 
+set hiredate=sysdate 
+--where hiredate between '1987/01/01' and '1987/12/31'
+where substr(hiredate, 1, 2)='87'
+;
+
+-- 1.SCOTT 사원의 부서번호는 10번으로, 
+--직급은 MANAGER로 한꺼번에 수정하도록 합시다.
+update emp01 
+set deptno=10, job='MANAGER' 
+where ename='SCOTT';
+
+select * from emp01 where ename='SCOTT';
+
+-- 2.SCOTT 사원의 입사일자는 오늘로, 
+--급여를 50 으로 커미션을 4000 으로 수정합시다.
+update emp01
+set hiredate=sysdate, sal=50, comm=4000
+where ename='SCOTT';
+
+
