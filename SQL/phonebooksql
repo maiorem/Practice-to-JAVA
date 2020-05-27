@@ -110,3 +110,40 @@ select * from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref;
 
 select fr_name, fr_phonenumber, fr_c_company, fr_regdate from phoneinfo_basic natural join phoneinfo_com where fr_c_company='BIT';
 select b.fr_name, c.fr_c_company from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref(+) and b.fr_regdate < ( select fr_regdate from phoneinfo_basic where fr_name='홍세영');
+
+
+
+--------------------------------------------------------------------------
+--수정을 위한 SQL
+--------------------------------------------------------------------------
+--1.회사친구의 정보 변경
+update phoneinfo_basic set fr_address='일산' where fr_name='송진주';
+update phoneinfo_com 
+set fr_c_company = 'NONAME' 
+where fr_ref = 
+    (select idx from phoneinfo_basic where fr_name='송진주');
+
+--2.학교친구의 정보 변경
+update phoneinfo_univ 
+set fr_u_major = 'COMPUTER' 
+where fr_ref = 
+    (select idx from phoneinfo_basic where fr_name='이가은');
+
+
+update phoneinfo_univ
+set (fr_u_major, fr_u_year) = 
+    (select fr_u_major, fr_u_year 
+    from phoneinfo_univ u, phoneinfo_basic b
+    where b.idx=u.fr_ref and b.fr_name='강영수')
+where fr_ref = (select idx from phoneinfo_basic where fr_name='홍세영');
+
+---------------------------------------------------
+--삭제를 위한 SQL
+---------------------------------------------------
+--1.회사친구 정보 삭제
+delete from phoneinfo_com where fr_ref = (select idx from phoneinfo_basic where fr_name='김유진');
+delete from phoneinfo_basic where fr_name='김유진';
+
+--2.학교친구 정보 삭제
+delete from phoneinfo_univ where fr_u_major like '%ENGLISH%';
+delete from phoneinfo_basic where fr_name='강영수';

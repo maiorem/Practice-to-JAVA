@@ -1,11 +1,11 @@
 --2020.05.27.
 
--- DML : 수정, 삭제
-
+-- DML : 수정
 drop table emp01;
 
 create table emp01 as select * from emp;
 
+-- UPDATE
 -- 컬럼의 데이터 변경(수정)
 -- update 테이블이름 set 컬럼이름1=값, 컬럼이름2=값, ... where 행을 찾는 조건식;
 -- where 절이 없는 경우 테이블의 모든 행이 영향을 받는다.
@@ -63,5 +63,55 @@ select * from emp01 where ename='SCOTT';
 update emp01
 set hiredate=sysdate, sal=50, comm=4000
 where ename='SCOTT';
+
+
+-- 1. 20번 부서의 지역명을 40번 부서의 지역명으로 변경하기 위해서 서브 쿼리문을 사용해 봅시다.
+drop table dept01;
+create table dept01 as select * from dept;
+
+select * from dept01;
+
+update dept01 
+set loc=(
+        select loc from dept01 where deptno=40
+        )
+where deptno=20
+;
+
+-- 서브 쿼리를 이용해서 
+--부서번호가 20인 부서의 부서명과 지역명을 
+--부서 번호가 40번인 부서와 동일하게 변경하도록 해 봅시다.
+update dept01
+set dname=(select dname from dept01 where deptno=40),
+loc=(select loc from dept01 where deptno=40)
+where deptno=20;
+
+update dept01
+set (dname, loc)= 
+(select dname, loc from dept01 where deptno=40)
+where deptno=20;
+
+-- DML : 삭제 
+-- 논리적 삭제. 커밋하지 않으면 삭제 행위가 남아있지 않음.
+
+-- delete from 테이블 이름 where 삭제할 행을 찾는 조건식;
+-- where절이 없으면 모든 행에 영향을 준다.
+
+-- 부서 테이블의 모든 행을 삭제합시다.
+delete from dept01;
+select * from dept01;
+
+rollback;
+
+-- 부서 테이블에서 30번 부서만 삭제합시다.
+delete from dept01 where deptno=30;
+
+--사원 테이블에서 (emp테이블)
+--부서명이 SALES인(dept테이블) 사원을 모두 삭제해봅시다.
+select deptno from dept01 where dname='SALES';
+select * from emp01;
+
+delete from emp01 where deptno = 
+        (select deptno from dept where dname='SALES');
 
 
