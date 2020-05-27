@@ -156,5 +156,55 @@ delete from phoneinfo_com where fr_ref=3;
 delete from phoneinfo_basic where fr_name='김유진';
 
 --2.학교친구 정보 삭제
-delete from phoneinfo_univ where idx=3';
 delete from phoneinfo_basic where fr_name='강영수';
+
+-------------------------------------------------------
+--VIEW 생성
+-------------------------------------------------------
+
+select * from phoneinfo_basic b, phoneinfo_univ u, phoneinfo_com c where b.idx=u.fr_ref(+) and b.idx=c.fr_ref(+);
+select * from phoneinfo_basic b, phoneinfo_univ u where b.idx=u.fr_ref;
+select * from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref;
+
+--전체 정보 뷰 생성과 출력
+create or replace view phoneinfo_view_all
+as
+select b.fr_name,
+       b.fr_phonenumber,
+       b.fr_address,
+       b.fr_email,
+       b.fr_regdate,
+       u.fr_u_major,
+       u.fr_u_year,
+       c.fr_c_company
+from phoneinfo_basic b, phoneinfo_univ u, phoneinfo_com c 
+where b.idx=u.fr_ref(+) and b.idx=c.fr_ref(+);
+
+select * from phoneinfo_view_all;
+
+--학교친구 정보 뷰 생성과 출력
+create or replace view phoneinfo_univ_view
+as
+select b.fr_name,
+       b.fr_phonenumber,
+       b.fr_address,
+       b.fr_email,
+       b.fr_regdate,
+       u.fr_u_major,
+       u.fr_u_year
+from phoneinfo_basic b, phoneinfo_univ u where b.idx=u.fr_ref;
+
+select * from phoneinfo_univ_view;
+
+--회사친구 정보 뷰와 출력
+create or replace view phoneinfo_com_view
+as
+select b.fr_name,
+       b.fr_phonenumber,
+       b.fr_address,
+       b.fr_email,
+       b.fr_regdate,
+       c.fr_c_company
+from phoneinfo_basic b, phoneinfo_com c where b.idx=c.fr_ref;
+
+select * from phoneinfo_com_view;
