@@ -35,3 +35,4 @@ select * from emp where empno=1111;
 create index emp01_ename_ind on emp01(ename);
 
 
+SELECT * FROM phoneinfo_basic;
