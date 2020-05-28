@@ -27,6 +27,9 @@ insert into emp01 (empno, ename) values (2222,'PARK');
 select * from emp01 where ename='PARK';
 select * from emp01 where ename='SON';
 
+select * from emp where empno=1111;
+
+
 --INDEX를 생성
 --create index 인덱스이름 on 대상테이블이름 (컬럼이름) ;
 create index emp01_ename_ind on emp01(ename);
