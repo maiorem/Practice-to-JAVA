@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.Scanner;
 
@@ -26,39 +27,45 @@ public class EmpManager {
 			String pw="tiger";
 
 			conn=DriverManager.getConnection(url, user, pw);
-			
-			System.out.println("사원 번호를 입력하세요");
-			int createEmpno = Integer.parseInt(kb.nextLine());
-			System.out.println("사원 이름을 입력하세요");
-			String createEname = kb.nextLine();
-			System.out.println("직급을 입력하세요");
-			String createJob = kb.nextLine();
-			System.out.println("급여를 입력하세요");
-			int createSal = Integer.parseInt(kb.nextLine());
+			while(true) {
+				System.out.println("사원 번호를 입력하세요");
+				int createEmpno = Integer.parseInt(kb.nextLine());
+				System.out.println("사원 이름을 입력하세요");
+				String createEname = kb.nextLine();
+				System.out.println("직급을 입력하세요");
+				String createJob = kb.nextLine();
+				System.out.println("급여를 입력하세요");
+				int createSal = Integer.parseInt(kb.nextLine());
 
-			String sql = "insert into emp (empno, ename, job, sal) "
-					+ " values (?, ?, ?, ?)";
+				String sql = "insert into emp (empno, ename, job, sal) "
+						+ " values (?, ?, ?, ?)";
 
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, createEmpno);
-			pstmt.setString(2, createEname);
-			pstmt.setString(3, createJob);
-			pstmt.setInt(4, createSal);
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, createEmpno);
+				pstmt.setString(2, createEname);
+				pstmt.setString(3, createJob);
+				pstmt.setInt(4, createSal);
+				try {
+					int resultCnt=pstmt.executeUpdate();
+					if (resultCnt>0) {
+						System.out.println("정상적으로 처리되었습니다.");
+						System.out.println(resultCnt+"개 행이 입력되었습니다.");
+					} else {
+						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+					}
+				} catch(SQLIntegrityConstraintViolationException e) {
+					System.out.println("이미 존재하는 정보를 입력하셨습니다.");
+					System.out.println("다시 입력해주세요.");
+					continue;
+				}
 
-			int resultCnt=pstmt.executeUpdate();
-
-			if (resultCnt>0) {
-				System.out.println("정상적으로 처리되었습니다.");
-				System.out.println(resultCnt+"개 행이 입력되었습니다.");
-			} else {
-				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
 		} finally {
 			if(rs != null) {
 				try {
@@ -89,7 +96,6 @@ public class EmpManager {
 				}
 			}
 
-
 		}
 	}
 
@@ -99,7 +105,7 @@ public class EmpManager {
 		Statement stmt=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
-		
+
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url="jdbc:oracle:thin:@localhost:1521:orcl";
@@ -131,12 +137,12 @@ public class EmpManager {
 				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -198,12 +204,12 @@ public class EmpManager {
 				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -250,30 +256,38 @@ public class EmpManager {
 			String user="scott";
 			String pw="tiger";
 			conn=DriverManager.getConnection(url, user, pw);
-			System.out.println("검색하고자 하는 사원이름을 입력하세요");
-			String searchEname = kb.nextLine();
+			while(true) {
+				System.out.println("검색하고자 하는 사원이름을 입력하세요");
+				String searchEname = kb.nextLine();
 
-			String sql = "select * from emp where ename='"+searchEname+"'";
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				System.out.print(rs.getInt(1)+"\t");
-				System.out.print(rs.getString(2)+"\t");
-				System.out.print(rs.getString(3)+"\t\t");
-				System.out.print(rs.getInt(4)+"\t");
-				System.out.print(rs.getDate(5)+"\t");
-				System.out.print(rs.getInt(6)+"\t");
-				System.out.print(rs.getInt(7)+"\t");
-				System.out.print(rs.getInt(8)+"\n");
+				String sql = "select * from emp where ename='"+searchEname+"'";
+				stmt=conn.createStatement();
+				try {
+					rs=stmt.executeQuery(sql);
+					while (rs.next()) {
+						System.out.print(rs.getInt(1)+"\t");
+						System.out.print(rs.getString(2)+"\t");
+						System.out.print(rs.getString(3)+"\t\t");
+						System.out.print(rs.getInt(4)+"\t");
+						System.out.print(rs.getDate(5)+"\t");
+						System.out.print(rs.getInt(6)+"\t");
+						System.out.print(rs.getInt(7)+"\t");
+						System.out.print(rs.getInt(8)+"\n");
+					}
+				} catch(SQLIntegrityConstraintViolationException e) {
+					System.out.println("이미 존재하는 정보를 입력하셨습니다.");
+					System.out.println("다시 입력해주세요.");
+					continue;
+				}
 			}
+
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -314,7 +328,7 @@ public class EmpManager {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {
-			
+
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			String url="jdbc:oracle:thin:@localhost:1521:orcl";
 			String user="scott";
@@ -339,12 +353,12 @@ public class EmpManager {
 
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -391,37 +405,45 @@ public class EmpManager {
 			String user="scott";
 			String pw="tiger";
 			conn=DriverManager.getConnection(url, user, pw);
-			System.out.println("부서 번호를 입력하세요");
-			int createdeptno = Integer.parseInt(kb.nextLine());
-			System.out.println("부서이름을 입력하세요");
-			String createDname = kb.nextLine();
-			System.out.println("지역을 입력하세요");
-			String createLoc = kb.nextLine();
 
-			String sql = "insert into dept "
-					+ " values (?, ?, ?)";
+			while(true) {
+				System.out.println("부서 번호를 입력하세요");
+				int createdeptno = Integer.parseInt(kb.nextLine());
+				System.out.println("부서이름을 입력하세요");
+				String createDname = kb.nextLine();
+				System.out.println("지역을 입력하세요");
+				String createLoc = kb.nextLine();
 
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, createdeptno);
-			pstmt.setString(2, createDname);
-			pstmt.setString(3, createLoc);
+				String sql = "insert into dept "
+						+ " values (?, ?, ?)";
 
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setInt(1, createdeptno);
+				pstmt.setString(2, createDname);
+				pstmt.setString(3, createLoc);
 
-			int resultCnt=pstmt.executeUpdate();
-
-			if (resultCnt>0) {
-				System.out.println("정상적으로 처리되었습니다.");
-				System.out.println(resultCnt+"개 행이 입력되었습니다.");
-			} else {
-				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+				try {
+					int resultCnt=pstmt.executeUpdate();
+					if (resultCnt>0) {
+						System.out.println("정상적으로 처리되었습니다.");
+						System.out.println(resultCnt+"개 행이 입력되었습니다.");
+					} else {
+						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+					}
+					break;
+				} catch(SQLIntegrityConstraintViolationException e) {
+					System.out.println("이미 존재하는 정보를 입력하셨습니다.");
+					System.out.println("다시 입력해주세요.");
+					continue;
+				}
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -481,7 +503,7 @@ public class EmpManager {
 			pstmt.setString(1, updateDname);
 			pstmt.setString(2, updateLoc);
 
-	
+
 			int resultCnt=pstmt.executeUpdate();
 
 			if (resultCnt>0) {
@@ -491,12 +513,12 @@ public class EmpManager {
 				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -558,12 +580,12 @@ public class EmpManager {
 				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -624,12 +646,12 @@ public class EmpManager {
 				System.out.print(rs.getString(3)+"\n");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
@@ -689,12 +711,12 @@ public class EmpManager {
 
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("잘못 입력하셨습니다.");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			System.out.println("잘못 입력하셨습니다.");
+		} catch (Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+		}finally {
 			if(rs != null) {
 				try {
 					rs.close();
