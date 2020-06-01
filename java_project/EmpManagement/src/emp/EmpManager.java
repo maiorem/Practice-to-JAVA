@@ -71,28 +71,28 @@ public class EmpManager {
 				try {
 					rs.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (pstmt!=null) {
 				try {
 					pstmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (stmt!=null) {
 				try {
 					stmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (conn!=null) {
 				try {
 					conn.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 
@@ -147,28 +147,28 @@ public class EmpManager {
 				try {
 					rs.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (pstmt!=null) {
 				try {
 					pstmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (stmt!=null) {
 				try {
 					stmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (conn!=null) {
 				try {
 					conn.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 
@@ -214,28 +214,28 @@ public class EmpManager {
 				try {
 					rs.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (pstmt!=null) {
 				try {
 					pstmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (stmt!=null) {
 				try {
 					stmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (conn!=null) {
 				try {
 					conn.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 
@@ -292,28 +292,28 @@ public class EmpManager {
 				try {
 					rs.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (pstmt!=null) {
 				try {
 					pstmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (stmt!=null) {
 				try {
 					stmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (conn!=null) {
 				try {
 					conn.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 
@@ -363,28 +363,28 @@ public class EmpManager {
 				try {
 					rs.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (pstmt!=null) {
 				try {
 					pstmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (stmt!=null) {
 				try {
 					stmt.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 			if (conn!=null) {
 				try {
 					conn.close();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					e1.getMessage();
 				}
 			}
 
