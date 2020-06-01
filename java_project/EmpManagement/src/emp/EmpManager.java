@@ -65,7 +65,7 @@ public class EmpManager {
 				System.out.printf("%12s", empList.get(i).getMgr()+"\t");
 				System.out.printf("%12s", empList.get(i).getHiredate()+"\t");
 				System.out.printf("%12s", empList.get(i).getComm()+"\t");
-				System.out.printf("%12s", empList.get(i).getEname()+"\n");
+				System.out.printf("%12s", empList.get(i).getDeptno()+"\n");
 
 			}
 		} else {

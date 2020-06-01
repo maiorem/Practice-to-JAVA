@@ -54,7 +54,7 @@ public class DeptDao {
 					} else {
 						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 					}
-					break;
+					return;
 				} catch(SQLIntegrityConstraintViolationException e) {
 					System.out.println("이미 존재하는 정보를 입력하셨습니다.");
 					System.out.println("다시 입력해주세요.");
@@ -253,7 +253,7 @@ public class DeptDao {
 			conn=DriverManager.getConnection(url, user, pw);
 			System.out.println("검색하고자 하는 부서의 이름이나 지역을 입력하세요");
 			String search = ManagerMain.kb.nextLine();
-			String sql = "select * from dept where dname='"+search+"' or loc= '"+search+"'";
+			String sql = "select * from dept where dname like '%"+search+"%' or loc like '%"+search+"%'";
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 
@@ -305,7 +305,6 @@ public class DeptDao {
 		
 		//VO : Value Object
 		//DTO : Data Transfer Object
-		
 
 		Connection conn=null;
 		Statement stmt=null;

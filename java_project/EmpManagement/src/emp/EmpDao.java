@@ -49,6 +49,7 @@ public class EmpDao {
 					} else {
 						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 					}
+					return;
 				} catch(SQLIntegrityConstraintViolationException e) {
 					System.out.println("이미 존재하는 정보를 입력하셨습니다.");
 					System.out.println("다시 입력해주세요.");
@@ -243,7 +244,7 @@ public class EmpDao {
 			System.out.println("검색하고자 하는 사원이름을 입력하세요");
 			String searchEname = ManagerMain.kb.nextLine();
 
-			String sql = "select * from emp where ename='"+searchEname+"'";
+			String sql = "select * from emp where ename like '%"+searchEname+"%'";
 			stmt=conn.createStatement();
 
 			rs=stmt.executeQuery(sql);
