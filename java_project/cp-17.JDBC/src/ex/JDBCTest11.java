@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
 
-public class JDBCTest10 {
+public class JDBCTest11 {
 
 	public static void main(String[] args)  {
 
@@ -38,24 +38,25 @@ public class JDBCTest10 {
 			// Statement or PreparedStatement
 			//=> Statement에는 완성된 sql문만 들어가다보니 성능저하 이슈가 있음.
 			//pstmt=conn.prepareStatement("SQL문장");
-			String sql = "select * from dept where deptno=?";
+			
+			String sql = "insert into dept (deptno, dname, loc) "
+					+ " values (?, ?, ?)";
 			pstmt=conn.prepareStatement(sql);
-			//변수 데이터 설정
-			pstmt.setInt(1, 10);
-			rs=pstmt.executeQuery();
-
-
-			System.out.println("부서리스트");
-			System.out.println("========================================");
-			//ResultSet -> 결과 참조
-			while (rs.next()) {
-				System.out.print(rs.getInt("deptno") + "\t");
-				System.out.print(rs.getString("dname") + "\t");
-				System.out.print(rs.getString("loc") + "\n");
+			pstmt.setInt(1, 70);
+			pstmt.setString(2, "MARKETING");
+			pstmt.setString(3, "SEOUL");
+			
+			int resultCnt=pstmt.executeUpdate();
+			
+			if (resultCnt>0) {
+				System.out.println("정상적으로 입력되었습니다.");
+				System.out.println(resultCnt+"개 행이 입력되었습니다.");
+			} else {
+				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
-			System.out.println("========================================");
-
-//			rs.close();
+			
+			
+//			
 //			pstmt.close();
 //			conn.close();
 
@@ -65,7 +66,7 @@ public class JDBCTest10 {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			
-			// 4. 데이터베이스 연결 종료
+		// 4. 데이터베이스 연결 종료
 		} finally {
 			if(rs != null) {
 				try {
