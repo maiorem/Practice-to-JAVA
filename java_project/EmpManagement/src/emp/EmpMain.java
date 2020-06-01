@@ -1,6 +1,5 @@
 package emp;
 
-import java.sql.SQLException;
 
 public class EmpMain {
 
@@ -65,34 +64,6 @@ public class EmpMain {
 
 			} else {
 				System.out.println("프로그램을 종료합니다.");
-				if(manager.rs != null) {
-					try {
-						manager.rs.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				}
-				if (manager.pstmt!=null) {
-					try {
-						manager.pstmt.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				}
-				if (manager.stmt!=null) {
-					try {
-						manager.stmt.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				}
-				if (manager.conn!=null) {
-					try {
-						manager.conn.close();
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-				}
 				System.exit(0);
 				break;
 			}
