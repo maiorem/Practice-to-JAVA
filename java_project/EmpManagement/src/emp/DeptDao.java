@@ -108,22 +108,41 @@ public class DeptDao {
 		ResultSet rs=null;
 		try {
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url="jdbc:oracle:thin:@localhost:1521:orcl";
-			String user="scott";
-			String pw="tiger";
-			conn=DriverManager.getConnection(url, user, pw);
+
+			conn=ConnectionProvider.getConnection();
 			System.out.println("수정하고자 하는 부서의 번호를 입력하세요");
 			int updateDeptno = Integer.parseInt(ManagerMain.kb.nextLine());
-			System.out.println("부서 이름을 입력하세요");
-			String updateDname=ManagerMain.kb.nextLine();
-			System.out.println("지역을 입력하세요");
-			String updateLoc=ManagerMain.kb.nextLine();
+			
+			stmt=conn.createStatement();
+			String searchSql="select * from dept where deptno="+updateDeptno;
+			
+			rs=stmt.executeQuery(searchSql);
+			
+			int sDeptno=0;
+			String sDname="";
+			String sLoc="";
+			
+			if(rs.next()) {
+				sDeptno=rs.getInt("deptno");
+				sDname=rs.getString("dname");
+				sLoc=rs.getString("loc");
+			} else {
+				System.out.println("찾으시는 정보가 존재하지 않습니다.");
+				return;
+			}
+			
+			System.out.println("부서 정보 수정을 시작합니다.");
+			System.out.println("부서 번호 : "+sDeptno);
+			System.out.println("부서 이름을 입력하세요 ("+sDname+")");
+			String dname=ManagerMain.kb.nextLine();
+			System.out.println("지역을 입력하세요 ("+sLoc+")");
+			String loc=ManagerMain.kb.nextLine();
 
 			String sql = "update dept set dname=?, loc=? where deptno="+updateDeptno;
 
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, updateDname);
-			pstmt.setString(2, updateLoc);
+			pstmt.setString(1, dname);
+			pstmt.setString(2, loc);
 
 
 			int resultCnt=pstmt.executeUpdate();
@@ -182,10 +201,7 @@ public class DeptDao {
 		ResultSet rs=null;
 		try {
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url="jdbc:oracle:thin:@localhost:1521:orcl";
-			String user="scott";
-			String pw="tiger";
-			conn=DriverManager.getConnection(url, user, pw);
+			conn=ConnectionProvider.getConnection();
 			System.out.println("삭제하고자 하는 부서번호를 입력하세요");
 			int deleteDeptno = Integer.parseInt(ManagerMain.kb.nextLine());
 
@@ -247,10 +263,7 @@ public class DeptDao {
 		ResultSet rs=null;
 		try {
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url="jdbc:oracle:thin:@localhost:1521:orcl";
-			String user="scott";
-			String pw="tiger";
-			conn=DriverManager.getConnection(url, user, pw);
+			conn=ConnectionProvider.getConnection();
 			System.out.println("검색하고자 하는 부서의 이름이나 지역을 입력하세요");
 			String search = ManagerMain.kb.nextLine();
 			String sql = "select * from dept where dname like '%"+search+"%' or loc like '%"+search+"%'";
