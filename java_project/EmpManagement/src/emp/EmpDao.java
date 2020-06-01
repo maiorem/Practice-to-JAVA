@@ -1,6 +1,7 @@
 package emp;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,22 +26,34 @@ public class EmpDao {
 
 			while(true) {
 				System.out.println("사원 번호를 입력하세요");
-				int createEmpno = Integer.parseInt(ManagerMain.kb.nextLine());
+				int empno = Integer.parseInt(ManagerMain.kb.nextLine());
 				System.out.println("사원 이름을 입력하세요");
-				String createEname = ManagerMain.kb.nextLine();
+				String ename = ManagerMain.kb.nextLine();
 				System.out.println("직급을 입력하세요");
-				String createJob = ManagerMain.kb.nextLine();
+				String job = ManagerMain.kb.nextLine();
 				System.out.println("급여를 입력하세요");
-				int createSal = Integer.parseInt(ManagerMain.kb.nextLine());
+				int sal = Integer.parseInt(ManagerMain.kb.nextLine());
+				System.out.println("담당 관리자의 사원번호를 입력하세요");
+				int mgr = Integer.parseInt(ManagerMain.kb.nextLine());
+				System.out.println("입사날짜를 입력하세요");
+				String hiredate=ManagerMain.kb.nextLine();
+				System.out.println("수당을 입력하세요");
+				int comm=Integer.parseInt(ManagerMain.kb.nextLine());
+				System.out.println("부서 번호를 입력하세요");
+				int deptno=Integer.parseInt(ManagerMain.kb.nextLine());
 
-				String sql = "insert into emp (empno, ename, job, sal) "
-						+ " values (?, ?, ?, ?)";
+				String sql = "insert into emp values (?, ?, ?, ?, ?, ?, ?, ?)";
 
 				pstmt=conn.prepareStatement(sql);
-				pstmt.setInt(1, createEmpno);
-				pstmt.setString(2, createEname);
-				pstmt.setString(3, createJob);
-				pstmt.setInt(4, createSal);
+				pstmt.setInt(1, empno);
+				pstmt.setString(2, ename);
+				pstmt.setString(3, job);
+				pstmt.setInt(4, sal);
+				pstmt.setInt(5, mgr);
+				pstmt.setString(6, hiredate);
+				pstmt.setInt(7, comm);
+				pstmt.setInt(8, deptno);
+				
 				try {
 					int resultCnt=pstmt.executeUpdate();
 					if (resultCnt>0) {
@@ -107,19 +120,44 @@ public class EmpDao {
 
 			System.out.println("수정하고자 하는 사원의 사원번호를 입력하세요");
 			int updateEmpno = Integer.parseInt(ManagerMain.kb.nextLine());
-			System.out.println("사원명을 입력하세요.");
-			String updateEname = ManagerMain.kb.nextLine();
-			System.out.println("부서번호를 입력하세요");
-			int updateDeptno = Integer.parseInt(ManagerMain.kb.nextLine());
-			System.out.println("급여를 입력하세요");
-			int updateSal = Integer.parseInt(ManagerMain.kb.nextLine());
+			
+			stmt=conn.createStatement();
+						
+			String searchSql = "select * from emp where empno="+updateEmpno;
+			rs=stmt.executeQuery(searchSql);
+			
+			//수정 전의 데이터 출력
+			int sEmpno=0;
+			String sEname="";
+			int sDeptno=0;
+			int sSal=0;
+			
+			
+			if(rs.next()) {
+				sEmpno=rs.getInt("empno");
+				sEname=rs.getString("ename");
+				sDeptno=rs.getInt("deptno");
+				sSal=rs.getInt("sal");
+			} else {
+				System.out.println("찾으시는 정보가 존재하지 않습니다.");
+				return;
+			}
+			
+			System.out.println("해당 사원번호의 수정 사항을 입력해주세요.");
+			System.out.println("사원번호 : " +sEmpno);
+			System.out.println("사원명을 입력하세요. ("+sEname+")");
+			String ename = ManagerMain.kb.nextLine();
+			System.out.println("부서번호를 입력하세요("+sDeptno+")");
+			int deptno = Integer.parseInt(ManagerMain.kb.nextLine());
+			System.out.println("급여를 입력하세요("+sSal+")");
+			int sal = Integer.parseInt(ManagerMain.kb.nextLine());
 
 			String sql = "update emp set ename=?, deptno=?, sal=? where empno="+updateEmpno;
 
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, updateEname);
-			pstmt.setInt(2, updateDeptno);
-			pstmt.setInt(3, updateSal);
+			pstmt.setString(1, ename);
+			pstmt.setInt(2, deptno);
+			pstmt.setInt(3, sal);
 
 			int resultCnt=pstmt.executeUpdate();
 
