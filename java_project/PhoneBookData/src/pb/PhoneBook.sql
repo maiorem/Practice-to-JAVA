@@ -18,13 +18,6 @@ create table phoneInfoAll (
     constraint pba_type_CK check (type in ('UNIV','COM'))
 );
 
-create sequence pba_idx_seq
-start with 0
-minvalue 0
-;
 
+create sequence pba_idx_seq;
 
-select * from phoneinfoall;
-select * from phoneInfoAll where name like '%홍%';
-
-delete from phoneinfoall where name='
