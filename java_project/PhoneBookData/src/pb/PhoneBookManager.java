@@ -258,8 +258,10 @@ public class PhoneBookManager {
 		
 		List<PhoneinfoAll> list = dao.searchInfo(name);
 		
-		System.out.println("검색 결과");
-		System.out.println("===================================================");
+
+		System.out.println("==================================================================================");
+		System.out.println("인덱스\t카테고리\t이름\t전화번호\t주소\t이메일\t\t전공\t학번\t부서\t직급");
+		System.out.println("==================================================================================");
 		for(int i=0; i<list.size(); i++) {
 			System.out.printf("%3s", list.get(i).getIdx()+"\t");
 			System.out.printf("%5s", list.get(i).getType()+"\t");
@@ -281,7 +283,9 @@ public class PhoneBookManager {
 		List<PhoneinfoAll> list = dao.phoneinfoAllList();
 
 		if (list!=null && !list.isEmpty()) {
-			System.out.println("===================================================");
+			System.out.println("==================================================================================");
+			System.out.println("인덱스\t카테고리\t이름\t전화번호\t주소\t이메일\t\t전공\t학번\t부서\t직급");
+			System.out.println("==================================================================================");
 			for(int i=0; i<list.size(); i++) {
 				System.out.printf("%3s", list.get(i).getIdx()+"\t");
 				System.out.printf("%5s", list.get(i).getType()+"\t");
