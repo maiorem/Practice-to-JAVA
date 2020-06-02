@@ -5,11 +5,13 @@ import java.util.List;
 
 public class PhoneBookManager {
 
-	PhoneinfoBasicDao dao=new PhoneinfoBasicDao();
+	PhoneinfoDao dao=new PhoneinfoDao();
 
 	public void phoneManager() {
 
 		while(true) {
+			System.out.println("----------------------------------------------------");
+			System.out.println(" M Y P H O N E B O O K ");
 			System.out.println("====================================================");
 			System.out.println("1.List 2.Search 3.Insert 4.Update 5.Delete 0.Exit");
 			System.out.println("====================================================");
@@ -43,13 +45,11 @@ public class PhoneBookManager {
 		}
 	}
 
+	
 	public void insertPb() {
 
-		PhoneinfoBasic pb=null;
-		PhoneinfoUniv pu=null;
-		PhoneinfoCom pc=null;
+		PhoneinfoAll pi = null;
 
-		int resultCnt=0;
 		int resultUni=0;
 		int resultCom=0;
 
@@ -69,23 +69,24 @@ public class PhoneBookManager {
 		System.out.print("이메일 : ");
 		String email=PhoneBookMain.sc.nextLine();
 
-	
-
 		switch(choice) {
 		case 1:
-
+			String type="UNIV";			
 			System.out.print("전공 : ");
 			String major=PhoneBookMain.sc.nextLine();
 			System.out.print("학년 : ");
-			int year=Integer.parseInt(PhoneBookMain.sc.nextLine());
-
-			pu=new PhoneinfoUniv(name, phone_num, address, email, major, year);
+			int grade=Integer.parseInt(PhoneBookMain.sc.nextLine());
+			String dept=null;
+			String job=null;
 			
-			resultUni=dao.insertPU(pu);
+			
+			pi=new PhoneinfoAll(type, name, phone_num, address, email, major, grade, dept, job);
+			
+			resultUni=dao.insertPi(pi);
 
 			if (resultUni>0) {
 				System.out.println("정상적으로 처리되었습니다.");
-				System.out.println(resultCnt+"개 행이 입력되었습니다.");
+				System.out.println(resultUni+"개 행이 입력되었습니다.");
 			} else {
 				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
@@ -93,17 +94,21 @@ public class PhoneBookManager {
 			return;
 
 		case 2:
+			type="COM";
+			major=null;
+			grade=0;
+			System.out.print("부서명 : ");
+			dept=PhoneBookMain.sc.nextLine();
+			System.out.print("직급 : ");
+			job=PhoneBookMain.sc.nextLine();
 
-			System.out.print("회사이름 : ");
-			String company=PhoneBookMain.sc.nextLine();
+			pi=new PhoneinfoAll(type, name, phone_num, address, email, major, grade, dept, job);
 
-			pc=new PhoneinfoCom(name, phone_num, address, email, company);
-
-			resultCom=dao.insertPC(pc);
+			resultCom=dao.insertPi(pi);
 
 			if (resultCom>0) {
 				System.out.println("정상적으로 처리되었습니다.");
-				System.out.println(resultCnt+"개 행이 입력되었습니다.");
+				System.out.println(resultCom+"개 행이 입력되었습니다.");
 			} else {
 				System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 			}
@@ -149,14 +154,16 @@ public class PhoneBookManager {
 		System.out.println("검색 결과");
 		System.out.println("===================================================");
 		for(int i=0; i<list.size(); i++) {
+			System.out.printf("%3s", list.get(i).getIdx()+"\t");
+			System.out.printf("%5s", list.get(i).getType()+"\t");
 			System.out.printf("%5s", list.get(i).getName()+"\t");
-			System.out.printf("%12s", list.get(i).getPhone_num()+"\t");
-			System.out.printf("%12s", list.get(i).getAddress()+"\t");
-			System.out.printf("%12s", list.get(i).getEmail()+"\t");
-			System.out.printf("%12s", list.get(i).getRegdate()+"\t");	
-			System.out.printf("%12s", list.get(i).getMajor()+"\t");
-			System.out.printf("%12s", list.get(i).getYear()+"\t");
-			System.out.printf("%12s", list.get(i).getCompany()+"\n");
+			System.out.printf("%5s", list.get(i).getPhone_num()+"\t");
+			System.out.printf("%5s", list.get(i).getAddress()+"\t");
+			System.out.printf("%5s", list.get(i).getEmail()+"\t");
+			System.out.printf("%5s", list.get(i).getMajor()+"\t");
+			System.out.printf("%5s", list.get(i).getGrade()+"\t");
+			System.out.printf("%5s", list.get(i).getDept()+"\t");
+			System.out.printf("%5s", list.get(i).getJob()+"\n");
 		}
 		
 	}
@@ -167,17 +174,20 @@ public class PhoneBookManager {
 		List<PhoneinfoAll> list = dao.phoneinfoAllList();
 
 		if (list!=null && !list.isEmpty()) {
-
+			System.out.println("===================================================");
 			for(int i=0; i<list.size(); i++) {
+				System.out.printf("%3s", list.get(i).getIdx()+"\t");
+				System.out.printf("%5s", list.get(i).getType()+"\t");
 				System.out.printf("%5s", list.get(i).getName()+"\t");
-				System.out.printf("%12s", list.get(i).getPhone_num()+"\t");
-				System.out.printf("%12s", list.get(i).getAddress()+"\t");
-				System.out.printf("%12s", list.get(i).getEmail()+"\t");
-				System.out.printf("%12s", list.get(i).getRegdate()+"\t");	
-				System.out.printf("%12s", list.get(i).getMajor()+"\t");
-				System.out.printf("%12s", list.get(i).getYear()+"\t");
-				System.out.printf("%12s", list.get(i).getCompany()+"\n");
+				System.out.printf("%5s", list.get(i).getPhone_num()+"\t");
+				System.out.printf("%5s", list.get(i).getAddress()+"\t");
+				System.out.printf("%5s", list.get(i).getEmail()+"\t");
+				System.out.printf("%5s", list.get(i).getMajor()+"\t");
+				System.out.printf("%5s", list.get(i).getGrade()+"\t");
+				System.out.printf("%5s", list.get(i).getDept()+"\t");
+				System.out.printf("%5s", list.get(i).getJob()+"\n");
 			}
+			
 
 		} else {
 			System.out.println("입력된 데이터가 없습니다.");

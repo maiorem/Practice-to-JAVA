@@ -5,31 +5,93 @@ import java.sql.Date;
 public class PhoneinfoAll {
 	
 	private int idx;
+	private String type;
 	private String name;
 	private String phone_num;
 	private String address;
 	private String email;
-	private Date regdate;
+
 	private String major;
-	private int year;
-	private String company;
-	
+	private int grade;
+	private String dept;
+	private String job;
 		
 	public PhoneinfoAll() {
 		
 	}
-	public PhoneinfoAll(int idx, String name, String phone_num, String address, String email, Date regdate,
-			String major, int year, String company) {
-		super();
-		this.idx = idx;
+
+	
+	public PhoneinfoAll(String type, String name, String phone_num, String address, String email, String major,
+			int grade, String dept, String job) {
+
+		this.type = type;
 		this.name = name;
 		this.phone_num = phone_num;
 		this.address = address;
 		this.email = email;
-		this.regdate = regdate;
 		this.major = major;
-		this.year = year;
-		this.company = company;
+		this.grade = grade;
+		this.dept = dept;
+		this.job = job;
+	}
+
+
+
+
+
+	public int getGrade() {
+		return grade;
+	}
+
+
+
+
+
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+
+
+
+
+
+	public String getDept() {
+		return dept;
+	}
+
+
+
+
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+
+
+
+
+	public String getJob() {
+		return job;
+	}
+
+
+
+
+
+	public void setJob(String job) {
+		this.job = job;
+	}
+
+
+
+
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public int getIdx() {
 		return idx;
@@ -61,32 +123,14 @@ public class PhoneinfoAll {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getRegdate() {
-		return regdate;
-	}
-	public void setRegdate(Date regdate) {
-		this.regdate = regdate;
-	}
+
 	public String getMajor() {
 		return major;
 	}
 	public void setMajor(String major) {
 		this.major = major;
 	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
-	}
-	public String getCompany() {
-		return company;
-	}
-	public void setCompany(String company) {
-		this.company = company;
-	}
-	
-	
+
 	
 	
 
