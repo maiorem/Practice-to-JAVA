@@ -13,13 +13,13 @@ public class PhoneinfoBasic {
 	
 	
 	public PhoneinfoBasic() {}
-	public PhoneinfoBasic(int idx, String name, String phone_num, String address, String email, Date regdate) {
-		this.idx=idx;
+	public PhoneinfoBasic(String name, String phone_num, String address, String email) {
+
 		this.name = name;
 		this.phone_num = phone_num;
 		this.address = address;
 		this.email = email;
-		this.regdate = regdate;
+
 	}
 	
 	

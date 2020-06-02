@@ -13,12 +13,11 @@ public class PhoneinfoCom extends PhoneinfoBasic {
 		super();
 	}
 
-	public PhoneinfoCom(int idx, String name, String phone_num, String address, String email, Date regdate, int cIdx, String company, int ref) {
-		super(idx, name, phone_num, address, email, regdate);
-		this.cIdx=cIdx;
+	public PhoneinfoCom(String name, String phone_num, String address, String email, String company) {
+		super(name, phone_num, address, email);
 		this.company=company;
-		this.ref=ref;
 	}
+
 
 
 

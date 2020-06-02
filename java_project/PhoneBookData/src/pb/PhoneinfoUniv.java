@@ -13,17 +13,15 @@ public class PhoneinfoUniv extends PhoneinfoBasic {
 		super();
 	}
 	
-	
 
-
-
-	public PhoneinfoUniv(int idx, String name, String phone_num, String address, String email, Date regdate, int uIdx, String major, int year, int ref) {
-		super(idx, name, phone_num, address, email, regdate);
-		this.uInx=uIdx;
+	public PhoneinfoUniv(String name, String phone_num, String address, String email, String major, int year) {
+		super(name, phone_num, address, email);
 		this.major=major;
 		this.year=year;
-		this.ref=ref;
 	}
+
+
+
 
 
 
