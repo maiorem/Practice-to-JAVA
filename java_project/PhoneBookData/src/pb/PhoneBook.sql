@@ -1,6 +1,4 @@
 
-drop table phoneinfoall;
-
 
 create table phoneInfoAll (
     idx number(6),
