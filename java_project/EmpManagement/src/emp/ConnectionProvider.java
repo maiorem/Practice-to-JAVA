@@ -7,19 +7,17 @@ import java.sql.SQLException;
 public class ConnectionProvider {
 	
 	
-	public static Connection getConnection() {
+	public static Connection getConnection() throws SQLException {
 		
 		Connection conn=null;
 		
 		String url="jdbc:oracle:thin:@localhost:1521:orcl";
 		String user="scott";
 		String pw="tiger";
-		try {
-			conn=DriverManager.getConnection(url, user, pw);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+
+		conn=DriverManager.getConnection(url, user, pw);
+
 		
 		return conn;
 		
