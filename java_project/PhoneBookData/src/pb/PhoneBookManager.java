@@ -1,6 +1,8 @@
 package pb;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 public class PhoneBookManager {
@@ -74,8 +76,8 @@ public class PhoneBookManager {
 			String type="UNIV";			
 			System.out.print("전공 : ");
 			String major=PhoneBookMain.sc.nextLine();
-			System.out.print("학년 : ");
-			int grade=Integer.parseInt(PhoneBookMain.sc.nextLine());
+			System.out.print("학번 : ");
+			String grade=PhoneBookMain.sc.nextLine();
 			String dept=null;
 			String job=null;
 			
@@ -96,7 +98,7 @@ public class PhoneBookManager {
 		case 2:
 			type="COM";
 			major=null;
-			grade=0;
+			grade=null;
 			System.out.print("부서명 : ");
 			dept=PhoneBookMain.sc.nextLine();
 			System.out.print("직급 : ");
@@ -138,7 +140,112 @@ public class PhoneBookManager {
 	
 	public void editPb() {
 		
+		Connection conn=null;
 		
+		try {
+			conn=ConnectionProvider.getConnection();
+			
+			conn.setAutoCommit(false);
+			
+			System.out.println("수정하고자 하는 이름을 입력하세요.");
+			String searchName=PhoneBookMain.sc.nextLine();
+			
+			int count=dao.searchCnt(searchName, conn);
+			
+			if (count>0) {
+				
+				PhoneinfoAll pi=dao.searchName(searchName, conn);
+				
+				if (pi==null) {
+					System.out.println("찾으시는 정보가 존재하지 않습니다.");
+					return;
+				}
+				
+				System.out.println("정보 수정을 시작합니다.");
+				System.out.println("인덱스 : "+pi.getIdx());
+				System.out.println("저장할 그룹을 선택해주세요.");
+				System.out.println("=============================");
+				System.out.println("1.University 2.Company");
+				System.out.println("=============================");
+				int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
+				System.out.print("이름 : ");
+				String name=PhoneBookMain.sc.nextLine();
+				System.out.print("전화번호 : ");
+				String phone_num=PhoneBookMain.sc.nextLine();
+				System.out.print("주소 : ");
+				String address=PhoneBookMain.sc.nextLine();
+				System.out.print("이메일 : ");
+				String email=PhoneBookMain.sc.nextLine();
+
+				switch(choice) {
+				case 1:
+					String type="UNIV";			
+					System.out.print("전공 : ");
+					String major=PhoneBookMain.sc.nextLine();
+					System.out.print("학번 : ");
+					String grade=PhoneBookMain.sc.nextLine();
+					String dept=null;
+					String job=null;
+					
+					
+					pi=new PhoneinfoAll(type, name, phone_num, address, email, major, grade, dept, job);
+					
+					int resultUni=dao.editPhoneInfo(pi, conn);
+
+					if (resultUni>0) {
+						System.out.println("정상적으로 처리되었습니다.");
+						System.out.println(resultUni+"개 행이 수정되었습니다.");
+					} else {
+						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+					}
+					conn.commit();
+					return;
+					
+				case 2:
+					type="COM";
+					major=null;
+					grade=null;
+					System.out.print("부서명 : ");
+					dept=PhoneBookMain.sc.nextLine();
+					System.out.print("직급 : ");
+					job=PhoneBookMain.sc.nextLine();
+
+					pi=new PhoneinfoAll(type, name, phone_num, address, email, major, grade, dept, job);
+
+					int resultCom=dao.editPhoneInfo(pi, conn);;
+					if (resultCom>0) {
+						System.out.println("정상적으로 처리되었습니다.");
+						System.out.println(resultCom+"개 행이 수정되었습니다.");
+					} else {
+						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+					}
+					conn.commit();
+					return;
+
+				}
+				
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			if(conn!=null ) {
+				try {
+					conn.rollback();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		} finally {
+			if (conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
 		
 		
 	}

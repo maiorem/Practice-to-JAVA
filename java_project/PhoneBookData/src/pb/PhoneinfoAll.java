@@ -12,7 +12,7 @@ public class PhoneinfoAll {
 	private String email;
 
 	private String major;
-	private int grade;
+	private String grade;
 	private String dept;
 	private String job;
 		
@@ -22,7 +22,7 @@ public class PhoneinfoAll {
 
 	
 	public PhoneinfoAll(String type, String name, String phone_num, String address, String email, String major,
-			int grade, String dept, String job) {
+			String grade, String dept, String job) {
 
 		this.type = type;
 		this.name = name;
@@ -39,20 +39,17 @@ public class PhoneinfoAll {
 
 
 
-	public int getGrade() {
+
+
+
+	public String getGrade() {
 		return grade;
 	}
 
 
-
-
-
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-
-
-
 
 
 	public String getDept() {
