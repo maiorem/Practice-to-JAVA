@@ -119,9 +119,7 @@ public class DeptManager {
 			
 			e.printStackTrace();
 		}
-		
 
-		
 	}
 	
 	
