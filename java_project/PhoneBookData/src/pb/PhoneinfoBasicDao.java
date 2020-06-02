@@ -151,7 +151,7 @@ public class PhoneinfoBasicDao {
 		try {
 			conn=ConnectionProvider.getConnection();
 
-			String sql="delete from phoneinfo_basic where name="+name;
+			String sql="delete from phoneinfo_basic where fr_name="+name;
 			stmt=conn.createStatement();
 			resultCnt=stmt.executeUpdate(sql);
 
@@ -196,7 +196,10 @@ public class PhoneinfoBasicDao {
 		try {
 			conn=ConnectionProvider.getConnection();
 
-			String sql="select * from phoneinfo_basic where name like '%"+name+"%'";
+			String sql="select * from phoneinfo_basic b, phoneinfo_univ u, phoneinfo_com c "
+					+ "where b.idx=u.fr_ref(+) and b.idx=c.fr_ref(+) "
+					+ "and b.fr_name like '%"+name+"%'";
+			
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 
