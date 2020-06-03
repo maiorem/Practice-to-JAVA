@@ -178,8 +178,27 @@ public class PhoneBookManager {
 
 		System.out.println("삭제하고자 하는 이름을 입력하세요.");
 		String name=PhoneBookMain.sc.nextLine();
+		
+		List<PhoneinfoAll> list = dao.searchInfo(name);
 
-		int resultCnt=dao.deletePb(name);
+		System.out.println("==================================================================================");
+		for(int i=0; i<list.size(); i++) {
+			System.out.printf("%3s", list.get(i).getIdx()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_name()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_address()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_email()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_regdate()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_u_major()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_u_year()+"\t");
+			System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
+		}
+		System.out.println("=================================================================================");
+
+		System.out.println("삭제하려는 인덱스 번호를 입력하세요.");
+		int idx=Integer.parseInt(PhoneBookMain.sc.nextLine());
+				
+		int resultCnt=dao.deletePb(idx);
 
 		if(resultCnt>0) {
 			System.out.println("정상적으로 처리되었습니다.");
@@ -380,7 +399,6 @@ public class PhoneBookManager {
 
 		System.out.println("==================================================================================");
 		for(int i=0; i<list.size(); i++) {
-			System.out.printf("%3s", list.get(i).getIdx()+"\t");
 			System.out.printf("%3s", list.get(i).getIdx()+"\t");
 			System.out.printf("%5s", list.get(i).getFr_name()+"\t");
 			System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");

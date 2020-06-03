@@ -445,7 +445,7 @@ public class PhoneinfoDao {
 
 	}
 
-	public int deletePb(String name) {
+	public int deletePb(int idx) {
 
 		Connection conn=null;
 		Statement stmt=null;
@@ -455,7 +455,7 @@ public class PhoneinfoDao {
 		try {
 			conn=ConnectionProvider.getConnection();
 
-			String sql="delete from phoneinfo_basic where fr_name='"+name+"'";
+			String sql="delete from phoneinfo_basic where idx="+idx;
 			stmt=conn.createStatement();
 			resultCnt=stmt.executeUpdate(sql);
 
