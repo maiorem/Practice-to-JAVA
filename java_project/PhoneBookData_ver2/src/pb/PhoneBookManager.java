@@ -236,8 +236,31 @@ public class PhoneBookManager {
 			System.out.println("수정하고자 하는 이름을 입력하세요.");
 			String searchName=PhoneBookMain.sc.nextLine();
 
+			List<PhoneinfoAll> list = dao.searchInfo(searchName);
 
-			pb=dao.searchName(searchName, conn);
+			if (list!=null && !list.isEmpty()) {
+				System.out.println("==================================================================================");
+				for(int i=0; i<list.size(); i++) {
+					System.out.printf("%3s", list.get(i).getIdx()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_name()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_address()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_email()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_regdate()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_u_major()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_u_year()+"\t");
+					System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
+				}
+				System.out.println("=================================================================================");
+			} else {
+				System.out.println("존재하지 않는 이름입니다.");
+				return;
+			}
+
+			System.out.println("수정하고자 하는 인덱스 번호를 입력하세요.");
+			int searchIdx=Integer.parseInt(PhoneBookMain.sc.nextLine());
+
+			pb=dao.searchIdx(searchIdx, conn);
 
 			if (pb==null) {
 				System.out.println("찾으시는 정보가 존재하지 않습니다.");

@@ -222,17 +222,17 @@ public class PhoneinfoDao {
 	}
 
 
-	public PhoneInfoBasic searchName(String name, Connection conn) throws SQLException {
+	public PhoneInfoBasic searchIdx(int idx, Connection conn) throws SQLException {
 
 		PhoneInfoBasic pb=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 
-		String sql="select * from phoneinfo_basic where fr_name=?";
+		String sql="select * from phoneinfo_basic where idx=?";
 
 
 		pstmt=conn.prepareStatement(sql);
-		pstmt.setString(1, name);
+		pstmt.setInt(1, idx);
 		rs=pstmt.executeQuery();
 
 		if(rs.next()) {
