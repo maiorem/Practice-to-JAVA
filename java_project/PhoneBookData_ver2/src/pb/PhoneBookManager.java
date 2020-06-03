@@ -282,7 +282,7 @@ public class PhoneBookManager {
 			}
 
 			System.out.println("정보 수정을 시작합니다.");
-			System.out.println("인덱스 : "+pb.idx);
+			System.out.println("인덱스 : "+pb.getIdx());
 			System.out.println("저장할 그룹을 선택해주세요.");
 			System.out.println("=============================");
 			System.out.println("1.University 2.Company");
@@ -305,20 +305,20 @@ public class PhoneBookManager {
 			switch(choice) {
 			case 1:
 
-				pu=dao.searchRefPu(pb.idx, conn);
+				pu=dao.searchRefPu(pb.getIdx(), conn);
 
 				if(pu==null) {
 
-					int deletePc=dao.editDeletePu(conn, pb.idx);
+					int deletePc=dao.editDeletePu(conn, pb.getIdx());
 
 					System.out.print("전공 : ");
 					String fr_u_major=PhoneBookMain.sc.nextLine();
 					System.out.print("학년 : ");
 					int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
 
-					PhoneInfoUniv newpu=new PhoneInfoUniv(fr_u_major, fr_u_year, pb.idx);
+					PhoneInfoUniv newpu=new PhoneInfoUniv(fr_u_major, fr_u_year, pb.getIdx());
 
-					resultUni=dao.editPu(newpu, pb.idx, conn);
+					resultUni=dao.editPu(newpu, pb.getIdx(), conn);
 
 					if (resultUni>0) {
 						System.out.println("정상적으로 처리되었습니다.");
@@ -358,18 +358,18 @@ public class PhoneBookManager {
 
 			case 2:
 
-				pc=dao.searchRefPc(pb.idx, conn);
+				pc=dao.searchRefPc(pb.getIdx(), conn);
 
 				if(pc==null) {
 
-					int deletePu=dao.editDeletePc(conn, pb.idx);
+					int deletePu=dao.editDeletePc(conn, pb.getIdx());
 
 					System.out.print("회사명 : ");
 					String fr_c_company=PhoneBookMain.sc.nextLine();
 
-					PhoneInfoCom newpc=new PhoneInfoCom(fr_c_company, pb.idx);
+					PhoneInfoCom newpc=new PhoneInfoCom(fr_c_company, pb.getIdx());
 
-					resultCom=dao.editPc(newpc, pb.idx, conn);
+					resultCom=dao.editPc(newpc, pb.getIdx(), conn);
 
 					if (resultCom>0) {
 						System.out.println("정상적으로 처리되었습니다.");

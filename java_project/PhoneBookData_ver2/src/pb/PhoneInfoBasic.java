@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class PhoneInfoBasic {
 
-	int idx;
-	String fr_name;
-	String fr_phonenumber;
-	String fr_email;
-	String fr_address;
-	Date fr_regdate;
+	private int idx;
+	private String fr_name;
+	private String fr_phonenumber;
+	private String fr_email;
+	private String fr_address;
+	private Date fr_regdate;
 	
 	
 	public PhoneInfoBasic() {

@@ -4,10 +4,10 @@ import java.sql.Date;
 
 public class PhoneInfoUniv extends PhoneInfoBasic{
 
-	int idx;
-	String fr_u_major;
-	int fr_u_year;
-	int fr_ref;
+	private int idx;
+	private String fr_u_major;
+	private int fr_u_year;
+	private int fr_ref;
 
 	
 	public PhoneInfoUniv() {

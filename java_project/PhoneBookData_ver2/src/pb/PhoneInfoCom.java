@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class PhoneInfoCom extends PhoneInfoBasic {
 
-	int idx;
-	String fr_c_company;
-	int fr_ref;
+	private int idx;
+	private String fr_c_company;
+	private int fr_ref;
 	
 	
 	
