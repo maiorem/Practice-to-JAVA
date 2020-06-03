@@ -6,23 +6,25 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import pb.exception.StringEmptyException;
+
 public class PhoneBookManager {
-	
+
 
 	PhoneinfoDao dao=PhoneinfoDao.getInstance();
 
-	
+
 	private PhoneBookManager() {
-		
+
 	}
 
 	private static PhoneBookManager manager = new PhoneBookManager();
-	
+
 	public static PhoneBookManager getInstance() {
-		
+
 		return manager;
 	}
-	
+
 
 	public void phoneManager() {
 
@@ -98,24 +100,19 @@ public class PhoneBookManager {
 				System.out.println("1.University 2.Company");
 				System.out.println("=============================");
 
-				try {
-					choice=Integer.parseInt(PhoneBookMain.sc.nextLine().trim());
-				} catch(Exception e) {
-					System.out.println("잘못 입력하셨습니다.");
-					continue;
-				}
-
+				choice=Integer.parseInt(emptyInput());
+				
 				System.out.println("정보 입력을 시작합니다.");
 				System.out.print("이름 : ");
-				String fr_name=PhoneBookMain.sc.nextLine();
+				String fr_name=emptyInput();
 				System.out.print("전화번호 : ");
-				String fr_phonenumber=PhoneBookMain.sc.nextLine();
+				String fr_phonenumber=emptyInput();
 				System.out.print("주소 : ");
-				String fr_address=PhoneBookMain.sc.nextLine();
+				String fr_address=emptyInput();
 				System.out.print("이메일 : ");
-				String fr_email=PhoneBookMain.sc.nextLine();
+				String fr_email=emptyInput();
 				System.out.print("등록 날짜 : ");
-				Date fr_regdate = Date.valueOf(PhoneBookMain.sc.nextLine());
+				Date fr_regdate = Date.valueOf(emptyInput());
 
 				pb=new PhoneInfoBasic(fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
 
@@ -124,9 +121,9 @@ public class PhoneBookManager {
 				switch(choice) {
 				case 1:
 					System.out.print("전공 : ");
-					String fr_u_major=PhoneBookMain.sc.nextLine();
+					String fr_u_major=emptyInput();
 					System.out.print("학년 : ");
-					int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
+					int fr_u_year=Integer.parseInt(emptyInput());
 
 					pu=new PhoneInfoUniv(fr_u_major, fr_u_year);
 
@@ -146,7 +143,7 @@ public class PhoneBookManager {
 				case 2:
 
 					System.out.print("회사명 : ");
-					String fr_c_company=PhoneBookMain.sc.nextLine();
+					String fr_c_company=emptyInput();
 
 					pc=new PhoneInfoCom(fr_c_company);
 
@@ -165,7 +162,11 @@ public class PhoneBookManager {
 					return;
 				}
 
+			} catch(StringEmptyException e) {
+				e.getMessage();
+				continue;
 			} catch (SQLException e) {
+			
 				if (conn!=null) {
 					try {
 						conn.rollback();
@@ -174,7 +175,11 @@ public class PhoneBookManager {
 					}
 				}
 				e.printStackTrace();
-			} finally {
+			} catch (Exception e) {
+				System.out.println("다시 입력해주세요.");
+				continue;
+			}	finally {
+			
 				if (conn!=null) {
 					try {
 						conn.close();
@@ -189,10 +194,22 @@ public class PhoneBookManager {
 
 
 	public void deletePb() {
+		String name=null;
 
-		System.out.println("삭제하고자 하는 이름을 입력하세요.");
-		String name=PhoneBookMain.sc.nextLine();
+		while(true) {
+			try {
+				System.out.println("삭제하고자 하는 이름을 입력하세요.");
+				name=emptyInput();
 
+			} catch(StringEmptyException e) {
+				e.getMessage();
+				continue;
+			}catch(Exception e) {
+				System.out.println("잘못 입력하셨습니다.");
+				continue;
+			}
+			break;
+		}
 		List<PhoneinfoAll> list = dao.searchInfo(name);
 
 		if (list!=null && !list.isEmpty()) {
@@ -248,7 +265,8 @@ public class PhoneBookManager {
 			conn.setAutoCommit(false);
 
 			System.out.println("수정하고자 하는 이름을 입력하세요.");
-			String searchName=PhoneBookMain.sc.nextLine();
+			String searchName=emptyInput();
+
 
 			List<PhoneinfoAll> list = dao.searchInfo(searchName);
 
@@ -289,15 +307,15 @@ public class PhoneBookManager {
 			System.out.println("=============================");
 			int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
 			System.out.print("이름 ("+pb.getFr_name()+") : ");
-			String fr_name=PhoneBookMain.sc.nextLine();
+			String fr_name=emptyInput();
 			System.out.print("전화번호 ("+pb.getFr_phonenumber()+") : ");
-			String fr_phonenumber=PhoneBookMain.sc.nextLine();
+			String fr_phonenumber=emptyInput();
 			System.out.print("주소 ("+pb.getFr_address()+") : ");
-			String fr_address=PhoneBookMain.sc.nextLine();
+			String fr_address=emptyInput();
 			System.out.print("이메일 ("+pb.getFr_email()+") : ");
-			String fr_email=PhoneBookMain.sc.nextLine();
+			String fr_email=emptyInput();
 			System.out.print("등록 날짜 ("+pb.getFr_regdate()+") : ");
-			Date fr_regdate = Date.valueOf(PhoneBookMain.sc.nextLine());
+			Date fr_regdate = Date.valueOf(emptyInput());
 
 			PhoneInfoBasic newpb=new PhoneInfoBasic(pb.getIdx(), fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
 			resultBsi=dao.editPhoneInfo(newpb, conn);
@@ -312,9 +330,9 @@ public class PhoneBookManager {
 					int deletePc=dao.editDeletePu(conn, pb.getIdx());
 
 					System.out.print("전공 : ");
-					String fr_u_major=PhoneBookMain.sc.nextLine();
+					String fr_u_major=emptyInput();
 					System.out.print("학년 : ");
-					int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
+					int fr_u_year=Integer.parseInt(emptyInput());
 
 					PhoneInfoUniv newpu=new PhoneInfoUniv(fr_u_major, fr_u_year, pb.getIdx());
 
@@ -335,9 +353,9 @@ public class PhoneBookManager {
 				}
 
 				System.out.print("전공 : ");
-				String fr_u_major=PhoneBookMain.sc.nextLine();
+				String fr_u_major=emptyInput();
 				System.out.print("학년 : ");
-				int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
+				int fr_u_year=Integer.parseInt(emptyInput());
 
 				PhoneInfoUniv newpu=new PhoneInfoUniv(pu.getIdx(), fr_u_major, fr_u_year, pu.getFr_ref());
 
@@ -365,7 +383,7 @@ public class PhoneBookManager {
 					int deletePu=dao.editDeletePc(conn, pb.getIdx());
 
 					System.out.print("회사명 : ");
-					String fr_c_company=PhoneBookMain.sc.nextLine();
+					String fr_c_company=emptyInput();
 
 					PhoneInfoCom newpc=new PhoneInfoCom(fr_c_company, pb.getIdx());
 
@@ -386,7 +404,7 @@ public class PhoneBookManager {
 				}
 
 				System.out.print("회사명 : ");
-				String fr_c_company=PhoneBookMain.sc.nextLine();
+				String fr_c_company=emptyInput();
 
 				PhoneInfoCom newpc=new PhoneInfoCom(pc.getIdx(), fr_c_company, pc.getFr_ref());
 
@@ -419,6 +437,12 @@ public class PhoneBookManager {
 					e1.printStackTrace();
 				}
 			}
+		} catch(StringEmptyException e) {
+			e.getMessage();
+
+		} catch(Exception e) {
+			System.out.println("잘못 입력하셨습니다.");
+
 		} finally {
 			if (conn!=null) {
 				try {
@@ -435,9 +459,21 @@ public class PhoneBookManager {
 
 	public void searchPb() {
 
-		System.out.println("검색하려는 이름을 입력하세요.");
-		String name=PhoneBookMain.sc.nextLine();
+		String name=null;
+		while(true) {
+			try {
+				System.out.println("검색하려는 이름을 입력하세요.");
+				name=emptyInput();
 
+			} catch(StringEmptyException e) {
+				e.getMessage();
+				continue;
+			} catch(Exception e) {
+				System.out.println("잘못 입력하셨습니다.");
+				continue;
+			}
+			break;
+		}
 		List<PhoneinfoAll> list = dao.searchInfo(name);
 
 		if (list!=null && !list.isEmpty()) {
@@ -484,6 +520,18 @@ public class PhoneBookManager {
 			System.out.println("입력된 데이터가 없습니다.");
 			return;
 		}
+
+	}
+
+	public String emptyInput() throws StringEmptyException {
+		String str=PhoneBookMain.sc.nextLine();
+		if (str.trim().isEmpty()) {
+			StringEmptyException ex = new StringEmptyException();
+			throw ex;			
+		}
+
+		return str;
+
 
 	}
 
