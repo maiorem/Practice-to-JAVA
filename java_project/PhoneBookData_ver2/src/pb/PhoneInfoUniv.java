@@ -26,7 +26,12 @@ public class PhoneInfoUniv extends PhoneInfoBasic{
 		this.fr_ref = fr_ref;
 	}
 
+	public PhoneInfoUniv(String fr_u_major, int fr_u_year, int fr_ref) {
 
+		this.fr_u_major = fr_u_major;
+		this.fr_u_year = fr_u_year;
+		this.fr_ref = fr_ref;
+	}
 
 
 

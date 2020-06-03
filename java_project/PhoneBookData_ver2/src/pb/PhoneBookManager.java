@@ -231,9 +231,9 @@ public class PhoneBookManager {
 					System.out.print("학년 : ");
 					int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
 
-					pu=new PhoneInfoUniv(fr_u_major, fr_u_year);
+					PhoneInfoUniv newpu=new PhoneInfoUniv(fr_u_major, fr_u_year, pb.idx);
 
-					resultUni=dao.insertPU(pu, conn);
+					resultUni=dao.editPu(pu, pb.idx, conn);
 
 					if (resultUni>0) {
 						System.out.println("정상적으로 처리되었습니다.");
@@ -276,9 +276,9 @@ public class PhoneBookManager {
 					System.out.print("회사명 : ");
 					String fr_c_company=PhoneBookMain.sc.nextLine();
 
-					pc=new PhoneInfoCom(fr_c_company);
+					PhoneInfoCom newpc=new PhoneInfoCom(fr_c_company, pb.idx);
 
-					resultCom=dao.insertPC(pc, conn);
+					resultCom=dao.editPc(pc, pb.idx, conn);
 
 					if (resultCom>0) {
 						System.out.println("정상적으로 처리되었습니다.");
@@ -295,7 +295,7 @@ public class PhoneBookManager {
 				System.out.print("회사명 : ");
 				String fr_c_company=PhoneBookMain.sc.nextLine();
 
-				PhoneInfoCom newpc=new PhoneInfoCom(pb.getIdx(), fr_c_company, pc.getFr_ref());
+				PhoneInfoCom newpc=new PhoneInfoCom(pc.getIdx(), fr_c_company, pc.getFr_ref());
 
 				resultCom=dao.editPhoneInfoCom(newpc, conn);
 

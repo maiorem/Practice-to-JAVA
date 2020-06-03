@@ -24,6 +24,11 @@ public class PhoneInfoCom extends PhoneInfoBasic {
 	}
 
 
+	public PhoneInfoCom(String fr_c_company, int fr_ref) {
+
+		this.fr_c_company = fr_c_company;
+		this.fr_ref = fr_ref;
+	}
 
 
 

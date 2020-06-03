@@ -95,9 +95,8 @@ public class PhoneinfoDao {
 		resultCnt=pstmt.executeUpdate();
 		return resultCnt;
 
-
-
 	}
+
 
 
 
@@ -149,6 +148,53 @@ public class PhoneinfoDao {
 	}
 
 
+	public int editPu(PhoneInfoUniv pu, int fr_ref, Connection conn) throws SQLException {
+		Statement stmt=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		int resultCnt=0;
+		
+		String sql="insert into phoneinfo_univ values (pu_idx_seq.nextval, ?, ?, ?)";
+
+		pstmt=conn.prepareStatement(sql);
+
+		pstmt.setString(1, pu.getFr_u_major());
+		pstmt.setInt(2, pu.getFr_u_year());
+		pstmt.setInt(3, fr_ref);
+
+		resultCnt=pstmt.executeUpdate();
+				
+		
+		return resultCnt;
+		
+	
+	}
+	
+	public int editPc(PhoneInfoCom pc, int fr_ref, Connection conn) throws SQLException {
+		Statement stmt=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		int resultCnt=0;
+		
+		String sql="insert into phoneinfo_com values (pc_idx_seq.nextval, ?, ?)";
+
+		pstmt=conn.prepareStatement(sql);
+
+		pstmt.setString(1, pc.getFr_c_company());
+		pstmt.setInt(2, fr_ref);
+
+		resultCnt=pstmt.executeUpdate();
+		
+
+		return resultCnt;
+		
+	
+	}
+	
+	
+	
 
 	public int searchCnt(String name, Connection conn) throws SQLException {
 
