@@ -178,33 +178,38 @@ public class PhoneBookManager {
 
 		System.out.println("삭제하고자 하는 이름을 입력하세요.");
 		String name=PhoneBookMain.sc.nextLine();
-		
+
 		List<PhoneinfoAll> list = dao.searchInfo(name);
 
-		System.out.println("==================================================================================");
-		for(int i=0; i<list.size(); i++) {
-			System.out.printf("%3s", list.get(i).getIdx()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_name()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_address()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_email()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_regdate()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_u_major()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_u_year()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
+		if (list!=null && !list.isEmpty()) {
+			System.out.println("==================================================================================");
+			for(int i=0; i<list.size(); i++) {
+				System.out.printf("%3s", list.get(i).getIdx()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_name()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_address()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_email()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_regdate()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_u_major()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_u_year()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
+			}
+			System.out.println("=================================================================================");
+		} else {
+			System.out.println("입력된 데이터가 없습니다.");
 		}
-		System.out.println("=================================================================================");
+
 
 		System.out.println("삭제하려는 인덱스 번호를 입력하세요.");
 		int idx=Integer.parseInt(PhoneBookMain.sc.nextLine());
-				
+
 		int resultCnt=dao.deletePb(idx);
 
 		if(resultCnt>0) {
 			System.out.println("정상적으로 처리되었습니다.");
 			System.out.println(resultCnt+"개 행이 삭제되었습니다.");
 		} else {
-			System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+			System.out.println("처리 되지 않았습니다. 확인 후 재시도 해 주세요.");
 		}
 
 	}
@@ -265,9 +270,9 @@ public class PhoneBookManager {
 				pu=dao.searchRefPu(pb.idx, conn);
 
 				if(pu==null) {
-					
+
 					int deletePc=dao.editDeletePu(conn, pb.idx);
-					
+
 					System.out.print("전공 : ");
 					String fr_u_major=PhoneBookMain.sc.nextLine();
 					System.out.print("학년 : ");
@@ -318,9 +323,9 @@ public class PhoneBookManager {
 				pc=dao.searchRefPc(pb.idx, conn);
 
 				if(pc==null) {
-					
+
 					int deletePu=dao.editDeletePc(conn, pb.idx);
-					
+
 					System.out.print("회사명 : ");
 					String fr_c_company=PhoneBookMain.sc.nextLine();
 
@@ -397,17 +402,21 @@ public class PhoneBookManager {
 
 		List<PhoneinfoAll> list = dao.searchInfo(name);
 
-		System.out.println("==================================================================================");
-		for(int i=0; i<list.size(); i++) {
-			System.out.printf("%3s", list.get(i).getIdx()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_name()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_address()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_email()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_regdate()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_u_major()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_u_year()+"\t");
-			System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
+		if (list!=null && !list.isEmpty()) {
+			System.out.println("==================================================================================");
+			for(int i=0; i<list.size(); i++) {
+				System.out.printf("%3s", list.get(i).getIdx()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_name()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_phonenumber()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_address()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_email()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_regdate()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_u_major()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_u_year()+"\t");
+				System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
+			}
+		} else {
+			System.out.println("입력된 데이터가 없습니다.");
 		}
 
 	}
