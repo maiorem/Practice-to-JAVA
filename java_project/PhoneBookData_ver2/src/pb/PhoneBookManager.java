@@ -203,21 +203,20 @@ public class PhoneBookManager {
 				}
 
 				System.out.println("정보 수정을 시작합니다.");
-				System.out.println("인덱스 : "+pb.getIdx());
 				System.out.println("저장할 그룹을 선택해주세요.");
 				System.out.println("=============================");
 				System.out.println("1.University 2.Company");
 				System.out.println("=============================");
 				int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
-				System.out.print("이름 : ");
+				System.out.print("이름 : ("+pb.getFr_name()+")");
 				String fr_name=PhoneBookMain.sc.nextLine();
-				System.out.print("전화번호 : ");
+				System.out.print("전화번호 : ("+pb.getFr_phonenumber()+")");
 				String fr_phonenumber=PhoneBookMain.sc.nextLine();
-				System.out.print("주소 : ");
+				System.out.print("주소 : ("+pb.getFr_address()+")");
 				String fr_address=PhoneBookMain.sc.nextLine();
-				System.out.print("이메일 : ");
+				System.out.print("이메일 : ("+pb.getFr_email()+")");
 				String fr_email=PhoneBookMain.sc.nextLine();
-				System.out.print("등록 날짜 : ");
+				System.out.print("등록 날짜 : ("+pb.getFr_regdate()+")");
 				Date fr_regdate = getDate();
 
 				pb=new PhoneInfoBasic(fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
@@ -268,6 +267,9 @@ public class PhoneBookManager {
 					return;
 
 				}
+			} else {
+				System.out.println("찾으시는 정보가 존재하지 않습니다.");
+				return;
 			}
 		}
 

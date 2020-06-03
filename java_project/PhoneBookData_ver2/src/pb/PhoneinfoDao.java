@@ -198,9 +198,6 @@ public class PhoneinfoDao {
 					rs.getDate("fr_regdate"));
 		}
 
-
-
-
 		return pb;
 	}
 
