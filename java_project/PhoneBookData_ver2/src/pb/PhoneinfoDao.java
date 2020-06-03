@@ -191,6 +191,7 @@ public class PhoneinfoDao {
 
 		if(rs.next()) {
 			pb=new PhoneInfoBasic(
+					rs.getInt("idx"),
 					rs.getString("fr_name"), 
 					rs.getString("fr_phonenumber"), 
 					rs.getString("fr_email"), 
@@ -201,6 +202,57 @@ public class PhoneinfoDao {
 		return pb;
 	}
 
+	public PhoneInfoUniv searchNamePu(int fr_ref, Connection conn) throws SQLException {
+
+		PhoneInfoUniv pu=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		String sql="select * from phoneinfo_univ where fr_ref=?";
+
+
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, fr_ref);
+		rs=pstmt.executeQuery();
+
+		if(rs.next()) {
+			pu=new PhoneInfoUniv(
+					rs.getInt("idx"), 
+					rs.getString("fr_u_major"), 
+					rs.getInt("fr_u_year"), 
+					rs.getInt("fr_ref"));
+		}
+
+		return pu;
+	}
+	
+	public PhoneInfoCom searchNamePc(int fr_ref, Connection conn) throws SQLException {
+
+		PhoneInfoCom pc=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+
+		String sql="select * from phoneinfo_com where fr_ref=?";
+
+
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setInt(1, fr_ref);
+		rs=pstmt.executeQuery();
+
+		if(rs.next()) {
+			pc=new PhoneInfoCom(
+					rs.getInt("idx"), 
+					rs.getString("fr_c_company"), 
+					rs.getInt("fr_ref"));
+		}
+
+		return pc;
+	}
+	
+	
+	
+	
+	
 	public int editPhoneInfo(PhoneInfoBasic pb, Connection conn) {
 
 		Statement stmt=null;
@@ -214,7 +266,8 @@ public class PhoneinfoDao {
 				+ "fr_phonenumber=?, "
 				+ "fr_email=?,"
 				+ "fr_address=?,"
-				+ "fr_regdate=?";
+				+ "fr_regdate=? "
+				+ "where idx=?";
 
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -223,6 +276,8 @@ public class PhoneinfoDao {
 			pstmt.setString(3, pb.getFr_email());
 			pstmt.setString(4, pb.getFr_address());
 			pstmt.setDate(5, pb.getFr_regdate());
+			
+			pstmt.setInt(6, pb.getIdx());
 
 			resultCnt=pstmt.executeUpdate();
 
@@ -262,12 +317,15 @@ public class PhoneinfoDao {
 
 		String sql="update phoneinfo_univ set "
 				+ "fr_u_major=?, "
-				+ "fr_u_year=?";
+				+ "fr_u_year=? "
+				+ "where fr_ref=?";
 
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, pu.getFr_u_major());
 			pstmt.setInt(2, pu.getFr_u_year());
+			
+			pstmt.setInt(3, pu.getFr_ref());
 
 			resultCnt=pstmt.executeUpdate();
 
@@ -305,12 +363,15 @@ public class PhoneinfoDao {
 		int resultCnt=0;
 
 		String sql="update phoneinfo_com set "
-				+ "fr_c_company=?";
+				+ "fr_c_company=? "
+				+ "where fr_ref=?";
 
 		try {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, pc.getFr_c_company());
 
+			pstmt.setInt(2, pc.getFr_ref());
+			
 			resultCnt=pstmt.executeUpdate();
 
 

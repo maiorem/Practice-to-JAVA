@@ -18,6 +18,19 @@ public class PhoneInfoUniv extends PhoneInfoBasic{
 	
 	
 	
+	
+	public PhoneInfoUniv(int idx, String fr_u_major, int fr_u_year, int fr_ref) {
+		this.idx = idx;
+		this.fr_u_major = fr_u_major;
+		this.fr_u_year = fr_u_year;
+		this.fr_ref = fr_ref;
+	}
+
+
+
+
+
+
 	public PhoneInfoUniv(String fr_u_major, int fr_u_year) {
 		super();
 		this.fr_u_major = fr_u_major;

@@ -16,6 +16,20 @@ public class PhoneInfoBasic {
 		
 	}
 	
+	
+	
+	public PhoneInfoBasic(int idx, String fr_name, String fr_phonenumber, String fr_email, String fr_address,
+			Date fr_regdate) {
+		this.idx = idx;
+		this.fr_name = fr_name;
+		this.fr_phonenumber = fr_phonenumber;
+		this.fr_email = fr_email;
+		this.fr_address = fr_address;
+		this.fr_regdate = fr_regdate;
+	}
+
+
+
 	public PhoneInfoBasic(String fr_name, String fr_phonenumber, String fr_email, String fr_address,
 			Date fr_regdate) {
 

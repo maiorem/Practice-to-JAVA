@@ -27,6 +27,17 @@ public class PhoneInfoCom extends PhoneInfoBasic {
 
 
 
+	public PhoneInfoCom(int idx, String fr_c_company, int fr_ref) {
+
+		this.idx = idx;
+		this.fr_c_company = fr_c_company;
+		this.fr_ref = fr_ref;
+	}
+
+
+
+
+
 	public PhoneInfoCom(String fr_name, String fr_phonenumber, String fr_email, String fr_address, Date fr_regdate, String fr_c_company) {
 		super(fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
 		this.fr_c_company=fr_c_company;
