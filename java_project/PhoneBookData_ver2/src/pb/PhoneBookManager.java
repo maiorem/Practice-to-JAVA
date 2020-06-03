@@ -233,7 +233,7 @@ public class PhoneBookManager {
 
 					PhoneInfoUniv newpu=new PhoneInfoUniv(fr_u_major, fr_u_year, pb.idx);
 
-					resultUni=dao.editPu(pu, pb.idx, conn);
+					resultUni=dao.editPu(newpu, pb.idx, conn);
 
 					if (resultUni>0) {
 						System.out.println("정상적으로 처리되었습니다.");
@@ -278,7 +278,7 @@ public class PhoneBookManager {
 
 					PhoneInfoCom newpc=new PhoneInfoCom(fr_c_company, pb.idx);
 
-					resultCom=dao.editPc(pc, pb.idx, conn);
+					resultCom=dao.editPc(newpc, pb.idx, conn);
 
 					if (resultCom>0) {
 						System.out.println("정상적으로 처리되었습니다.");
