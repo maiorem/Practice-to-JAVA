@@ -246,6 +246,9 @@ public class PhoneBookManager {
 				pu=dao.searchRefPu(pb.idx, conn);
 
 				if(pu==null) {
+					
+					int deletePc=dao.editDeletePu(conn, pb.idx);
+					
 					System.out.print("전공 : ");
 					String fr_u_major=PhoneBookMain.sc.nextLine();
 					System.out.print("학년 : ");
@@ -296,6 +299,9 @@ public class PhoneBookManager {
 				pc=dao.searchRefPc(pb.idx, conn);
 
 				if(pc==null) {
+					
+					int deletePu=dao.editDeletePc(conn, pb.idx);
+					
 					System.out.print("회사명 : ");
 					String fr_c_company=PhoneBookMain.sc.nextLine();
 

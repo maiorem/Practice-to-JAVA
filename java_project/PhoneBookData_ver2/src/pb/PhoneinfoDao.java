@@ -483,6 +483,34 @@ public class PhoneinfoDao {
 		return resultCnt;
 
 	}
+	
+	public int editDeletePu(Connection conn, int fr_ref) throws SQLException {
+		Statement stmt=null;
+		int resultCnt=0;
+		
+		String sql="delete from phoneinfo_com where fr_ref="+fr_ref;
+
+		stmt=conn.createStatement();
+		resultCnt=stmt.executeUpdate(sql);	
+		
+		return resultCnt;
+		
+	}
+	
+	public int editDeletePc(Connection conn, int fr_ref) throws SQLException {
+		Statement stmt=null;
+		int resultCnt=0;
+		
+		String sql="delete from phoneinfo_univ where fr_ref="+fr_ref;
+
+		stmt=conn.createStatement();
+		resultCnt=stmt.executeUpdate(sql);	
+		
+		
+		
+		return resultCnt;
+		
+	}
 
 
 
