@@ -196,7 +196,8 @@ public class PhoneBookManager {
 			}
 			System.out.println("=================================================================================");
 		} else {
-			System.out.println("입력된 데이터가 없습니다.");
+			System.out.println("존재하지 않는 이름입니다.");
+			return;
 		}
 
 
@@ -416,7 +417,8 @@ public class PhoneBookManager {
 				System.out.printf("%5s", list.get(i).getFr_c_company()+"\n");
 			}
 		} else {
-			System.out.println("입력된 데이터가 없습니다.");
+			System.out.println("존재하지 않는 이름입니다.");
+			return;
 		}
 
 	}
@@ -443,6 +445,7 @@ public class PhoneBookManager {
 
 		} else {
 			System.out.println("입력된 데이터가 없습니다.");
+			return;
 		}
 
 	}
