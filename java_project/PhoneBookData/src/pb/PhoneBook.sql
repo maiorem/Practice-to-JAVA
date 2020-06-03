@@ -1,5 +1,5 @@
 
-
+drop table phoneInfoAll;
 create table phoneInfoAll (
     idx number(6),
     type varchar2(10) not null,
