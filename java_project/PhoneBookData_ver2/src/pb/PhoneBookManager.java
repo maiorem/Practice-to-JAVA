@@ -208,15 +208,15 @@ public class PhoneBookManager {
 				System.out.println("1.University 2.Company");
 				System.out.println("=============================");
 				int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
-				System.out.print("이름 : ("+pb.getFr_name()+")");
+				System.out.print("이름 ("+pb.getFr_name()+") : ");
 				String fr_name=PhoneBookMain.sc.nextLine();
-				System.out.print("전화번호 : ("+pb.getFr_phonenumber()+")");
+				System.out.print("전화번호 ("+pb.getFr_phonenumber()+") : ");
 				String fr_phonenumber=PhoneBookMain.sc.nextLine();
-				System.out.print("주소 : ("+pb.getFr_address()+")");
+				System.out.print("주소 ("+pb.getFr_address()+") : ");
 				String fr_address=PhoneBookMain.sc.nextLine();
-				System.out.print("이메일 : ("+pb.getFr_email()+")");
+				System.out.print("이메일 ("+pb.getFr_email()+") : ");
 				String fr_email=PhoneBookMain.sc.nextLine();
-				System.out.print("등록 날짜 : ("+pb.getFr_regdate()+")");
+				System.out.print("등록 날짜 ("+pb.getFr_regdate()+") : ");
 				Date fr_regdate = getDate();
 
 				pb=new PhoneInfoBasic(fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
