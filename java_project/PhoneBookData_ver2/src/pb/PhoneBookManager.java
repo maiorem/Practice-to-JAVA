@@ -12,13 +12,24 @@ public class PhoneBookManager {
 
 	public void phoneManager() {
 
+		int choice=0;
+
 		while(true) {
 			System.out.println("----------------------------------------------------");
 			System.out.println(" M Y P H O N E B O O K ");
 			System.out.println("====================================================");
 			System.out.println("1.List 2.Search 3.Insert 4.Update 5.Delete 0.Exit");
 			System.out.println("====================================================");
-			int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
+
+			try {			
+
+				choice=Integer.parseInt(PhoneBookMain.sc.nextLine().trim());
+
+			} catch(Exception e) {
+				System.out.println("잘못 입력하셨습니다.");
+				continue;
+			}
+
 			switch(choice) {
 			case 1:
 				System.out.println("전체 리스트를 출력합니다.");
@@ -61,92 +72,101 @@ public class PhoneBookManager {
 		int resultUni=0;
 		int resultCom=0;
 
-		try {
-			conn=ConnectionProvider.getConnection();
+		int choice=0;
+		while(true) {
+			try {
+				conn=ConnectionProvider.getConnection();
 
-			conn.setAutoCommit(false);
+				conn.setAutoCommit(false);
 
-			System.out.println("저장할 그룹을 선택해주세요.");
-			System.out.println("=============================");
-			System.out.println("1.University 2.Company");
-			System.out.println("=============================");
-			int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
+				System.out.println("저장할 그룹을 선택해주세요.");
+				System.out.println("=============================");
+				System.out.println("1.University 2.Company");
+				System.out.println("=============================");
 
-			System.out.println("정보 입력을 시작합니다.");
-			System.out.print("이름 : ");
-			String fr_name=PhoneBookMain.sc.nextLine();
-			System.out.print("전화번호 : ");
-			String fr_phonenumber=PhoneBookMain.sc.nextLine();
-			System.out.print("주소 : ");
-			String fr_address=PhoneBookMain.sc.nextLine();
-			System.out.print("이메일 : ");
-			String fr_email=PhoneBookMain.sc.nextLine();
-			System.out.print("등록 날짜 : ");
-			Date fr_regdate = getDate();
-
-			pb=new PhoneInfoBasic(fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
-
-			resultBsi=dao.insertPB(pb, conn);
-
-			switch(choice) {
-			case 1:
-				System.out.print("전공 : ");
-				String fr_u_major=PhoneBookMain.sc.nextLine();
-				System.out.print("학년 : ");
-				int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
-
-				pu=new PhoneInfoUniv(fr_u_major, fr_u_year);
-
-				resultUni=dao.insertPU(pu, conn);
-
-				if (resultUni>0) {
-					System.out.println("정상적으로 처리되었습니다.");
-					System.out.println(resultUni+"개 행이 입력되었습니다.");
-					conn.commit();
-				} else {
-					System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
-					conn.rollback();
-				}
-
-				return;
-
-			case 2:
-
-				System.out.print("회사명 : ");
-				String fr_c_company=PhoneBookMain.sc.nextLine();
-
-				pc=new PhoneInfoCom(fr_c_company);
-
-				resultCom=dao.insertPC(pc, conn);
-
-				if (resultCom>0) {
-					System.out.println("정상적으로 처리되었습니다.");
-					System.out.println(resultCom+"개 행이 입력되었습니다.");
-					conn.commit();
-				} else {
-					System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
-					conn.rollback();
-				}
-
-
-				return;
-			}
-
-		} catch (SQLException e) {
-			if (conn!=null) {
 				try {
-					conn.rollback();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+					choice=Integer.parseInt(PhoneBookMain.sc.nextLine().trim());
+				} catch(Exception e) {
+					System.out.println("잘못 입력하셨습니다.");
+					continue;
 				}
-			}
-			e.printStackTrace();
-		} finally {
-			if (conn!=null) {
-				try {
-					conn.close();
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+
+				System.out.println("정보 입력을 시작합니다.");
+				System.out.print("이름 : ");
+				String fr_name=PhoneBookMain.sc.nextLine();
+				System.out.print("전화번호 : ");
+				String fr_phonenumber=PhoneBookMain.sc.nextLine();
+				System.out.print("주소 : ");
+				String fr_address=PhoneBookMain.sc.nextLine();
+				System.out.print("이메일 : ");
+				String fr_email=PhoneBookMain.sc.nextLine();
+				System.out.print("등록 날짜 : ");
+				Date fr_regdate = Date.valueOf(PhoneBookMain.sc.nextLine());
+
+				pb=new PhoneInfoBasic(fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
+
+				resultBsi=dao.insertPB(pb, conn);
+
+				switch(choice) {
+				case 1:
+					System.out.print("전공 : ");
+					String fr_u_major=PhoneBookMain.sc.nextLine();
+					System.out.print("학년 : ");
+					int fr_u_year=Integer.parseInt(PhoneBookMain.sc.nextLine());
+
+					pu=new PhoneInfoUniv(fr_u_major, fr_u_year);
+
+					resultUni=dao.insertPU(pu, conn);
+
+					if (resultUni>0) {
+						System.out.println("정상적으로 처리되었습니다.");
+						System.out.println(resultUni+"개 행이 입력되었습니다.");
+						conn.commit();
+					} else {
+						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+						conn.rollback();
+					}
+
+					return;
+
+				case 2:
+
+					System.out.print("회사명 : ");
+					String fr_c_company=PhoneBookMain.sc.nextLine();
+
+					pc=new PhoneInfoCom(fr_c_company);
+
+					resultCom=dao.insertPC(pc, conn);
+
+					if (resultCom>0) {
+						System.out.println("정상적으로 처리되었습니다.");
+						System.out.println(resultCom+"개 행이 입력되었습니다.");
+						conn.commit();
+					} else {
+						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
+						conn.rollback();
+					}
+
+
+					return;
+				}
+
+			} catch (SQLException e) {
+				if (conn!=null) {
+					try {
+						conn.rollback();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+				e.printStackTrace();
+			} finally {
+				if (conn!=null) {
+					try {
+						conn.close();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		}
@@ -215,16 +235,16 @@ public class PhoneBookManager {
 			System.out.print("이메일 ("+pb.getFr_email()+") : ");
 			String fr_email=PhoneBookMain.sc.nextLine();
 			System.out.print("등록 날짜 ("+pb.getFr_regdate()+") : ");
-			Date fr_regdate = getDate();
+			Date fr_regdate = Date.valueOf(PhoneBookMain.sc.nextLine());
 
 			PhoneInfoBasic newpb=new PhoneInfoBasic(pb.getIdx(), fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate);
 			resultBsi=dao.editPhoneInfo(newpb, conn);
 
 			switch(choice) {
 			case 1:
-				
+
 				pu=dao.searchRefPu(pb.idx, conn);
-				
+
 				if(pu==null) {
 					System.out.print("전공 : ");
 					String fr_u_major=PhoneBookMain.sc.nextLine();
@@ -246,9 +266,9 @@ public class PhoneBookManager {
 						return;
 					}
 
-					
+
 				}
-				
+
 				System.out.print("전공 : ");
 				String fr_u_major=PhoneBookMain.sc.nextLine();
 				System.out.print("학년 : ");
@@ -270,11 +290,11 @@ public class PhoneBookManager {
 				}
 
 
-				
+
 			case 2:
-				
+
 				pc=dao.searchRefPc(pb.idx, conn);
-				
+
 				if(pc==null) {
 					System.out.print("회사명 : ");
 					String fr_c_company=PhoneBookMain.sc.nextLine();
@@ -394,11 +414,5 @@ public class PhoneBookManager {
 
 	}
 
-	public Date getDate() {
-
-		Date date=Date.valueOf(PhoneBookMain.sc.nextLine());
-
-		return date;
-	}
 
 }

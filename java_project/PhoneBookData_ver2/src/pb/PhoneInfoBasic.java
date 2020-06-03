@@ -77,12 +77,5 @@ public class PhoneInfoBasic {
 		this.fr_regdate = fr_regdate;
 	}
 	
-	public java.util.Date toDate() {		
-		return new java.util.Date(fr_regdate.getTime());
-	}
-	
-	
-	
-	
-	
+		
 }
