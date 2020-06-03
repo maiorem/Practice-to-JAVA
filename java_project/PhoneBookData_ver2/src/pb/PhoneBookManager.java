@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import pb.exception.OutOfNumberException;
 import pb.exception.StringEmptyException;
 
 public class PhoneBookManager {
@@ -39,9 +40,23 @@ public class PhoneBookManager {
 
 			try {			
 
-				choice=Integer.parseInt(PhoneBookMain.sc.nextLine().trim());
+				choice=Integer.parseInt(emptyInput());
+				if (!(choice>=0 && choice<=5)) {
+					OutOfNumberException ex = new OutOfNumberException();
+					throw ex;
+				}
 
-			} catch(Exception e) {
+
+			} catch(OutOfNumberException e) {
+				e.getMessage();
+				continue;
+
+			} catch (StringEmptyException e) {
+				e.getMessage();
+				continue;
+				
+			}	catch(Exception e) {
+			
 				System.out.println("잘못 입력하셨습니다.");
 				continue;
 			}
@@ -101,7 +116,11 @@ public class PhoneBookManager {
 				System.out.println("=============================");
 
 				choice=Integer.parseInt(emptyInput());
-				
+				if (!(choice>=1 && choice<=2)) {
+					OutOfNumberException ex = new OutOfNumberException();
+					throw ex;
+				}
+
 				System.out.println("정보 입력을 시작합니다.");
 				System.out.print("이름 : ");
 				String fr_name=emptyInput();
@@ -162,11 +181,14 @@ public class PhoneBookManager {
 					return;
 				}
 
+			} catch(OutOfNumberException e) {
+				e.getMessage();
+				continue;
 			} catch(StringEmptyException e) {
 				e.getMessage();
 				continue;
 			} catch (SQLException e) {
-			
+
 				if (conn!=null) {
 					try {
 						conn.rollback();
@@ -179,7 +201,7 @@ public class PhoneBookManager {
 				System.out.println("다시 입력해주세요.");
 				continue;
 			}	finally {
-			
+
 				if (conn!=null) {
 					try {
 						conn.close();
@@ -231,10 +253,20 @@ public class PhoneBookManager {
 			return;
 		}
 
-
-		System.out.println("삭제하려는 인덱스 번호를 입력하세요.");
-		int idx=Integer.parseInt(PhoneBookMain.sc.nextLine());
-
+		int idx=0;
+		while(true) {
+			try {
+				System.out.println("삭제하려는 인덱스 번호를 입력하세요.");
+				idx=Integer.parseInt(emptyInput());
+			} catch(StringEmptyException e) {
+				e.getMessage();
+				continue;
+			}catch(Exception e) {
+				System.out.println("잘못 입력하셨습니다.");
+				continue;
+			}
+			break;
+		}
 		int resultCnt=dao.deletePb(idx);
 
 		if(resultCnt>0) {
@@ -288,10 +320,20 @@ public class PhoneBookManager {
 				System.out.println("존재하지 않는 이름입니다.");
 				return;
 			}
-
-			System.out.println("수정하고자 하는 인덱스 번호를 입력하세요.");
-			int searchIdx=Integer.parseInt(PhoneBookMain.sc.nextLine());
-
+			int searchIdx=0;
+			while(true) {
+				try {
+					System.out.println("수정하고자 하는 인덱스 번호를 입력하세요.");
+					searchIdx=Integer.parseInt(emptyInput());
+				} catch(StringEmptyException e) {
+					e.getMessage();
+					continue;
+				}catch(Exception e) {
+					System.out.println("잘못 입력하셨습니다.");
+					continue;
+				}
+				break;
+			}
 			pb=dao.searchIdx(searchIdx, conn);
 
 			if (pb==null) {
@@ -305,7 +347,12 @@ public class PhoneBookManager {
 			System.out.println("=============================");
 			System.out.println("1.University 2.Company");
 			System.out.println("=============================");
-			int choice=Integer.parseInt(PhoneBookMain.sc.nextLine());
+			int choice=Integer.parseInt(emptyInput());
+			if (!(choice>=1 && choice<=2)) {
+				OutOfNumberException ex = new OutOfNumberException();
+				throw ex;
+			}
+
 			System.out.print("이름 ("+pb.getFr_name()+") : ");
 			String fr_name=emptyInput();
 			System.out.print("전화번호 ("+pb.getFr_phonenumber()+") : ");
@@ -440,7 +487,10 @@ public class PhoneBookManager {
 		} catch(StringEmptyException e) {
 			e.getMessage();
 
-		} catch(Exception e) {
+		} catch(OutOfNumberException e) {
+			e.getMessage();
+						
+		}catch(Exception e) {
 			System.out.println("잘못 입력하셨습니다.");
 
 		} finally {
