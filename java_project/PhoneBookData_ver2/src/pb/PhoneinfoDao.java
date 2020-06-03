@@ -248,7 +248,7 @@ public class PhoneinfoDao {
 		return pb;
 	}
 
-	public PhoneInfoUniv searchNamePu(int fr_ref, Connection conn) throws SQLException {
+	public PhoneInfoUniv searchRefPu(int fr_ref, Connection conn) throws SQLException {
 
 		PhoneInfoUniv pu=null;
 		PreparedStatement pstmt=null;
@@ -272,7 +272,7 @@ public class PhoneinfoDao {
 		return pu;
 	}
 	
-	public PhoneInfoCom searchNamePc(int fr_ref, Connection conn) throws SQLException {
+	public PhoneInfoCom searchRefPc(int fr_ref, Connection conn) throws SQLException {
 
 		PhoneInfoCom pc=null;
 		PreparedStatement pstmt=null;

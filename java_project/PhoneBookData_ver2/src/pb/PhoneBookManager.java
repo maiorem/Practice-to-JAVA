@@ -223,7 +223,7 @@ public class PhoneBookManager {
 			switch(choice) {
 			case 1:
 				
-				pu=dao.searchNamePu(pb.idx, conn);
+				pu=dao.searchRefPu(pb.idx, conn);
 				
 				if(pu==null) {
 					System.out.print("전공 : ");
@@ -237,14 +237,15 @@ public class PhoneBookManager {
 
 					if (resultUni>0) {
 						System.out.println("정상적으로 처리되었습니다.");
-						System.out.println(resultUni+"개 행이 입력되었습니다.");
+						System.out.println(resultUni+"개 행이 업데이트되었습니다.");
 						conn.commit();
+						return;
 					} else {
 						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 						conn.rollback();
+						return;
 					}
 
-					return;
 					
 				}
 				
@@ -259,18 +260,20 @@ public class PhoneBookManager {
 
 				if (resultUni>0) {
 					System.out.println("정상적으로 처리되었습니다.");
-					System.out.println(resultUni+"개 행이 입력되었습니다.");
+					System.out.println(resultUni+"개 행이 업데이트되었습니다.");
 					conn.commit();
+					return;
 				} else {
 					System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 					conn.rollback();
+					return;
 				}
 
-				return;
 
+				
 			case 2:
 				
-				pc=dao.searchNamePc(pb.idx, conn);
+				pc=dao.searchRefPc(pb.idx, conn);
 				
 				if(pc==null) {
 					System.out.print("회사명 : ");
@@ -282,14 +285,16 @@ public class PhoneBookManager {
 
 					if (resultCom>0) {
 						System.out.println("정상적으로 처리되었습니다.");
-						System.out.println(resultCom+"개 행이 입력되었습니다.");
+						System.out.println(resultCom+"개 행이 업데이트되었습니다.");
 						conn.commit();
+						return;
 					} else {
 						System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 						conn.rollback();
+						return;
 					}
 
-					return;
+
 				}
 
 				System.out.print("회사명 : ");
@@ -301,15 +306,15 @@ public class PhoneBookManager {
 
 				if (resultCom>0) {
 					System.out.println("정상적으로 처리되었습니다.");
-					System.out.println(resultCom+"개 행이 입력되었습니다.");
+					System.out.println(resultCom+"개 행이 업데이트되었습니다.");
 					conn.commit();
+					return;
 				} else {
 					System.out.println("입력이 되지 않았습니다. 확인 후 재시도해주세요.");
 					conn.rollback();
+					return;
 				}
 
-
-				return;
 
 			}
 
@@ -347,9 +352,6 @@ public class PhoneBookManager {
 
 		List<PhoneinfoAll> list = dao.searchInfo(name);
 
-
-		System.out.println("==================================================================================");
-		System.out.println("인덱스\t이름\t전화번호\t주소\t이메일\t등록날짜\t전공\t학년\t회사명");
 		System.out.println("==================================================================================");
 		for(int i=0; i<list.size(); i++) {
 			System.out.printf("%3s", list.get(i).getIdx()+"\t");
@@ -372,8 +374,6 @@ public class PhoneBookManager {
 		List<PhoneinfoAll> list = dao.phoneinfoAllList();
 
 		if (list!=null && !list.isEmpty()) {
-			System.out.println("==================================================================================");
-			System.out.println("인덱스\t이름\t전화번호\t주소\t이메일\t등록날짜\t전공\t학년\t회사명");
 			System.out.println("==================================================================================");
 			for(int i=0; i<list.size(); i++) {
 				System.out.printf("%3s", list.get(i).getIdx()+"\t");
