@@ -11,7 +11,7 @@ public class PhoneBookMain {
 		
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
-		PhoneBookManager manager = new PhoneBookManager();
+		PhoneBookManager manager = PhoneBookManager.getInstance();
 		manager.phoneManager();
 
 	}

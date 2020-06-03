@@ -10,7 +10,20 @@ import java.util.List;
 
 public class PhoneinfoDao {
 
+	private PhoneinfoDao() {
+		
+	}
 
+
+	private static PhoneinfoDao dao=new PhoneinfoDao();
+	
+	public static PhoneinfoDao getInstance() {
+			
+		return dao;
+	}
+
+	
+	
 
 	//	public int insertPi(PhoneinfoAll pi) {
 	//
@@ -73,6 +86,11 @@ public class PhoneinfoDao {
 	//
 	//		return resultCnt;
 	//	}
+
+
+
+
+
 
 	public int insertPB(PhoneInfoBasic pb, Connection conn) throws SQLException {
 

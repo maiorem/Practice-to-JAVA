@@ -7,8 +7,22 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class PhoneBookManager {
+	
 
-	PhoneinfoDao dao=new PhoneinfoDao();
+	PhoneinfoDao dao=PhoneinfoDao.getInstance();
+
+	
+	private PhoneBookManager() {
+		
+	}
+
+	private static PhoneBookManager manager = new PhoneBookManager();
+	
+	public static PhoneBookManager getInstance() {
+		
+		return manager;
+	}
+	
 
 	public void phoneManager() {
 
