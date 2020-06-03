@@ -83,7 +83,7 @@ public class PhoneinfoDao {
 		int resultCnt=0;
 
 		String sql="insert into phoneinfo_basic values (PB_IDX_SEQ.nextval, ?, ?, ?, ?, ?)";
-				
+
 		pstmt=conn.prepareStatement(sql);
 
 		pstmt.setString(1, pb.getFr_name());
@@ -94,9 +94,9 @@ public class PhoneinfoDao {
 
 		resultCnt=pstmt.executeUpdate();
 		return resultCnt;
-		
 
-		
+
+
 	}
 
 
@@ -126,7 +126,7 @@ public class PhoneinfoDao {
 
 	}
 
-		
+
 
 	public int insertPC(PhoneInfoCom pc, Connection conn) throws SQLException {
 
@@ -148,38 +148,35 @@ public class PhoneinfoDao {
 		return resultCnt;
 	}
 
-	
-	
-	public int searchCnt(String name, Connection conn) {
+
+
+	public int searchCnt(String name, Connection conn) throws SQLException {
 
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		int rowCnt=0;
 
-		String sql="select count(*) from phoninfo_basic where fr_name=?";
-
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-
-			rs=pstmt.executeQuery();
-
-			if (rs.next()) {
-				rowCnt=rs.getInt(1);
-			}
+		String sql="select count(*) from phoneinfo_basic where fr_name=?";
 
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, name);
+
+		rs=pstmt.executeQuery();
+
+		if (rs.next()) {
+			rowCnt=rs.getInt(1);
 		}
+
+
+
 
 		return rowCnt;
 
 	}
 
 
-	public PhoneInfoBasic searchName(String name, Connection conn) {
+	public PhoneInfoBasic searchName(String name, Connection conn) throws SQLException {
 
 		PhoneInfoBasic pb=null;
 		PreparedStatement pstmt=null;
@@ -187,25 +184,22 @@ public class PhoneinfoDao {
 
 		String sql="select * from phoneinfo_basic where fr_name=?";
 
-		try {
-			pstmt=conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			rs=pstmt.executeQuery();
 
-			if(rs.next()) {
-				pb=new PhoneInfoBasic(
-						rs.getString("fr_name"), 
-						rs.getString("fr_phonenumber"), 
-						rs.getString("fr_email"), 
-						rs.getString("fr_address"), 
-						rs.getDate("fr_regdate"));
-			}
-						
+		pstmt=conn.prepareStatement(sql);
+		pstmt.setString(1, name);
+		rs=pstmt.executeQuery();
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(rs.next()) {
+			pb=new PhoneInfoBasic(
+					rs.getString("fr_name"), 
+					rs.getString("fr_phonenumber"), 
+					rs.getString("fr_email"), 
+					rs.getString("fr_address"), 
+					rs.getDate("fr_regdate"));
 		}
+
+
+
 
 		return pb;
 	}
@@ -277,7 +271,7 @@ public class PhoneinfoDao {
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, pu.getFr_u_major());
 			pstmt.setInt(2, pu.getFr_u_year());
-	
+
 			resultCnt=pstmt.executeUpdate();
 
 
@@ -304,7 +298,7 @@ public class PhoneinfoDao {
 		return resultCnt;
 
 	}
-	
+
 	public int editPhoneInfoCom(PhoneInfoCom pc, Connection conn) {
 
 		Statement stmt=null;
