@@ -4,35 +4,79 @@
 <head>
     <title>회원가입</title>
     <meta charset="utf-8">
+    <style>
+        
+        h4 {
+            margin:auto;
+            
+            
+        }
+    
+        table {
+            margin: auto;
+            padding: 15px;
+          
+        }
+        
+        .font-style {
+            font-size: 14px;
+            color:dimgrey;
+            padding: 10px;
+        }
+        
+        .regStyle {
+            padding-left: 0;
+        }
+        
+        #trHead {
+            padding: 20px;
+        }
+        
+        .regNum {
+            width: 70px;
+        }
+    
+        #btn {
+            color: white;
+            background-color: forestgreen;
+            width:60px;
+            margin-top: 15px;
+            padding: 5px;
+            border: 0;
+        }
+        
+    </style>
+        
 </head>
 
 <body>
-    <h3>실명확인 회원가입</h3>
+    <h4>실명확인 회원가입</h4>
     <hr>
     <form>
         <table>
-            <tr>
-                <td colspan="2">
-                    <input type="radio" name="reg" value="i_Pin">아이핀
-                    <input type="radio" name="reg" value="regNumber">주민등록번호
+            <tr >
+                <td id="trHead" colspan="2">
+                    <input type="radio" name="reg" value="i_Pin"> <span class="font-style regStyle">아이핀</span>
+                    <input type="radio" name="reg" value="regNumber"><span class="font-style regStyle">주민등록번호</span>
                 </td>
                 <td></td>
             </tr>
             <tr>
-                <td>이름</td>
+                <td class="font-style">이름</td>
                 <td><input type="text" name="userName"></td>
             </tr>
             <tr>
-                <td>주민등록번호</td>
-                <td><input type="text" naver="frontNumber">-<input type="password" name="backNumber"></td>
+                <td class="font-style">주민등록번호</td>
+                <td><input class="regNum" type="text" naver="frontNumber"> - <input class="regNum" type="password" name="backNumber"></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="checkbox">주민등록번호 처리에 동의합니다.</td>
                 <td></td>
+                
             </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="확인"></td>
+            <tr id="tableB">
+                <td class="tableBo"></td>
+                <td class="tableBo"><input id="btn" type="submit" value="확인"></td>
             </tr>
         
         

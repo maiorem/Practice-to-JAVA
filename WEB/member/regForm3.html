@@ -4,12 +4,35 @@
 <head>
     <title>회원가입</title>
     <meta charset="utf-8">
+    <style>
+        
+        #main {
+
+            margin: 0 auto;
+          
+        }
+        
+        #yak {
+            margin: auto;
+        }
+        
+        #regTable {
+            margin: auto;
+        }
+        
+        .aside {
+            width : 120px;
+            background-color: antiquewhite;
+        }
+    
+    </style>
+    
 </head>
 
 <body>
-    *회원가입을 하기에 앞서 회원약관을 읽어보시기 바랍니다.
+    <div id="main">*회원가입을 하기에 앞서 회원약관을 읽어보시기 바랍니다.</div>
     <br>
-    <table border="1">
+    <table id="yak" border="1">
         <tr>
             <td>
                 인터넷 쇼핑몰 회원약관
@@ -25,9 +48,9 @@
     <br>
     
     <form>
-        <table>
+        <table id="regTable">
             <tr>
-                <td>위의 약관에*</td>
+                <td class="aside">위의 약관에*</td>
                 <td><input type="checkbox" name="agree"> [동의합니다]</td>
             </tr>
             <tr>
@@ -35,23 +58,23 @@
                 <td></td>
             </tr>
             <tr>
-                <td>이름*</td>
+                <td class="aside">이름*</td>
                 <td><input type="text" name="uName"></td>
             </tr>
             <tr>
-                <td>아이디(ID)*</td>
+                <td class="aside">아이디(ID)*</td>
                 <td><input type="text" name="id"> [<a href="test.html">중복확인</a>] (문자와 숫자 4~10자리)</td>
             </tr>
             <tr>
-                <td>비밀번호*</td>
+                <td class="aside">비밀번호*</td>
                 <td><input type="password" name="pw"> 비밀번호 확인 <input type="password" name="pwCk"> (문자와 숫자 4~10자리) </td>
             </tr>
             <tr>
-                <td>주문등록번호*</td>
+                <td class="aside">주문등록번호*</td>
                 <td><input type="text" naver="frontNumber">-<input type="password" name="backNumber"></td>
             </tr>
             <tr>
-                <td>E-mail*</td>
+                <td class="aside">E-mail*</td>
                 <td><input type="text" name="email"> <input type="checkbox" name="mailAccess"> [정보 메일을 수신함] </td>
             </tr>
             <tr>
@@ -59,19 +82,19 @@
                 <td></td>
             </tr>
             <tr>
-                <td>자택전화*</td>
+                <td class="aside">자택전화*</td>
                 <td><input type="tel" name="houseTel"></td>
             </tr>
             <tr>
-                <td>자택주소*</td>
+                <td class="aside">자택주소*</td>
                 <td><input type="text" name="postFront"> - <input type="text" name="postBack"> [<a href="https://www.epost.go.kr/search.RetrieveIntegrationNewZipCdList.comm">우편번호검색</a>]</td>
             </tr>
             <tr>
-                <td>나머지*</td>
+                <td class="aside">나머지*</td>
                 <td><input type="text" name="houseaddress"></td>
             </tr>
             <tr>
-                <td>비상전화*</td>
+                <td class="aside">비상전화*</td>
                 <td><input type="tel" name="emalTel"></td>
             </tr>
             <tr>
@@ -79,15 +102,15 @@
                 <td></td>
             </tr>
             <tr>
-                <td>회사전화</td>
+                <td class="aside">회사전화</td>
                 <td><input type="tel" name="companyTel"></td>
             </tr>
             <tr>
-                <td>회사주소</td>
+                <td class="aside">회사주소</td>
                 <td><input type="text" name="compostFront"> - <input type="text" name="compostBack"> [<a href="https://www.epost.go.kr/search.RetrieveIntegrationNewZipCdList.comm">우편번호검색</a>]</td>
             </tr>
             <tr>
-                <td>나머지*</td>
+                <td class="aside">나머지*</td>
                 <td><input type="text" name="companyAddress"></td>
             </tr>
             <tr>

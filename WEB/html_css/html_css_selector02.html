@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+    <head>
+        <title>CSS3 선택자 Selector</title>
+        <meta charset="utf-8">
+        <style>
+            * {
+                color:gray;
+            }
+            
+            h1 {
+                background-color: blue;
+            }
+            
+            p {
+                font-size: 24px;
+                font-style: italic;
+            }
+            
+            h1, p {
+                border: 3px solid blue;
+
+            }
+            
+            body, h1, p{
+                margin: 0;
+                padding: 0;
+                
+            }
+            
+            /* 
+            #아이디 {
+            
+            }
+            */
+            #header {
+                width:300px;
+                background-color: red;
+                margin: 0 auto;
+            }
+            
+            #aside {
+                width:400px;
+                background-color: blue;
+                margin:10px auto        
+            }
+            
+            #content {
+                width:500px;
+                background-color: green;
+                margin: 0 auto;
+            }
+            
+            li {
+                color: black;
+            }
+            
+            /*
+            클래스 선택자
+            .클래스이름 {
+            
+            }
+            */
+            
+            .font_color {
+                color:blueviolet;
+            }
+            
+            .font_bold {
+                font-weight: bold;
+            }
+            
+            li.font_size {
+                font-size: 150%;
+            }
+            
+            div.font_size{
+                font-size: 200%;
+            }
+            
+            
+        </style>
+
+    </head>
+
+    <body>
+        <ul>
+            <li class="font_color font_size">사과</li>
+            <li>바나나</li>
+            <li>오렌지</li>
+            <li class="font_color font_bold font_size">키위</li>
+        </ul>
+        
+        
+        <hr>
+        
+        <div id="header" class="font_size">header header header header header header header header header header header</div>
+        <div id="aside">aside</div>
+        <div id="content">content</div>
+        
+        
+        
+        
+        <hr>
+        <h1>조지훈·이범선·김형석…실존 고민한 학병세대 문인들</h1>
+        
+        <p>대산문화재단-작가회의, 탄생100주년 문인 11인 기념문학제 18~19일 개최</p>
+        <p>(서울=연합뉴스) 이승우 기자 = 올해 탄생 100주년을 맞은 문인 11명을 조명하는 행사가 오는 18~19일 열린다.</p>
+        <p>대산문화재단과 한국작가회의는 8일 세종로 한국프레스센터에서 기자간담회를 열어 '2020년 탄생 100주년 문학인 기념문학제'를 개최한다고 밝혔다. 올해로 스무 살이 된 연례행사로 친일·월북 논란 등 이념과 정치 문제에 문학예술이 휩쓸리지 않도록 균형을 잡는다는 원칙이 있다.</p>
+        <p>올해 대상 문인은 1920년에 태어난 곽하신, 김상옥, 김준성, 김태길, 김형석, 안병욱, 이동주, 이범선, 조연현, 조지훈, 한하운이다.</p>
+    
+    
+    </body>
+</html>
