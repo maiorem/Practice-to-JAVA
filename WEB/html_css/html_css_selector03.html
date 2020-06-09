@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>CSS3 선택자 Selector</title>
+    <meta charset="utf-8">
+    <style>
+        /*
+            속성선택자
+            선택자[속성이름] : 특정 속성을 가지는 태그들을 선택
+            input[type]
+            선택자[속성이름=속성값] : 특정 속성을 가지며 속성에 특정값을 가지는 태그들을 선택
+            input[type=password]
+        */
+        input {
+            height: 30px;
+            margin: 10px 0;
+
+        }
+
+        input[type] {
+            border: 1px solid blue;
+        }
+
+        input[type=text] {
+            background-color: beige;
+        }
+
+        input[type=password] {
+            background-color: aquamarine;
+        }
+
+        img {
+            width: 300px;
+        }
+
+        img[alt] {
+            width: 50%;
+
+        }
+
+        img[src$=jpg] {
+            border: 3px solid red;
+        }
+
+        img[src$=png] {
+            border: 3px solid green;
+        }
+
+        /*
+        후손선택 : 선택의 범위를 제한한다.
+    
+        선택자 범위안의 선택자
+        div h1 {
+            
+        }
+*/
+        #header h1, #header h2 {
+            color: red;
+        }
+        
+        form input {
+            width: 100%;
+        }
+        
+/*
+        자손선택자
+        선택자 > 선택자
+        div > h1 {
+            
+        } 
+*/
+        #header>h1 {
+            background-color: blueviolet
+        }      
+        
+        table>tbody>tr>td {
+            color: red;
+        }
+        
+    </style>
+
+
+</head>
+
+<body>
+    <table border=1px;>
+        <tr>
+            <td>아이디</td>
+            <td><input></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input></td>
+        </tr>
+    
+    
+    
+    </table>
+    
+    
+    
+    <hr>
+    <div id="header">
+        <h1 class="title">Title</h1>
+        <div id="nav">
+            <h1>Navigation</h1>
+        </div>
+        <h1> etc </h1>
+        <h2> h2 tag </h2>
+    </div>
+    <div id="section">
+        <h1 class="title">Title </h1>
+        <p>안녕하세요</p>
+        
+    </div>
+    <h2> h2 tag </h2>
+
+    <hr>
+    <form>
+        <input>
+        <br>
+        <input type="text">
+        <br>
+        <input type="password">
+    </form>
+    <input><input><input>
+    <br>
+    <img src="../images/%EB%8B%AC%EB%A0%89.png">
+    <img src="../images/%EB%8B%AC%EB%A0%89.png" alt="달렉">
+    <img src="../images/%EB%8B%AC%EB%A0%892.jpg">
+
+</body>
+
+</html>
