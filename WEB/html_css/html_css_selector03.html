@@ -18,9 +18,11 @@
 
         }
 
+        /*
         input[type] {
             border: 1px solid blue;
         }
+*/
 
         input[type=text] {
             background-color: beige;
@@ -55,15 +57,18 @@
             
         }
 */
-        #header h1, #header h2 {
+        #header h1,
+        #header h2 {
             color: red;
         }
-        
+
+        /*
         form input {
             width: 100%;
         }
-        
-/*
+*/
+
+        /*
         자손선택자
         선택자 > 선택자
         div > h1 {
@@ -72,11 +77,132 @@
 */
         #header>h1 {
             background-color: blueviolet
-        }      
-        
+        }
+
         table>tbody>tr>td {
             color: red;
         }
+
+        /*
+        동위선택자 : 같은 레벨의(형제) 태그들을 기준으로 선택
+        + : 바로 뒤의 요소 선택
+        ~ : 같은 레벨의 형제태그들 중 선택
+*/
+        h3+h4 {
+            color: blue;
+        }
+
+        h3~.aa {
+            background-color: antiquewhite;
+        }
+
+        /*       
+        반응선택자
+        선택자 :hover -> 마우스 커서가 선택된 요소의 영역으로 갔을 때
+        선택자 :active -> 선택된 요소 위에 커서가 존재하고 마우스 왼쪽버튼을 클릭한 상태
+        */
+
+        h3 {
+            background-color: aqua
+        }
+
+        h3:hover {
+            color: red;
+            font-size: 32px;
+        }
+
+        h3:active {
+            color: blue;
+            font-style: italic;
+        }
+
+        #myform input {
+            background-color: white;
+        }
+
+        #myform input:disabled {
+            background-color: darkslategrey;
+        }
+
+        #myform input:enabled {
+            background-color: aliceblue
+        }
+
+        #myform input[type=checkbox] {
+            width: 30px;
+            height: 30px;
+        }
+
+        #myform input[type=checkbox]:checked {
+            width: 50px;
+            height: 60px;
+        }
+
+        #viewmenu+div {
+            display: none;
+        }
+
+        #viewmenu:checked+div {
+            display: block;
+        }
+
+
+        #navi {
+            overflow: hidden;
+        }
+
+        #navi>li {
+            list-style: none;
+            float: left;
+            padding: 5px 15px;
+        }
+
+        #navi>li:nth-child(2n+1) {
+            background-color: aquamarine;
+        }
+
+        #navi>li:nth-child(2n) {
+            background-color: antiquewhite;
+        }
+
+        #navi>li:first-child {
+            /*            border: 1px solid gray;*/
+            border-radius: 10px 0 0 10px;
+        }
+
+        #navi>li:last-child {
+            /*            border: 1px solid gray;*/
+            border-radius: 0 10px 10px 0;
+        }
+        
+        p::first-letter {
+            font-size: 3em;
+        }
+        
+        p::first-line {
+            color: blueviolet;
+            font-weight: bold;
+        }
+        p::selection {
+            background-color: burlywood;
+            color:coral
+        }
+        
+        a:link {
+            color:dimgray;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: overline;
+        }
+        a:active {
+            color : darkmagenta;
+        }
+        a:visited {
+            color:dimgray;
+        }
+        
         
     </style>
 
@@ -84,6 +210,77 @@
 </head>
 
 <body>
+    
+    <h1>Lorem ipsum dolor sit amet</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <p>Aenean ac erat et massa vehicula laoreet consequat et sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+    <hr>
+
+    <ul id="navi">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Company</a></li>
+        <li><a href="#">Service</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">Notice</a></li>
+        <li><a href="#">Contact us</a></li>
+        <li><a href="#">eng</a></li>
+    </ul>
+
+
+    <hr>
+
+    <form id="myform">
+
+        <div>
+            약관보기 <input type="checkbox" id="viewmenu">
+            <div>
+                <h4>이용약관</h4>
+                <p>문제가 생기면 바로 강퇴됩니다.</p>
+            </div>
+
+
+        </div>
+
+        <div>
+            약관동의 <input type="checkbox" checked>
+        </div>
+        <div>
+            마케팅 정보제공 동의 <input type="checkbox">
+        </div>
+
+        <div>
+            <input type="text">
+        </div>
+        <div>
+            <input type="text" disabled>
+        </div>
+        <div>
+            <input type="text" readonly>
+        </div>
+        <div>
+            <input type="text" required>
+        </div>
+        <input type="number">
+        <input type="submit">
+
+
+    </form>
+
+
+    <hr>
+
+    <h4 class="aa">header-4</h4>
+    <h3>header-3</h3>
+    <h4>header-4</h4>
+    <h4 class="aa">header-4</h4>
+    <h4>header-4</h4>
+    <h4 class="aa">header-4</h4>
+
+
+
+
+    <hr>
     <table border=1px;>
         <tr>
             <td>아이디</td>
@@ -93,13 +290,13 @@
             <td>비밀번호</td>
             <td><input></td>
         </tr>
-    
-    
-    
+
+
+
     </table>
-    
-    
-    
+
+
+
     <hr>
     <div id="header">
         <h1 class="title">Title</h1>
@@ -112,11 +309,12 @@
     <div id="section">
         <h1 class="title">Title </h1>
         <p>안녕하세요</p>
-        
+
     </div>
-    <h2> h2 tag </h2>
+    <h2 class="aa"> h2 tag </h2>
 
     <hr>
+    <h4>header-4</h4>
     <form>
         <input>
         <br>
