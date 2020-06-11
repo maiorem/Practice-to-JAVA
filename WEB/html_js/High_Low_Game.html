@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High_Low_Game</title>
+    <script>
+        var comNumber=parseInt(Math.random()*100+1);
+
+        for(var i=1; i<=11; i++) {
+            var num=prompt('숫자를 입력하세요.');
+            var userNumber=Number(num);
+
+            if (i==11) {
+                alert('게임에서 패배하셨습니다!')
+                break;
+            }
+            
+            if(comNumber>userNumber) {
+                alert('High!');
+                continue;
+            } else if (comNumber<userNumber) {
+                alert('Low!');
+                continue;
+            } else if (comNumber==userNumber) {
+                alert('CORRECT!!!');
+                alert('시도 횟수는 총'+i+'번 입니다.')
+                break;
+            }
+
+            
+
+        }
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
