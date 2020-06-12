@@ -83,6 +83,8 @@
         students.push(new Student('A9', 75, 100, 77));
         students.push(new Student('A10', 90, 85, 100));
 
+        // students[0].kor=9;
+        // alert(students[0].kor);
 
         // students.push({name :'A1', kor:90, math:80, Eng:60});
         // students.push({name :'A2', kor:95, math:90, Eng:88});
@@ -112,6 +114,15 @@
         
        // console.log(students);
 
+        // 배열의 정렬
+        // array.sort()
+        students.sort(function(left, right){
+            return right.getSum()-left.getSum();
+        });
+
+        students=students.slice(0,3); // 인덱스 0부터 3까지 잘라서 반환
+
+
         var list='';
 
         for(var i=0; i<students.length; i++) {
@@ -121,9 +132,42 @@
             list+=', 평균 : '+students[i].getAverage();
             list+='</h4>';
         }
-
-
         document.write(list);
+
+
+        function Rectangle(w, h){
+            var width=w;    // 직접 참조를 방지하기 위해 게터세터 생성
+            var height=h;
+
+            this.getWidth=function(){
+                return width;
+            };
+
+            this.setWidth=function(w) {
+                width=w;
+            };
+
+            this.getHeight=function() {
+                return height;
+            };
+
+            this.setHeight=function(h) {
+                height=h;
+            };
+
+            this.getArea=function(){
+                return width*height;
+            };
+        }
+
+        var rac=new Rectangle(10,4);
+
+       // alert(rac.width);    // 직접 참조 불가
+
+       // alert(rac.getArea());
+
+
+
     </script>
 
 </head>
