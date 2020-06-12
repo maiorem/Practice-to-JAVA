@@ -35,9 +35,95 @@
 
         };
 
-        person.hello();
+        // person.hello();
+
+        // person.job='Skater';
+
+        // alert(person.job);
 
 
+        // 생성자 함수
+        // new 키워드를 이용해서 객체를 생성
+        // 생성자 함수의 이름은 대문자로 시작한다.
+        
+        function Student(uName, kor_score, math_score, eng_score){
+            this.name=uName;
+            this.kor=kor_score;
+            this.math=math_score;
+            this.eng=eng_score;
+
+            // this.getSum=function(){
+            //     return this.kor+this.math+this.eng;
+            // };
+
+            // this.getAverage=function(){
+            //     return this.getSum()/3;
+            // };
+        };
+
+        Student.prototype.getSum=function() {
+            return this.kor+this.math+this.eng;
+        };
+
+        Student.prototype.getAverage=function(){
+            return this.getSum()/3;
+        }
+
+
+        //var s1=new Student();
+        var students=[];
+        students.push(new Student('A1', 90, 80, 60));
+        students.push(new Student('A2', 95, 90, 88));
+        students.push(new Student('A3', 100, 65, 87));
+        students.push(new Student('A4', 67, 54, 87));
+        students.push(new Student('A5', 90, 88, 90));
+        students.push(new Student('A6', 98, 66, 78));
+        students.push(new Student('A7', 97, 80, 90));
+        students.push(new Student('A8', 100, 77, 95));
+        students.push(new Student('A9', 75, 100, 77));
+        students.push(new Student('A10', 90, 85, 100));
+
+
+        // students.push({name :'A1', kor:90, math:80, Eng:60});
+        // students.push({name :'A2', kor:95, math:90, Eng:88});
+        // students.push({name :'A3', kor:100, math:65, Eng:87});
+        // students.push({name :'A4', kor:67, math:54, Eng:60});
+        // students.push({name :'A5', kor:93, math:88, Eng:90});
+        // students.push({name :'A6', kor:90, math:76, Eng:90});
+        // students.push({name :'A7', kor:56, math:54, Eng:33});
+        // students.push({name :'A8', kor:91, math:100, Eng:98});
+        // students.push({name :'A9', kor:100, math:95, Eng:98});
+        // students.push({name :'A10', kor:78, math:80, Eng:100});
+
+        // 각각의 요소 객체에 동적으로 합을 구하는 메서드를 추가
+        // for(var i=0; i<students.length; i++) {
+        //     students[i].getSum=function() {
+        //         return this.kor+this.math+this.Eng;
+        //     };
+        
+        // };
+
+        // 각각의 요소 객체에 동적으로 평균을 구하는 메서드를 추가
+        // for(var i=0; i<students.length; i++) {
+        //     students[i].getAverage=function() {
+        //         return this.getSum()/3;
+        //     };
+        // };
+        
+       // console.log(students);
+
+        var list='';
+
+        for(var i=0; i<students.length; i++) {
+            list+='<h4>';
+            list+=' 이름 : '+students[i].name;
+            list+=', 총점 : '+students[i].getSum();
+            list+=', 평균 : '+students[i].getAverage();
+            list+='</h4>';
+        }
+
+
+        document.write(list);
     </script>
 
 </head>
