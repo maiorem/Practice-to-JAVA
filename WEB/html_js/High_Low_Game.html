@@ -7,13 +7,19 @@
     <script>
         var comNumber=parseInt(Math.random()*100+1);
 
-        for(var i=1; i<=11; i++) {
-            var num=prompt('1~100 사이의 숫자를 입력해 번호를 맞추세요.\n10번의 기회가 주어집니다.');
+        for(var i=1; i<=10; i++) {
+            var num=prompt('1~100 사이의 숫자를 입력해 번호를 맞추세요.\n10번의 기회가 주어집니다.\n'+i+'번째 시도입니다.');
             var userNumber=Number(num);
 
-            if (i==11) {
-                alert('게임에서 패배하셨습니다!\n정답 : '+comNumber);
-                break;
+            if (i==10) {
+                if(comNumber==userNumber) {
+                    alert('CORRECT!!!');
+                    alert('시도 횟수는 총 '+i+'번 입니다.');
+                    break;
+                } else {
+                    alert('게임에서 패배하셨습니다!\n정답 : '+comNumber);
+                    break;
+                }
             }
             
             if(comNumber>userNumber) {
