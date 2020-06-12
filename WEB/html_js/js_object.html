@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript : Object 객체</title>
+    <script>
+
+        var obj={}; //기본 객체 생성 new Object()
+        console.log(typeof(obj));
+
+        var obj= {
+            number:1000,
+            str:'String',
+            check:false,
+            method:function(){},
+            object:{},
+            arr:[1,2,3]
+        };
+
+        console.log(obj.number);
+        console.log(obj);
+
+        var person={
+            name:'김연아',
+            age:31,
+            hello:function() {
+                alert('안녕하세요. 저는 '+this.name+'입니다');
+                alert(this.age+'세입니다.');
+                this.bye();
+            },
+            bye:function() {
+                alert('Bye!');
+            }
+
+        };
+
+        person.hello();
+
+
+    </script>
+
+</head>
+<body>
+    
+</body>
+</html>
