@@ -153,7 +153,7 @@ where fr_ref = (select idx from phoneinfo_basic where fr_name='홍세영');
 ---------------------------------------------------
 --1.회사친구 정보 삭제
 delete from phoneinfo_com where fr_ref=3;
-delete from phoneinfo_basic where fr_name='김유진';
+delete from phoneinfo_basic where idx=2;
 
 --2.학교친구 정보 삭제
 delete from phoneinfo_univ where idx=3;
@@ -239,4 +239,4 @@ insert into phoneinfo_com values(PC_IDX_SEQ.nextval, 'BIT', pb_idx_seq.currval);
 
 insert into phoneinfo_basic (idx, fr_name, fr_phonenumber, fr_email, fr_address, fr_regdate) 
 values (PB_IDX_SEQ.nextval, '이가은','010-4660-1111','hy@gmail.com','TOKYO','13/06/18');
-insert into phoneinfo_univ (idx, fr_ref)values (PU_IDX_SEQ.nextval, pb_idx_seq.currval);
+insert into phoneinfo_univ values (PU_IDX_SEQ.nextval, 'COMPUTER', 2, pb_idx_seq.currval);
