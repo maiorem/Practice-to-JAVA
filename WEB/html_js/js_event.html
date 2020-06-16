@@ -37,12 +37,67 @@
 
                 if(uid.value==null || uid.value.length<1) {
                     alert('아이디 정보는 필수 입력 사항입니다.');
+                    uid.focus();
+                    return false;
+                }
+
+                var pw=document.getElementById('pw');
+                var repw=document.getElementById('repw');
+
+                if(pw.value==null || pw.value.length<1) {
+                    alert('비밀번호는 필수 입력 사항입니다.');
+                    pw.focus();
+                    return false;
+                }
+
+                if(repw.value==null || repw.value.length<1) {
+                    alert('비밀번호확인은 필수 입력 사항입니다.');
+                    repw.focus();
+                    return false;
+                }
+
+                if(pw.value!=repw.value) {
+                    alert('비밀번호와 비밀번호 확인은 일치해야 합니다.');
+                    return false;
+                }
+
+                var agree=document.getElementById('agree');
+                
+                if(!agree.checked) {
+                    alert('개인정보 제출에 대한 동의를 진행하지 않으셨습니다.');
                     return false;
                 }
 
             };
 
+            var div1=document.getElementById('box1');
+            var div2=document.getElementById('box2');
+            var h1=document.getElementById('box3');
 
+            // div1.onclick=function() {
+            //     alert('box1-onclick');
+            // }
+
+            div1.addEventListener('click', function(){
+                alert('box1-onclick');
+            });
+
+            div2.onclick=function() {
+                alert('box2-onclick');
+            }
+            h1.onclick=function(e) {
+                var event=e || window.event;
+                alert('h1-onclick');
+
+                // 이벤트의 전달을 막는다
+                // IE인 경우
+                event.cancelBubble=true;
+                // IE 이외의 브라우저
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                }
+
+            }
         };
 
         function show(d) {
@@ -50,17 +105,69 @@
         }
 
     </script>
+    <style>
+        #agree+div {
+            display:none;
+        }
+        #agree:checked+div {
+            display:block;
+        }
+
+        .box {
+            border: 3px solid;
+            padding: 10px;
+        }
+
+        #box1 {
+            background-color: aquamarine;
+        }
+
+        #box2 {
+            width: 75%;
+            background-color: burlywood;
+        }
+
+        #box3 {
+            width: 50%;
+            background-color: thistle;
+            height: 30px;
+
+        }
+
+
+    </style>
 </head>
 <body>
+    <div id="box1" class="box">
+
+        <div id="box2" class="box" >
+
+            <h1 id="box3" class="box">클릭하세요</h1>
+
+        </div>
+    </div>
+    <hr>
     <form action="http://www.naver.com" id="my-form">
-        <label>아이디</label>
-        <input type="text" name="uid" id="uid">
+        <label for="uid">아이디</label>
+        <input type="text" name="uid" id="uid" placeholder="아이디를 입력하세요">
         <br>
-        <label>비밀번호</label>
+        <label for="pw">비밀번호</label>
         <input type="password" name="pw" id="pw">
         <br>
-        <label>비밀번호 확인</label>
+        <label for="repw">비밀번호 확인</label>
         <input type="password" name="repw" id="repw">
+        <br>
+        <label for="agree">개인정보 동의</label>
+        <input type="checkbox" id="agree">
+        <div>
+            <textarea>
+            개인 정보 활용에 대한 안내입니다.
+            </textarea>
+        </div>
+        <br>
+        <label>성별</label>
+        <input type="radio" name="gender" value="1" checked>남
+        <input type="radio" name="gender" value="2">여
         <br>
         <input type="submit">
     </form>
