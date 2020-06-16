@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Manager</title>
+    <style>
+        
+
+        #listTable {
+            display: block;
+            width: 800px;
+        }
+
+        #listTable>tbody>tr>td {
+            width:400px;
+        }
+
+        #edituser {
+            width: 500px;
+            height: 300px;
+            background-color: thistle;
+            text-align: center;
+        }
+
+        #userList #edituser {
+            display: none;
+        }
+
+
+        #userList>#edit:active #edituser {
+            display: block;
+        }
+
+
+    </style>
+    <script>
+
+        var members=[];
+
+
+        function Member(id, pw, name) {
+                this.id=id;
+                this.pw=pw;
+                this.name=name;
+        };
+
+        // 객체를 배열에 저장
+        function saveUser(member) {
+            members.push(member);
+            userList();
+        }
+
+
+        // 입력받아 객체 생성
+        function createUser() {
+            var id=document.getElementById('id').value;
+            var pw=document.getElementById('pw').value;
+            var name=document.getElementById('name').value;
+
+            saveUser(new Member(id, pw, name));
+
+            setLocalStorage();
+
+            return false;
+
+        }
+
+
+        function editUser() {
+            var id=document.getElementById('edid').value;
+            var pw=document.getElementById('edpw').value;
+            var name=document.getElementById('edname').value;
+
+            
+
+        }
+
+        // 유저리스트 테이블 세팅
+        function userList() {
+
+            var list='';
+            list+='<table id="listTable"  border=1px>';
+            list+='<tr>';
+            list+='    <td>index</td>';
+            list+='    <td>아이디(이메일)</td>';
+            list+='    <td>비밀번호</td>';
+            list+='    <td>이름</td>';
+            list+='     <td>관리</td>';
+            list+='</tr>'
+            
+            for(let i=0; i<members.length; i++) {
+                list+='<tr>';
+                list+='<td>';
+                list+=i;
+                list+='</td>'
+                list+='<td>';
+                list+=members[i].id;
+                list+='</td>';
+                list+='<td>';
+                list+=members[i].pw;
+                list+='</td>';
+                list+='<td>';
+                list+=members[i].name;
+                list+='</td>';
+                list+='<td>';
+                list+='<a id="edit" href="#">수정</a> | <a href="#">삭제</a>';
+                list+='</td>'
+                list+='</tr>'
+            }
+
+            list+='</table>';
+            var userListTable=document.getElementById('listTable');
+            userListTable.innerHTML=list;
+
+        }
+
+        //로컬저장소에 저장
+        function setLocalStorage() {
+            localStorage.setItem('members', JSON.stringify(members));
+        }
+
+  
+        window.onload = function() {
+
+            userList();
+            
+            document.getElementById('createform').onsubmit=createUser;
+                
+                
+        }
+
+    </script>
+    
+</head>
+<body>
+    <h1>Member Manager</h1>
+    <hr>
+    <div id="userCreate">
+        <h4>회원 등록</h4>
+        <form id="createform">
+        <table id="createTable">
+            <tr>
+                <td><label for="id">아이디(이메일)</label></td>
+                <td><label for="pw">비밀번호</label></td>
+                <td><label for="name">이름</label></td>
+                <td rowspan="2"><input type="submit" id="submit" value="등록"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="id" id="id" placeholder="아이디(이메일)를 입력하세요"></td>
+                <td><input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요"></td>
+                <td><input type="text" name="name" id="name" placeholder="이름을 입력하세요"></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <br>
+    <hr>
+    <div id="userList">
+        <h4>회원리스트</h4>
+        <table id="listTable"  border=1px>
+            <tr id="listTblheader">
+                <td>index</td>
+                <td>아이디(이메일)</td>
+                <td>비밀번호</td>
+                <td>이름</td>
+                <td>관리</td>
+            </tr>
+        </table>
+        <div id="edituser">
+            <table id="editTable">
+                <tr>
+                    <td colspan="2">데이터 수정</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>아이디(이메일)</td>
+                    <td><input type="text" name="edid" id="edid"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" name="edpw" id="edpw"></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="edname" id="ename"></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" id="editSubmit" value="수정"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</body>
+
+</html>
