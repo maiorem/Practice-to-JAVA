@@ -72,10 +72,10 @@
         var members=[];
 
 
-        function Member(uid, upw, uname) {
-            var id=uid;
-            var pw=upw;
-            var name=uname;
+        function Member(id, pw, name) {
+            this.id=id;
+            this.pw=pw;
+            this.name=name;
 
             this.getId=function(){
                 return id;
@@ -102,8 +102,6 @@
 
 
         };
-
-
 
         // 입력받아 객체 생성
         function createUser() {
@@ -132,7 +130,7 @@
                 return false;
             }
 
-            members.push(new Member(id, pw, name)); // 배열에 저장
+            members.push(new Member(id, pw, name));
             userList();
 
             document.getElementById('createform').reset();
@@ -147,7 +145,7 @@
         function checkId(id) {
             var check=false;
             for (let i=0; i<members.length; i++) {
-                if(id==members[i].getId()) {
+                if(id==members[i].id) {
                     check=true;
                 }
             }
@@ -235,13 +233,13 @@
                 list+=i;
                 list+='</td>'
                 list+='<td>';
-                list+=members[i].getId();
+                list+=members[i].id;
                 list+='</td>';
                 list+='<td>';
-                list+=members[i].getPw();
+                list+=members[i].pw;
                 list+='</td>';
                 list+='<td>';
-                list+=members[i].getName();
+                list+=members[i].name;
                 list+='</td>';
                 list+='<td>';
                 list+='<a href="javascript:editSet('+i+')">수정</a> | <a href="javascript:deleteUser('+i+')">삭제</a>';
