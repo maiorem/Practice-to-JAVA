@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Basic</title>
+    <!-- jQuery 라이브러리 로드 : CDN 방식 -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+        // $() -> 윈도우 객체
+        // $ -> jquery를 의미
+        // () -> 객체 생성. 내부엔 선택자.
+        // $('h1').click(function(){
+        //     alert('h1 tag');
+        // });
+        
+        // window.documnet == 
+        // window.onload=function(){} ==
+
+          
+        $(document).ready(function(){
+            //alert('ready method'); 
+            $('div>h1').click(function(){
+                alert('h1');
+            });
+        }); 
+
+    </script>
+</head>
+<body>
+    <div>
+        <h1 id="title">안녕하세요</h1>
+        <h2 id="sub">안녕하세요</h2>
+    </div>
+</body>
+</html>
