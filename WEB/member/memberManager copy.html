@@ -160,9 +160,9 @@
             document.getElementById('edituser').style.display='block';
 
             document.getElementById('idx').value=idx;
-            document.getElementById('edid').value=members[idx].id;
-            document.getElementById('edpw').value=members[idx].pw;
-            document.getElementById('ename').value=members[idx].name;
+            document.getElementById('edid').value=members[idx].getId();
+            document.getElementById('edpw').value=members[idx].getPw();
+            document.getElementById('ename').value=members[idx].getName();
             
 
         }
