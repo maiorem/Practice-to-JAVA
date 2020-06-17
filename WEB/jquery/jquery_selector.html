@@ -29,10 +29,11 @@
 
             //$('input[type=text]').val('Hello!');
             val.val('Change!');
-            //setTimeout(function(){
+            setTimeout(function(){
+                $('h1').removeClass('title');
                 //var selectedVal=$('select.loc>option:selected');
-               // alert(selectedVal.val());
-            //},5000);
+                // alert(selectedVal.val());
+            },5000);
 
             $('tr:odd').css('background-color', '#F9F9F9');
             $('tr:even').css('background-color', '#9F9F9F');
@@ -57,6 +58,54 @@
 
             $('#list').html(html);
 
+            $('h2').each(function(index, item){
+                $(item).html($(item).html()+' : '+index);
+                if(index%2==0){
+                    $(item).css('background-color', 'red');
+                } else {
+                    $(item).css('background-color', 'blue');
+                }
+            });
+            
+            $('h1').addClass('check');
+            // $('h1').removeClass('title');
+
+
+            $('h3').css('background-color', 'orange').filter(':even').css('color', 'white').end().css('font-weight','100').filter(':odd').css('color', 'blue');
+     
+            var sites='';
+            sites+='<sites>';
+            sites+='     <site>';
+            sites+='        <name>Naver</name>';
+            sites+='        <url>http://www.naver.com</url>';
+            sites+='     </site>';
+            sites+='     <site>';
+            sites+='        <name>Daum</name>';
+            sites+='        <url>http://www.daum.net</url>';
+            sites+='     </site>';
+            sites+='     <site>';
+            sites+='        <name>Kakao</name>';
+            sites+='        <url>http://www.kakao.com</url>';
+            sites+='     </site>';
+            sites+='</sites>';
+
+            var xmlDoc=$.parseXML(sites);
+
+            var siteHtml='';
+
+            $(xmlDoc).find('site').each(function(index){
+
+                var name=$(this).find('name').text();
+                var url=$(this).find('url').text();
+
+                siteHtml+='<div class="site">';
+                siteHtml+='<h3>'+name+'</h3>';
+                siteHtml+='<p>'+url+'</p>';
+                siteHtml+='</div>';
+
+            });
+
+            $('#sites').html(siteHtml);
 
         });
 
@@ -65,9 +114,58 @@
         table {
             width: 80%;
         }
+
+        .check {
+            background-color:yellow;
+        }
+
+        .title {
+            font-style: italic;
+        }
+
+        #sites {
+            overflow:hidden;
+        }
+
+        #sites>div.site {
+            width:200px;
+            padding: 20px;
+
+            border:1px solid #DDD;
+            border-radius: 5px;
+            float:left;
+        }
     </style>
 </head>
 <body>
+
+    <div id="sites">
+
+
+
+    </div>
+
+
+
+
+    <h3>heading3-0</h3>
+    <h3>heading3-1</h3>
+    <h3>heading3-2</h3>
+    <h3>heading3-3</h3>
+    <h3>heading3-4</h3>
+    <h3>heading3-5</h3>
+    <h3>heading3-6</h3>
+    <h3>heading3-7</h3>
+    <h3>heading3-8</h3>
+    <h3>heading3-9</h3>
+
+
+    <h2>heading2-0</h2>
+    <h2>heading2-1</h2>
+    <h2>heading2-2</h2>
+    <h2>heading2-3</h2>
+    <h2>heading2-4</h2>
+
     <div id="list">
 
     </div>
