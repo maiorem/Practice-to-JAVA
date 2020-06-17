@@ -107,32 +107,32 @@
 
         // 입력받아 객체 생성
         function createUser() {
-            var id=document.getElementById('id').value;
-            var pw=document.getElementById('pw').value;
-            var name=document.getElementById('name').value;
+            var uid=document.getElementById('id').value;
+            var upw=document.getElementById('pw').value;
+            var uname=document.getElementById('name').value;
 
-            if(id==null || id.length<1) {
+            if(uid==null || uid.length<1) {
                 alert('아이디는 필수 입력사항입니다.');
                 return false;
             }
-            if(pw==null || pw.length<1) {
+            if(upw==null || upw.length<1) {
                 alert('비밀번호는 필수 입력사항입니다.');
                 
                 return false;
             }
-            if(name==null || name.length<1) {
+            if(uname==null || uname.length<1) {
                 alert('이름은 필수 입력사항입니다.');
                 
                 return false;
             }
 
-            if(checkId(id)) {
+            if(checkId(uid)) {
                 alert('이미 존재하는 아이디입니다.');
                 
                 return false;
             }
 
-            members.push(new Member(id, pw, name)); // 배열에 저장
+            members.push(new Member(uid, upw, uname)); // 배열에 저장
             userList();
 
             document.getElementById('createform').reset();
@@ -171,25 +171,25 @@
         function editUser() {
             
             var idx = document.getElementById('idx').value;
-            var id = document.getElementById('edid').value;
-            var pw = document.getElementById('edpw').value;
-            var name = document.getElementById('ename').value;  
+            var eid = document.getElementById('edid').value;
+            var epw = document.getElementById('edpw').value;
+            var ename = document.getElementById('ename').value;  
 
-            if(pw==null || pw.length<1) {
+            if(epw==null || epw.length<1) {
                 alert('비밀번호는 필수 입력사항입니다.');
                 
                 return false;
             }
 
-            if(name==null || name.length<1) {
+            if(ename==null || ename.length<1) {
                 alert('이름은 필수 입력사항입니다.');
                
                 return false;
             }
            
-            members[parseInt(idx)].setId(id);
-            members[parseInt(idx)].setPw(pw);
-            members[parseInt(idx)].setName(name);
+            members[parseInt(idx)].setId(eid);
+            members[parseInt(idx)].setPw(epw);
+            members[parseInt(idx)].setName(ename);
 
             document.getElementById('editform').reset();
 
@@ -258,10 +258,10 @@
         // 초기 데이터 저장
         function initialstore(){
                 
-            var data = localStorage.getItem('members');
+            var data = localStorage.getItem('user');
             if(data==null){
                 var jdata=JSON.stringify(members);
-                localStorage.setItem('members', jdata);
+                localStorage.setItem('user', jdata);
             } else {
                 members = JSON.parse(data);
             }
@@ -273,7 +273,7 @@
         //로컬저장소에 저장
         function setLocalStorage() {
             var jsondata=JSON.stringify(members);
-            localStorage.setItem('members', jsondata);
+            localStorage.setItem('user', jsondata);
         }
 
   
