@@ -27,6 +27,20 @@
             color: blue;
         }
 
+        #imgList>img {
+            display:block;
+
+            width:200px;
+            height:100px;
+        }
+
+        #imgList {
+            width: 200px;
+            height:100px;
+            padding:0;
+
+            overflow: hidden;
+        }
 
 
     </style>
@@ -157,7 +171,7 @@
             });
             var btn10=$('button.btn.insert:first');
             var btn11=$('button.btn.insert:last');
-
+            var btn12=$('button.btn.insert:eq(1)');
 
             btn10.click(function(){
                 var txt='body 태그 맨 아래에 요소가 추가됩니다.';
@@ -171,13 +185,64 @@
                 
             });
 
+            btn12.click(function(){
+                //$('<img>').attr('src','../images/jin04.jpg').appendTo('div.header');
+                // $('<img>', {
+                //     src:'../images/jin04.jpg',
+                //     width:100,
+                //     height:100
+                // }).appendTo('div.header');
+                // $('<img>', {
+                //     src:'../images/jin04.jpg',
+                //     width:100,
+                //     height:100
+                // }).prependTo('div.header');
+                // $('<img>', {
+                //     src:'../images/jin04.jpg',
+                //     width:100,
+                //     height:100
+                // }).insertAfter('div.header');
+                // $('<img>', {
+                //     src:'../images/jin04.jpg',
+                //     width:100,
+                //     height:100
+                // }).insertBefore('div.header');
+
+                $('div.header').append($('<img>', {
+                    src:'../images/jin04.jpg',
+                    width:100,
+                    height:100
+                }),$('<div></div>'));
+
+         
+
+
+            });
+
+            setInterval(function(){
+
+                $('#imgList>img:first').appendTo('#imgList');
+
+            },2000);
+
         });
     
     
     </script>
 </head>
 <body>
+
+    <div id="imgList">
+        <img src="../images/jin01.jpg">
+        <img src="../images/jin02.jpg">
+        <img src="../images/jin03.jpg">
+        <img src="../images/jin04.jpg">
+        <img src="../images/jin05.jpg">
+        <img src="../images/168_shop1_127020.jpg">
+
+    </div>
     <button class="btn insert">body tag 요소 추가</button>
+    <button class="btn insert">div.header 이미지 추가</button>
     <button class="btn insert">div.header 내용 추가</button>
     <hr>
     <button class="btn rm">내용 삭제</button>
