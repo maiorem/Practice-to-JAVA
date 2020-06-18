@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery 문서객체 다루기</title>
+    <style>
+
+        .title {
+            background-color: black;
+            color:cornsilk;
+        }
+
+        button.rmClass, button.attr {
+            padding:5px;
+            font-size: 1.5em;
+        }
+
+        img {
+            display: block;
+        }
+
+    </style>
+    <!-- jQuery lib CDN을 통해서 로드 -->
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+
+        $(document).ready(function(){
+
+            // 클래스 속성을 추가/삭제
+            // 추가 : addClass(클래스 속성값)
+            // 삭제 : removeClass(클래스 속성값)
+            $('h1').addClass('title');
+            $('h1').addClass('type');
+
+            $('button.rmClass').click(function(){
+                $('h1').removeClass('title');
+            });
+
+            //속성을 변경하는 attr() 메서드
+            //getter : attr(속성이름)
+            var imgPath = $('img').attr('src');
+            console.log('imgPath : '+imgPath);
+
+            // setter : 
+            // jQuery객체.attr(속성이름, 속성값)
+            // jQuery객체.attr(속성이름, 콜백함수) => 함수는 속성에 들어갈 수 있는 데이터를 반환(속성값 반환)
+            // jQuery객체.attr({}) {} 객체 안에는 속성이름:속성값들을 정의
+
+            var btn01=$('button.attr.string');
+            var btn02=$('button.attr.func');
+            var btn03=$('button.attr.obj');
+
+            var img01=$('img').first();
+
+            btn01.css('color', 'red');
+            btn02.css('color', 'blue');
+            btn03.css('color', 'green');
+
+            // string-string
+            btn01.click(function(){
+                img01.attr('src', '../images/jin03.jpg');
+            });
+
+            // string-function
+            btn02.click(function(){
+                $('img').attr('height', function(index){
+                    return (index+1)*100;
+                });
+            });
+
+            // {}
+            btn03.click(function(){
+                $('img:last').attr({
+                    src:'../images/jin04.jpg',
+                    width: 400,
+                    height: 400,
+                    alt:'변경된 이미지입니다.'
+                });
+            });
+
+        });
+    
+    
+    </script>
+</head>
+<body>
+
+    <img src="../images/jin05.jpg" height="200">
+    <img src="../images/jin01.jpg" height="200">
+    <img src="../images/jin02.jpg" height="200">
+
+    <button class="attr string">String-string</button>
+    <button class="attr func">String-function</button>
+    <button class="attr obj">object{}</button>
+
+    <hr>
+    <h1>안녕하세요</h1>
+    <button class="rmClass">Remove Class</button>
+
+</body>
+</html>
