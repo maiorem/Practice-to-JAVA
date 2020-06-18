@@ -11,7 +11,7 @@
             color:cornsilk;
         }
 
-        button.rmClass, button.attr {
+        button.rmClass, button.attr, button.css, button.btn {
             padding:5px;
             font-size: 1.5em;
         }
@@ -19,6 +19,15 @@
         img {
             display: block;
         }
+
+        div.memo {
+            padding : 10px;
+            border : 1px solid black;
+            margin: 10px;
+            color: blue;
+        }
+
+
 
     </style>
     <!-- jQuery lib CDN을 통해서 로드 -->
@@ -51,12 +60,14 @@
             var btn01=$('button.attr.string');
             var btn02=$('button.attr.func');
             var btn03=$('button.attr.obj');
+            var btn04=$('button.attr.rm');
 
             var img01=$('img').first();
 
             btn01.css('color', 'red');
             btn02.css('color', 'blue');
             btn03.css('color', 'green');
+            
 
             // string-string
             btn01.click(function(){
@@ -74,10 +85,90 @@
             btn03.click(function(){
                 $('img:last').attr({
                     src:'../images/jin04.jpg',
-                    width: 400,
-                    height: 400,
+                    width: 200,
+                    height: 200,
                     alt:'변경된 이미지입니다.'
                 });
+            });
+
+            btn04.click(function(){
+                $('img:last').removeAttr('src');
+            });
+
+            //속성값 컨트롤 : css()
+            //jQuery.css(스타일속성이름) : getter -> 현재 속성값을 반환
+            var colorVal=$('div.memo').first().css('color');
+            console.log('colorVal : '+colorVal);
+ 
+            //css()
+            //jQuery객체.css(스타일속성이름, 속성값)
+            //jQuery객체.css(스타일속성이름, 함수)
+            //jQuery객체.css(객체)
+            var btn05=$('button.css.string');
+            var btn06=$('button.css.func');
+            var btn07=$('button.css.obj');
+
+            //string-string
+            btn05.click(function(){
+                $('div.memo').css('color', 'red');
+            });
+
+            var colors=['orange', 'black', 'green'];
+
+            //string-function
+            btn06.click(function(){
+                $('div.memo').css('background-color', function(index){
+                    return colors[index];
+                });
+            });
+
+            // {}
+            btn07.click(function(){
+                $('div.memo').css({
+                    fontSize:'2em',
+                    borderWidth: function(index){
+                        return (index+1)*10;
+                    }
+                });
+            });
+            var headerDiv=$('div.header');
+
+            //jQuery.html()
+            //jQuery.text()
+            console.log('html() : '+headerDiv.html());
+            console.log('text() : '+headerDiv.text());
+
+            // jQuery.html(html 문자열)
+            // jQuery.text(문자열)
+            //headerDiv.html('<h3>변경된 문자열입니다.</h3>');
+            //headerDiv.text('<h3>변경된 문자열입니다.</h3>');
+
+            var btn08=$('button.btn.rm:eq(0)'); 
+            var btn09=$('button.btn.rm').eq(1);
+            
+            // jQuery.empty() : 객체 안에 있는 내용을 지워준다.
+            btn08.click(function(){
+                headerDiv.empty();
+            });
+
+            // jQuery.remove() : 캐스팅 된 객체를 삭제
+            btn09.click(function(){
+                headerDiv.remove();
+            });
+            var btn10=$('button.btn.insert:first');
+            var btn11=$('button.btn.insert:last');
+
+
+            btn10.click(function(){
+                var txt='body 태그 맨 아래에 요소가 추가됩니다.';
+                $('<h1></h1>').html(txt).appendTo('body');
+            });
+
+            btn11.click(function(){
+                var txt='제목 요소가 추가됩니다.';
+                $('<h3></h3>').html(txt).appendTo('div.header');
+
+                
             });
 
         });
@@ -86,6 +177,30 @@
     </script>
 </head>
 <body>
+    <button class="btn insert">body tag 요소 추가</button>
+    <button class="btn insert">div.header 내용 추가</button>
+    <hr>
+    <button class="btn rm">내용 삭제</button>
+    <button class="btn rm">태그 삭제</button>
+
+    <hr>
+    <div class="header">
+        <h1>제목입니다.</h1>
+    </div>
+    <hr>
+    <div class="memo">
+        안녕하세요
+    </div>
+    <div class="memo">
+        반갑습니다.
+    </div>
+    <div class="memo">
+        다음에 만나요
+    </div>
+    <button class="css string">String-string</button>
+    <button class="css func">String-function</button>
+    <button class="css obj">object{}</button>
+    <hr>
 
     <img src="../images/jin05.jpg" height="200">
     <img src="../images/jin01.jpg" height="200">
@@ -94,6 +209,8 @@
     <button class="attr string">String-string</button>
     <button class="attr func">String-function</button>
     <button class="attr obj">object{}</button>
+    <button class="attr rm">removeAttr</button>
+
 
     <hr>
     <h1>안녕하세요</h1>
