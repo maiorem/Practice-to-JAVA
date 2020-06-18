@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Event</title>
+    <style>
+        h1 {
+            border:3px solid black;
+            cursor:pointer;
+        }
+
+        .over {
+            background-color: cadetblue;
+            color:cornsilk;
+            padding:10px;
+        }
+
+        .big {
+            font-size: 2em;
+            font-weight: bold;
+            font-style: italic;
+
+            border:3px solid green;
+        }
+
+        .alert {
+            color : red;
+        }
+
+        div.card {
+            width: 200px;
+            height:100px;
+            border:1px solid #DDD;
+            border-radius: 10px;
+            margin: 10px;
+            float:left;
+        }
+
+        #form {
+            clear:both;
+        }
+
+        h3 {
+            border: 2px solid;
+        }
+
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            //h1 영역에 click 이벤트 적용
+            $('h1').on('click', function(){
+                $(this).html(function(index, html){
+                    return html+' STOP!';
+                });
+            });
+
+            // setInterval(function(){
+            //     $('h1').last().trigger('click');
+            // }, 1000);
+
+            /*
+            $('h1').on({
+
+                mouseenter:function(){
+                    $(this).addClass('over');
+                },
+                mouseleave:function(){
+                    $(this).removeClass('over');
+                }
+            }); */
+
+            $('h1').hover(function(){
+                $(this).addClass('over');
+            }, function(){
+                $(this).removeClass('over');
+            });
+
+            // $('h1').blur();
+            // $('h1').focus();
+            // $('h1').load();
+            // $('h1').resize();
+            // $('h1').scroll();
+            // $('h1').dblclick();
+            // $('h1').mousedown();
+            // $('h1').mousemove();
+            // $('h1').keydown();
+            // $('h1').keypress();
+            // $('h1').keyup();
+
+
+            var fIn=function(){
+                $(this).parent().addClass('big');
+                $('div.alert').remove();
+            };
+
+
+            $('input:text').focusin(function(){fIn});
+
+            $('input:text').focusout(function(){
+                $(this).parent().removeClass('big');
+                var uid=$('#uid').val();
+                if(uid.length<1) {
+                    $(this).after('<div class="alert">아이디는 필수 항목입니다.</div>');
+                }
+            });
+
+            // 이벤트 삭제 : off()
+            //$('h1').off();
+            //$('h1').off('click');
+            $('input:text').off('focusin', fIn);
+
+            $('div.card').click(function(){
+                var name=$('h2', this).html();
+                var url=$('p', this).html();
+                alert(name+' : '+url);
+            });
+
+            $('a').click(function(e){
+                alert('naver?');
+               // e.preventDefault();
+               return false
+            });
+/*             $('h3').click(function(){
+                var length=$('h3').length;
+                var htmlVal=$(this).html();
+                $('#wrap').append('<h3>'+length+'-'+htmlVal+'</h3>');
+            }); */
+
+            $('#wrap').on('click', 'h3', function(){
+                var length=$('h3').length;
+                var htmlVal=$(this).html();
+                $('#wrap').append('<h3>'+length+'-'+htmlVal+'</h3>');
+
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <div id="wrap">
+    <h3>HEADER</h3>
+    </div>
+    <a href="http:www.naver.com">naver</a>
+
+    <div class="card">
+        <h2>naver</h2>
+        <p>www.naver.com</p>
+    </div>
+    <div class="card">
+        <h2>daum</h2>
+        <p>www.daum.net</p>
+    </div>
+    <div class="card">
+        <h2>kakao</h2>
+        <p>www.kakao.com</p>
+    </div>
+
+    <div id="form">
+        <input type="text" id="uid">
+    </div>
+    
+    <h1>click!</h1>
+</body>
+</html>
