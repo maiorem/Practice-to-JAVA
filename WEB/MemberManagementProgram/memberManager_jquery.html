@@ -1,14 +1,239 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Manager</title>
-    <link rel="style sheet" href="memberMg_jquery.css">
-    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="memberMg_jquery.js"></script>
-    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #frame {
+            margin: 0 auto;
+            width: 800px;
+
+        }
+
+        header {
+            padding: 20px;
+        }
+
+        #userCreate {
+            padding: 20px;
+
+        }
+
+        #wrap {
+            padding: 20px;
+        }
+
+        #submit {
+            background-color: darkseagreen;
+            color: white;
+
+        }
+
+        #editSubmit {
+            background-color: darkseagreen;
+            color: white;
+        }
+
+        #listTable {
+            display: block;
+            width: 800px;
+
+        }
+
+        #listTable>tbody>tr>td {
+            width: 400px;
+            text-align: center;
+        }
+
+
+        #edituser {
+            display: none;
+            width: 300px;
+            height: 150px;
+            background-color: thistle;
+            float: right;
+        }
+
+        #editheader {
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+        var members = [];
+
+        function Member(uid, upw, uname) {
+            this.id = uid;
+            this.pw = upw;
+            this.name = uname;
+        }
+
+
+        // 입력받아 객체 생성
+        function createUser() {
+            var uid = $('#id').value;
+            var upw = $('#pw').value;
+            var uname = $('#name').value;
+
+            console.log(uid);
+            console.log(upw);
+            console.log(uname);
+            
+            if (checkId(uid)) {
+                alert('이미 존재하는 아이디입니다.');
+                return false;
+            }
+
+            members.push(new Member(uid, upw, uname)); // 배열에 저장
+            userList();
+
+            $('#createform').reset();
+            setLocalStorage();
+
+            return false;
+
+        }
+
+        //중복아이디 체크
+        function checkId(id) {
+            var check = false;
+            for (let i = 0; i < members.length; i++) {
+                if (id == members[i].id) {
+                    check = true;
+                }
+            }
+            return check;
+        }
+
+        function editSet(idx) {
+
+
+            $('#edituser').css('display', 'block');
+
+            $('#idx').value = idx;
+            $('#edid').value = members[idx].id;
+            $('#edpw').value = members[idx].pw;
+            $('#ename').value = members[idx].name;
+        }
+
+
+        function editUser() {
+
+            var idx =$('#idx').value;
+            var eid = $('#edid').value;
+            var epw = $('#edpw').value;
+            var ename = $('#ename').value;
+
+            members[parseInt(idx)].id = eid;
+            members[parseInt(idx)].pw = epw;
+            members[parseInt(idx)].name = ename;
+
+            $('#editform').reset();
+            userList();
+            setLocalStorage();
+
+            $('#edituser').css('display', 'none');
+            return false;
+
+        }
+
+        function deleteUser(idx) {
+
+            if (confirm('정말로 삭제하시겠습니까?')) {
+                alert(members[idx].name + '님의 정보를 삭제합니다.');
+                members.splice(idx, 1);
+                userList();
+                setLocalStorage();
+
+            }
+        }
+
+
+
+        // 유저리스트 테이블 세팅
+        function userList() {
+
+            var list = '';
+            list += '<table id="listTable"  border=1px>';
+            list += '<tr>';
+            list += '    <td>index</td>';
+            list += '    <td>아이디(이메일)</td>';
+            list += '    <td>비밀번호</td>';
+            list += '    <td>이름</td>';
+            list += '     <td>관리</td>';
+            list += '</tr>'
+
+            for (let i = 0; i < members.length; i++) {
+                list += '<tr>';
+                list += '<td>';
+                list += i;
+                list += '</td>'
+                list += '<td>';
+                list += members[i].id;
+                list += '</td>';
+                list += '<td>';
+                list += members[i].pw;
+                list += '</td>';
+                list += '<td>';
+                list += members[i].name;
+                list += '</td>';
+                list += '<td>';
+                list += '<a href="javascript:editSet(' + i + ')">수정</a> | <a href="javascript:deleteUser(' + i + ')">삭제</a>';
+                list += '</td>'
+                list += '</tr>'
+            }
+
+            list += '</table>';
+            $('#listTable').html(list);
+
+        }
+
+        // 초기 데이터 저장
+        function initialstore() {
+
+            var data = localStorage.getItem('userJ');
+            if (data == null) {
+                var jdata = JSON.stringify(members);
+                localStorage.setItem('userJ', jdata);
+            } else {
+                members = JSON.parse(data);
+            }
+
+        }
+
+
+
+        //로컬저장소에 저장
+        function setLocalStorage() {
+            var jsondata = JSON.stringify(members);
+            localStorage.setItem('userJ', jsondata);
+        }
+
+
+        $(document).ready(function () {
+
+          
+            initialstore();
+            userList();
+
+            $('#createform').submit(createUser);
+            $('#editform').submit(editUser);
+
+        });
+
+    </script>
+
 </head>
+
 <body>
     <div id="frame">
         <header>
@@ -19,68 +244,83 @@
             <h4>회원 등록</h4>
             <br>
             <form id="createform">
-            <table id="createTable">
-            <tr>
-                <td><label for="id">아이디(이메일)</label></td>
-                <td><label for="pw">비밀번호</label></td>
-                <td><label for="name">이름</label></td>
-                <td rowspan="2"><input type="submit" id="submit" value="등록"></td>
-            </tr>
-            <tr>
-                <td><input type="text" name="id" id="id" placeholder="아이디(이메일)를 입력하세요"></td>
-                <td><input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요"></td>
-                <td><input type="text" name="name" id="name" placeholder="이름을 입력하세요"></td>
-            </tr>
-            </table>
+                <table id="createTable">
+                    <tr>
+                        <td><label for="id">아이디(이메일)</label></td>
+                        <td><label for="pw">비밀번호</label></td>
+                        <td><label for="name">이름</label></td>
+                        <td rowspan="2"><input type="submit" id="submit" value="등록"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" 
+                                    name="id" 
+                                    id="id" 
+                                    placeholder="아이디(이메일)를 입력하세요" 
+                                    autofocus
+                                    pattern="^[a-zA-Z0-9]{4,12}$"
+                                    required></td>
+                        <td><input type="password" 
+                                    name="pw" 
+                                    id="pw" 
+                                    placeholder="비밀번호를 입력하세요" 
+                                    pattern="^[a-zA-Z0-9]{6,20}$"
+                                    required></td>
+                        <td><input type="text" name="name" 
+                                    id="name" 
+                                    placeholder="이름을 입력하세요" 
+                                    pattern="^[가-힣]+$"
+                                    required></td>
+                    </tr>
+                </table>
             </form>
         </div>
-         <br>
+        <br>
         <hr>
         <div id="wrap">
-        <div id="userList">
-            <h4>회원리스트</h4>
-            <br>
-            <table id="listTable"  border=1px>
-                <tr id="listTblheader">
-                    <td>index</td>
-                    <td>아이디(이메일)</td>
-                    <td>비밀번호</td>
-                    <td>이름</td>
-                    <td>관리</td>
-                </tr>
-            </table>
-        
+            <div id="userList">
+                <h4>회원리스트</h4>
+                <br>
+                <table id="listTable" border=1px>
+                    <tr id="listTblheader">
+                        <td>index</td>
+                        <td>아이디(이메일)</td>
+                        <td>비밀번호</td>
+                        <td>이름</td>
+                        <td>관리</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div id="edituser">
+                <form id="editform">
+                    <input type="hidden" id="idx">
+                    <table id="editTable">
+                        <tr>
+                            <td colspan="2" id="editheader">데이터 수정</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><label for="edid">아이디(이메일)</label></td>
+                            <td><input type="text" name="edid" id="edid" readonly></td>
+                        </tr>
+                        <tr>
+                            <td><label for="edpw">비밀번호</label></td>
+                            <td><input type="password" name="edpw" id="edpw" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="ename">이름</label></td>
+                            <td><input type="text" name="edname" id="ename" required></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="2"><input type="submit" id="editSubmit" value="수정"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
         </div>
-        <div id="edituser">
-        <form id="editform">
-            <input type="hidden" id="idx">
-            <table id="editTable">
-                <tr>
-                    <td colspan="2" id="editheader">데이터 수정</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>아이디(이메일)</td>
-                    <td><input type="text" name="edid" id="edid" readonly></td>
-                </tr>
-                <tr>
-                    <td>비밀번호</td>
-                    <td><input type="password" name="edpw" id="edpw"></td>
-                </tr>
-                <tr>
-                    <td>이름</td>
-                    <td><input type="text" name="edname" id="ename"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td colspan="2"><input type="submit" id="editSubmit" value="수정"></td>
-                </tr>
-            </table>
-        </form>
     </div>
-</div>
-</div>
-    
+
 </body>
 
 </html>
