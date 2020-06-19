@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <div id="userCreate">
+        <h4>회원 등록</h4>
+        <br>
+        <form id="createform">
+        <table id="createTable">
+        <tr>
+            <td><label for="id">아이디(이메일)</label></td>
+            <td><label for="pw">비밀번호</label></td>
+            <td><label for="name">이름</label></td>
+            <td rowspan="2"><input type="submit" id="submit" value="등록"></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="id" id="id" placeholder="아이디(이메일)를 입력하세요"></td>
+            <td><input type="password" name="pw" id="pw" placeholder="비밀번호를 입력하세요"></td>
+            <td><input type="text" name="name" id="name" placeholder="이름을 입력하세요"></td>
+        </tr>
+        </table>
+        </form>
+    </div>
+    
+</body>
+<script>
+
+    var member={};
+    function Member(uid, upw, uname) {
+        this.id=uid;
+        this.pw=upw;
+        this.name=uname;
+
+        this.getId=function(){
+            return id;
+        };
+
+        this.setId=function(uid) {
+            id=uid;
+        };
+
+        this.getPw=function() {
+            return pw;
+        };
+
+        this.setPw=function(upw) {
+            pw=upw;
+        };
+        this.getName=function() {
+            return name;
+        };
+
+        this.setName=function(uname) {
+            name=uname;
+        };
+
+
+    }
+
+    function create(){
+
+        var newId=document.getElementById('id').value;
+        var newPw=document.getElementById('pw').value;
+        var newName=document.getElementById('name').value;
+
+        member=new Member(newId, newPw, newName);
+        setLocalStorage();
+
+   
+       
+    }
+
+    function setLocalStorage() {
+        var jsondata=JSON.stringify(member);
+        localStorage.setItem('test', jsondata);
+    }
+    
+
+
+    
+
+</script>
+</html>
