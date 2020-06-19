@@ -33,9 +33,9 @@
 
     var member={};
     function Member(uid, upw, uname) {
-        this.id=uid;
-        this.pw=upw;
-        this.name=uname;
+        var id=uid;
+        var pw=upw;
+        var name=uname;
 
         this.getId=function(){
             return id;
@@ -60,6 +60,14 @@
             name=uname;
         };
 
+        this.setStorage=function(id, pw, name) {
+            localStorage.setItem('test', {
+                id:"uid",
+                pw:"upw",
+                name:"uname"
+            });
+        }
+        
 
     }
 
@@ -72,7 +80,7 @@
         member=new Member(newId, newPw, newName);
         setLocalStorage();
 
-   
+        return false;
        
     }
 
@@ -81,8 +89,9 @@
         localStorage.setItem('test', jsondata);
     }
     
+    console.log(member.getId());
 
-
+    document.getElementById('createform').onsubmit=create;
     
 
 </script>
