@@ -80,25 +80,20 @@
 
         // 입력받아 객체 생성
         function createUser() {
-            var uid = $('#id').value;
-            var upw = $('#pw').value;
-            var uname = $('#name').value;
+            var uid = $('#id').val();
+            var upw = $('#pw').val();
+            var uname = $('#name').val();
 
-            console.log(uid);
-            console.log(upw);
-            console.log(uname);
-            
             if (checkId(uid)) {
                 alert('이미 존재하는 아이디입니다.');
+                uid.focus();
                 return false;
             }
 
             members.push(new Member(uid, upw, uname)); // 배열에 저장
             userList();
-
-            $('#createform').reset();
             setLocalStorage();
-
+            $('createform').reset();
             return false;
 
         }
@@ -119,28 +114,27 @@
 
             $('#edituser').css('display', 'block');
 
-            $('#idx').value = idx;
-            $('#edid').value = members[idx].id;
-            $('#edpw').value = members[idx].pw;
-            $('#ename').value = members[idx].name;
+            $('#idx').attr('value', idx);
+            $('#edid').attr('value', members[idx].id);
+            $('#edpw').attr('value',members[idx].pw);
+            $('#ename').attr('value', members[idx].name);
         }
 
 
         function editUser() {
 
-            var idx =$('#idx').value;
-            var eid = $('#edid').value;
-            var epw = $('#edpw').value;
-            var ename = $('#ename').value;
+            var idx =$('#idx').val();
+            var eid = $('#edid').val();
+            var epw = $('#edpw').val();
+            var ename = $('#ename').val();
 
             members[parseInt(idx)].id = eid;
             members[parseInt(idx)].pw = epw;
             members[parseInt(idx)].name = ename;
 
-            $('#editform').reset();
             userList();
             setLocalStorage();
-
+            $('#editform').reset();
             $('#edituser').css('display', 'none');
             return false;
 
@@ -268,7 +262,7 @@
                         <td><input type="text" name="name" 
                                     id="name" 
                                     placeholder="이름을 입력하세요" 
-                                    pattern="^[가-힣]+$"
+                                    pattern="^[a-zA-Z가-힣]+$"
                                     required></td>
                     </tr>
                 </table>
