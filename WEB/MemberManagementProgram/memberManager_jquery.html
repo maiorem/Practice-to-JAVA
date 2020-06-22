@@ -298,11 +298,19 @@
                         </tr>
                         <tr>
                             <td><label for="edpw">비밀번호</label></td>
-                            <td><input type="password" name="edpw" id="edpw" required></td>
+                            <td><input type="password" 
+                                        name="edpw" 
+                                        id="edpw" 
+                                        pattern="^[a-zA-Z0-9]{6,20}$"
+                                        required></td>
                         </tr>
                         <tr>
                             <td><label for="ename">이름</label></td>
-                            <td><input type="text" name="edname" id="ename" required></td>
+                            <td><input type="text" 
+                                        name="edname" 
+                                        id="ename" 
+                                        pattern="^[a-zA-Z가-힣]+$"
+                                        required></td>
                         </tr>
                         <tr>
                             <td></td>
