@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #wrap {
+            width: 1024px;
+            height: 768px;
+            margin: 0px auto;
+            font-family: 'Nanum Gothic', sans-serif;
+
+        }
+
+        #logo {
+            width: 680px;
+            height: 360px;
+            margin: 10px auto;
+        }
+
+        #logo>img {
+            width: 659px;
+            height: 356px;
+        }
+
+        #footer_area {
+            width: 1024px;
+            height: 200px;
+            background-color:antiquewhite;
+            margin-top: 200px;
+            border-top: 1px solid lightgray;
+            display: none;
+        }
+
+        #cartin {
+            width: 800px;
+            height: 190px;
+            float: left;
+            position: relative;
+
+            
+        }
+
+        #cart_list {
+            width: 800px;
+            height: 190px;
+            overflow: scroll;
+            position:absolute;
+            font-size: 0.8em;
+        }
+
+
+        #event_area {
+            width: 210px;
+            height: 190px;
+            float:right;
+        }
+
+        input[type=button] {
+            width:206px;
+            height: 49px;
+            margin: 20px auto;
+            border-radius: 45%;
+            color: azure;
+            font-size: 20px;
+        }
+
+        #return_startscreen {
+            background-color: dimgray;
+        }
+
+        #payment {
+            background-color: orange;
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="logo">
+            <img src="img/food.PNG">
+        </div>
+        <div id="footer_area">
+            <div id="cartin">
+                <table id="cart_list">
+                    <tr>
+                        <th>번호</th>
+                        <th>분류</th>
+                        <th>메뉴</th>
+                        <th>수량</th>
+                        <th>금액</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div id="event_area">
+                <input type="button" id="return_startscreen" href="#" value="처음으로">
+                <input type="button" id="payment" href="#" value="결제하기">
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
