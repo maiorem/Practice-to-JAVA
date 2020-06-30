@@ -12,7 +12,7 @@
 <body>
 	<h1>Member</h1>
 	<hr>
-	<table>
+	<table border="1">
 		<tr>
 			<td>아이디(이메일)</td>
 			<td>비밀번호</td>
