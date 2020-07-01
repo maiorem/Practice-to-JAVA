@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+	//로그아웃 : session 객체 소멸
+	session.invalidate();
+
+	response.sendRedirect("../index.jsp");
+	
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +16,5 @@
 </head>
 <body>
 
-	<h1>안녕하세요. page control 페이지입니다.</h1>
-	<%--
-		response.sendRedirect("../hello.jsp");
-	--%>
-	
-	<jsp:forward page="../hello.jsp"/>
-	
 </body>
 </html>

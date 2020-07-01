@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	session.setAttribute("username", "Scott");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<h1>안녕하세요. page control 페이지입니다.</h1>
-	<%--
-		response.sendRedirect("../hello.jsp");
-	--%>
-	
-	<jsp:forward page="../hello.jsp"/>
-	
+	<h2><a href="sessionView01.jsp">다른 페이지</a></h2>
 </body>
 </html>
