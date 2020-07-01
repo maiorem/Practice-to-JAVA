@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+        
+            body, div, h1, form {
+                margin:0;
+                padding: 0;
+                
+            }
+            h1 {
+                margin:15px;
+            }
+            
+            #loginTable {
+                margin: 10px auto;
+            }
+            
+            td {
+                padding: 10px;
+            }
+            
+            #btn_submit {
+                padding: 10px;
+                background-color: beige;
+                font-weight: bold;
+                color: darkgreen;
+                border: 1px solid #EEEEEE;
+            }
+            
+        
+        
+        
+</style>
+</head>
+<body>
+       <h1>회원 로그인</h1>
+        <hr>
+        <form id="form" action="loginForm.jsp" method="post">
+        <table id="loginTable">
+            <tr>
+                <td>아이디(이메일)</td>
+                <td><input type="text" name="id" id="id"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="pw" id="pw"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input id="btn_submit" type="submit" value="로그인"></td>
+            </tr>        
+        
+        </table>
+        </form>
+
+</body>
+<script src="../js/logincheck.js"></script>
+</html>
