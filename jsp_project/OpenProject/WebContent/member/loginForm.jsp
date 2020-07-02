@@ -1,6 +1,17 @@
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	CookieBox cookiebox=new CookieBox(request);
+	String val=null;
+	String check=null;
+	
+	if(cookiebox!=null) {
+		val=cookiebox.getValue("id");
+		check="checked";
+	}
+
+%>
 
 <!DOCTYPE html>
 <html>
@@ -45,7 +56,7 @@ td {
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>
-					<td><input type="text" name="id" id="id"></td>
+					<td><input type="text" name="id" id="id" value=val></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -53,7 +64,7 @@ td {
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="checkbox" name="check" id="check"> 아이디 저장</td>
+					<td><input type="checkbox" name="check" id="check" check> 아이디 저장</td>
 				</tr>
 				<tr>
 					<td></td>
