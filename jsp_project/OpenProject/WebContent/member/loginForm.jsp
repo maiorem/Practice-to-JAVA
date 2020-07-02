@@ -2,13 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	CookieBox cookiebox=new CookieBox(request);
+	CookieBox cookieBox=new CookieBox(request);
 	String val=null;
-	String check=null;
-	
-	if(cookiebox!=null) {
-		val=cookiebox.getValue("id");
-		check="checked";
+	String chk=null;
+	if(cookieBox.exist("id")) {	
+		val=cookieBox.getValue("id");
+		chk="checked";
 	}
 %>
 
@@ -63,7 +62,7 @@ td {
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="checkbox" name="check" id="check" <%=check%>> 아이디 저장</td>
+					<td><input type="checkbox" name="check" id="check" <%=chk%>> 아이디 저장</td>
 				</tr>
 				<tr>
 					<td></td>
