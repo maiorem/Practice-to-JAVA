@@ -29,4 +29,10 @@
   	<url-pattern>/hello</url-pattern>
   </servlet-mapping>
   
+  <!-- 상태 코드의 에러 페이지 설정 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error/error_404.jsp</location>
+  </error-page>
+  
 </web-app>
