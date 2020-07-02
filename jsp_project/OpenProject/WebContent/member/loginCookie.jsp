@@ -7,8 +7,8 @@
 	String upw=request.getParameter("pw");
 	String ucheck=request.getParameter("check");
 	
-	if(uid!=null && upw!=null && ucheck!=null) {
-		response.addCookie(CookieBox.createCookie("id", uid, "/op/", 3600));
+	if(ucheck!=null) {
+		response.addCookie(CookieBox.createCookie("id", uid));
 	} 
 	
 	

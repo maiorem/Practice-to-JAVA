@@ -10,7 +10,6 @@
 		val=cookiebox.getValue("id");
 		check="checked";
 	}
-
 %>
 
 <!DOCTYPE html>
@@ -56,15 +55,15 @@ td {
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>
-					<td><input type="text" name="id" id="id" value=val></td>
+					<td><input type="text" name="id" id="id" value=<%=val %> required></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="pw" id="pw"></td>
+					<td><input type="password" name="pw" id="pw" required></td>
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="checkbox" name="check" id="check" check> 아이디 저장</td>
+					<td><input type="checkbox" name="check" id="check" <%=check%>> 아이디 저장</td>
 				</tr>
 				<tr>
 					<td></td>
