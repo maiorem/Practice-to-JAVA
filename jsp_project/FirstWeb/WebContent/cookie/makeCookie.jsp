@@ -1,12 +1,16 @@
+<%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Cookie c=new Cookie("uid", "maiorem");
+/* 	Cookie c=new Cookie("uid", "maiorem");
 	c.setMaxAge(60);
 	response.addCookie(c);
 	
 	Cookie c2=new Cookie("uname", "홍세영");
-	response.addCookie(c2);
+	response.addCookie(c2); */
+	
+	response.addCookie(CookieBox.createCookie("uid", "Cool", "/FirstWeb/", 60));
+	response.addCookie(CookieBox.createCookie("uname", "쿠키"));
 %>
 <!DOCTYPE html>
 <html>
