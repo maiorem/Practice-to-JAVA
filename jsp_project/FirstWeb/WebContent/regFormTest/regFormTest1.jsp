@@ -3,6 +3,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
+<jsp:useBean id="requestInfo" class="model.RequestMemberInfo" scope="page"/>
+<jsp:setProperty property="*" name="requestInfo"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +22,10 @@
 			<td>사진</td>
 		</tr>
 		<tr>
-			<td><%=request.getParameter("id") %></td>
-			<td><%=request.getParameter("pw") %></td>
-			<td><%=request.getParameter("userName") %></td>
-			<td><img src="<%=request.getParameter("userPhoto") %>"></td>
+			<td><%=requestInfo.getId()%><%--=request.getParameter("id") --%></td>
+			<td><%=requestInfo.getPw()%><%--=request.getParameter("pw") --%></td>
+			<td><%=requestInfo.getUserName()%><%--=request.getParameter("userName") --%></td>
+			<td><%-- <img src="<%=request.getParameter("userPhoto") %>"> --%></td>
 		</tr>
 	</table>
 
