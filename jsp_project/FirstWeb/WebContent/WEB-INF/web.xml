@@ -34,5 +34,15 @@
   	<error-code>404</error-code>
   	<location>/error/error_404.jsp</location>
   </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error/error_500.jsp</location>
+  </error-page>
+  
+  <!--  에러 타입별 에러페이지 설정 -->
+  <error-page>
+	<exception-type>java.lang.NullPointerException</exception-type>
+	<location>/error/error_null.jsp</location>
+  </error-page>
   
 </web-app>
