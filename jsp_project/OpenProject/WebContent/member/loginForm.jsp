@@ -3,12 +3,13 @@
 	pageEncoding="UTF-8"%>
 <%
 	CookieBox cookieBox=new CookieBox(request);
-	String val=null;
+	String val="";
 	String chk=null;
 	if(cookieBox.exist("id")) {	
 		val=cookieBox.getValue("id");
 		chk="checked";
 	}
+	
 %>
 
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ td {
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>
-					<td><input type="text" name="id" id="id" value=<%=val %> required></td>
+					<td><input type="text" name="id" id="id" required value=<%=val %> ></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
