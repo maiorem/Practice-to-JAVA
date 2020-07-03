@@ -18,6 +18,7 @@
 	boolean loginCheck=false;
 	
 
+
 	
 	if(uid.equals(info.getUid()) && upw.equals(info.getUpw())) {
 		session.setAttribute("member", new MemberInfo(uid, upw));
