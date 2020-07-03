@@ -5,15 +5,9 @@
 <%
 	MemberInfo memInfo=(MemberInfo) session.getAttribute("member");
 
-	if(memInfo==null) {
+	if(memInfo!=null) {
 	%>
-	<script>
-		alert('사용자 전용 페이지입니다. \n로그인해주세요.');
-		location.href='<%=request.getContextPath()%>/member/loginForm.jsp';
-	</script>
-	<%
-	}
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,3 +31,13 @@
 	<%@ include file="/include/footer.jsp"%>
 </body>
 </html>
+<% 
+} else {
+%>
+<script>
+	alert('사용자 전용 페이지입니다. \n로그인해주세요.');
+	location.href='<%=request.getContextPath()%>/member/loginForm.jsp';
+</script>
+<%
+}
+%>
