@@ -1,3 +1,4 @@
+<%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,13 +11,21 @@
 	String cookieName="id";
 	String cookiePath=request.getContextPath();
 	
+	boolean loginCheck=false;
+	
 	if(ucheck!=null) {
 		response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 60*60*24*365)); //쿠키 생성
 	} else {
 		response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
 	}
 	
-	
+	if(uid.equals(upw)) {
+		session.setAttribute("memberInfo", new MemberInfo(uid, upw));
+		loginCheck=true;
+	}
+%>
+<%
+	if(loginCheck) {	
 %>
 <!DOCTYPE html>
 <html>
@@ -25,8 +34,9 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
-
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
+
 <body>
 	<%@ include file="/include/header.jsp"%>
 	<div>
@@ -42,8 +52,25 @@
 				out.println("아이디를 저장하지 않습니다.");
 			}
 		%>
-		
+		<br>
+		<script>
+			$('#loginChk').attr('href', '<%=request.getContextPath() %>/member/logout.jsp');
+			$('#loginChk').text('로그아웃');
+		</script>
+
 	</div>
 	<%@ include file="/include/footer.jsp"%>
 </body>
 </html>
+<%
+	} else {
+		
+%>
+<script>
+	alert("아이디 또는 비밀번호를 확인해주세요.");
+	history.go(-1);
+</script>
+
+<% 
+	}
+%>

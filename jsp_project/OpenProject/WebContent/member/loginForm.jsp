@@ -1,3 +1,4 @@
+<%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,12 +11,23 @@
 		chk="checked";
 	}
 	
+	MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+	
+	if(memberInfo!=null) {
+		%>
+		<script>
+			location.href="<%=request.getContextPath() %>/member/mypage/mypage.jsp";
+		</script>
+		<%
+	}
+	
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
 <title>로그인 페이지</title>
 
 <link rel="stylesheet"
@@ -47,7 +59,7 @@ td {
 <body>
 	<%@ include file="/include/header.jsp"%>
 	<div>
-		<form id="form" action="loginCookie.jsp" method="post">
+		<form id="form" action="login.jsp" method="post">
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>
