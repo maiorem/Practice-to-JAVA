@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,7 +8,6 @@
 %>
 <%
 	MemberInfo memInfo=(MemberInfo) session.getAttribute("member");
-	MemberInfo info=(MemberInfo) application.getAttribute("info");
 
 	if(memInfo!=null) {
 	%>
@@ -28,8 +28,8 @@
 	<%@ include file="/include/header.jsp" %>
 	<div>
 		<h1>마이페이지</h1>
-		접속자 아이디 : <%=info.getUid() %> <br>
-		접속자 이름 : <%=info.getUsername() %>
+		접속자 아이디 : <%=memInfo.getUid() %> <br>
+		접속자 이름 : <%=memInfo.getUsername() %>
 		<br>
 
 	</div>

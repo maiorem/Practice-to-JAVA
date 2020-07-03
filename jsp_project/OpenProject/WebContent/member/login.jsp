@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,12 +6,14 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
-<%
-	MemberInfo info= (MemberInfo) application.getAttribute("info");
-
-	String uid=request.getParameter("id");
+<%	String uid=request.getParameter("id");
 	String upw=request.getParameter("pw");
 	String ucheck=request.getParameter("check");
+	
+	HashMap<String, MemberInfo> info= (HashMap<String, MemberInfo>) application.getAttribute(uid);
+	
+	String username=info.get(uid).getUsername();
+	String userphoto=info.get(uid).getUserphoto();
 	
 	String cookieName="id";
 	String cookiePath=request.getContextPath();
@@ -20,8 +23,8 @@
 
 
 	
-	if(uid.equals(info.getUid()) && upw.equals(info.getUpw())) {
-		session.setAttribute("member", new MemberInfo(uid, upw));
+	if(uid.equals(info.get(uid).getUid()) && upw.equals(info.get(uid).getUpw())) {
+		session.setAttribute("member", new MemberInfo(uid, upw, username, userphoto));
 		loginCheck=true;
 	}
 %>

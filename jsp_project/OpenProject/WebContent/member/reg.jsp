@@ -1,15 +1,19 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
 	request.setCharacterEncoding("utf-8");
 %>
 <%
+	HashMap<String, MemberInfo> info=new HashMap<>();
+	
 	String uid=request.getParameter("uid");
 	String upw=request.getParameter("upw");
 	String username=request.getParameter("userName");
 	String userphoto=request.getParameter("userPhoto");
 	
-	application.setAttribute("info", new MemberInfo(uid, upw, username, userphoto));
+	info.put(uid, new MemberInfo(uid, upw, username, userphoto));
+	application.setAttribute(uid, info);
 
 %>
 <!DOCTYPE html>
