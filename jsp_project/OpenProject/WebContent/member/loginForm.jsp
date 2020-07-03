@@ -5,18 +5,18 @@
 <%
 	CookieBox cookieBox=new CookieBox(request);
 	String val="";
-	String chk=null;
+	String chk="";
 	if(cookieBox.exist("id")) {	
 		val=cookieBox.getValue("id");
 		chk="checked";
 	}
 	
-	MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+	MemberInfo memInfo = (MemberInfo) session.getAttribute("member");
 	
-	if(memberInfo!=null) {
+	if(memInfo!=null) {
 		%>
 		<script>
-			location.href="<%=request.getContextPath() %>/member/mypage/mypage.jsp";
+			location.href='<%=request.getContextPath() %>/member/mypage/mypage.jsp';
 		</script>
 		<%
 	}

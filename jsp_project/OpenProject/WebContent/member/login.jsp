@@ -20,7 +20,7 @@
 	}
 	
 	if(uid.equals(upw)) {
-		session.setAttribute("memberInfo", new MemberInfo(uid, upw));
+		session.setAttribute("member", new MemberInfo(uid, upw));
 		loginCheck=true;
 	}
 %>
@@ -52,11 +52,6 @@
 				out.println("아이디를 저장하지 않습니다.");
 			}
 		%>
-		<br>
-		<script>
-			$('#loginChk').attr('href', '<%=request.getContextPath() %>/member/logout.jsp');
-			$('#loginChk').text('로그아웃');
-		</script>
 
 	</div>
 	<%@ include file="/include/footer.jsp"%>

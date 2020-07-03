@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MemberInfo memInfo=(MemberInfo) session.getAttribute("member");
+%>
+<%
+	if(memInfo!=null) {
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,3 +26,13 @@
 	<%@ include file="/include/footer.jsp" %>
 </body>
 </html>
+<% 
+	} else {
+%>
+<script>
+	alert('회원 전용 페이지입니다.');
+	location.href='<%=request.getContextPath()%>/member/loginForm.jsp';
+</script>
+<%
+}
+%>
