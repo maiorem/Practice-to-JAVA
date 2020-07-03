@@ -3,7 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	request.setCharacterEncoding("utf-8");
+%>
+<%
 	MemberInfo memInfo=(MemberInfo) session.getAttribute("member");
+	MemberInfo info=(MemberInfo) application.getAttribute("info");
 
 	if(memInfo!=null) {
 	%>
@@ -24,7 +28,8 @@
 	<%@ include file="/include/header.jsp" %>
 	<div>
 		<h1>마이페이지</h1>
-		현재 접속자 : <%=memInfo.getUid() %>
+		접속자 아이디 : <%=info.getUid() %> <br>
+		접속자 이름 : <%=info.getUsername() %>
 		<br>
 
 	</div>

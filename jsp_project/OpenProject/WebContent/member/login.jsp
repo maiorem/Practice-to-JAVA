@@ -3,7 +3,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	
+	request.setCharacterEncoding("utf-8");
+%>
+<%
+	MemberInfo info= (MemberInfo) application.getAttribute("info");
+
 	String uid=request.getParameter("id");
 	String upw=request.getParameter("pw");
 	String ucheck=request.getParameter("check");
@@ -13,19 +17,20 @@
 	
 	boolean loginCheck=false;
 	
-	if(ucheck!=null) {
-		response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 60*60*24*365)); //쿠키 생성
-	} else {
-		response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
-	}
+
 	
-	if(uid.equals(upw)) {
+	if(uid.equals(info.getUid()) && upw.equals(info.getUpw())) {
 		session.setAttribute("member", new MemberInfo(uid, upw));
 		loginCheck=true;
 	}
 %>
 <%
 	if(loginCheck) {	
+		if(ucheck!=null) {
+			response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 60*60*24*365)); //쿠키 생성
+		} else {
+			response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
+		}
 %>
 <!DOCTYPE html>
 <html>
