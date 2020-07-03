@@ -7,9 +7,14 @@
 	String upw=request.getParameter("pw");
 	String ucheck=request.getParameter("check");
 	
+	String cookieName="id";
+	String cookiePath=request.getContextPath();
+	
 	if(ucheck!=null) {
-		response.addCookie(CookieBox.createCookie("id", uid));
-	} 
+		response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 60*60*24*365)); //쿠키 생성
+	} else {
+		response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
+	}
 	
 	
 %>
@@ -29,6 +34,14 @@
 		id : <%=uid %>
 		<br>
 		pw : <%=upw %>
+		<br>
+		<%
+			if(ucheck!=null) {
+				out.println("아이디를 저장합니다.");
+			} else {
+				out.println("아이디를 저장하지 않습니다.");
+			}
+		%>
 		
 	</div>
 	<%@ include file="/include/footer.jsp"%>
