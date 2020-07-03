@@ -22,10 +22,6 @@
 	href="<%=request.getContextPath() %>/css/default.css">
 
 <style>
-body, div, h1, form {
-	margin: 0;
-	padding: 0;
-}
 
 h1 {
 	margin: 15px;
