@@ -10,17 +10,7 @@
 		val=cookieBox.getValue("id");
 		chk="checked";
 	}
-	
-	MemberInfo memInfo = (MemberInfo) session.getAttribute("member");
-	
-	if(memInfo!=null) {
-		%>
-		<script>
-			location.href='<%=request.getContextPath() %>/member/mypage/mypage.jsp';
-		</script>
-		<%
-	}
-	
+
 %>
 
 <!DOCTYPE html>
