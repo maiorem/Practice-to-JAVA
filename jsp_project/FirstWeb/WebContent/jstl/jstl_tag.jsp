@@ -17,16 +17,35 @@
 		<span style="color: red">이메일 없음 </span>
 	</c:out>
 	<br>
-	<c:forEach items="${applicationScope.members}" var="member" varStatus="status">
-		<h3>
-			${status.index}. ${status.count}.
-			이름 : ${member.name}, 
-			이메일 :
-				<c:out value="${member.email}" escapeXml="false">
-					<span style="color: red">이메일 없음</span>
-				</c:out>
-		</h3>
 
+	<c:if test="${members[8].email==null}">
+		<span style="color: blue">이메일 없음 </span>
+	</c:if>
+
+	<c:forEach items="${applicationScope.members}" var="member"
+		varStatus="status">
+		<h3>
+			${status.index}. ${status.count}. 이름 : ${member.name}, 이메일 :
+			<c:out value="${member.email}" escapeXml="false">
+				<span style="color: red">이메일 없음</span>
+			</c:out>
+			<c:if test="${member.email==null}">
+				<span style="color: blue">이메일 없음 </span>
+			</c:if>
+			<c:if test="${empty member.email}">
+				<span style="color: green">이메일 없음 </span>
+			</c:if>
+		</h3>
 	</c:forEach>
+	<select name="year">
+		<c:forEach var="year" begin="1950" end="2020" step="1">
+			<option value="${year}" ${param.year==year?'selected':''}>
+				${year}</option>
+		</c:forEach>
+	</select>
+	<br>
+	<c:forTokens items="손흥민,010-0000-1111,런던" delims="," var="token">
+		${token}<br>
+	</c:forTokens>
 </body>
 </html>
