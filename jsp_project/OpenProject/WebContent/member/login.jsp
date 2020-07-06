@@ -12,6 +12,8 @@
 	String upw=request.getParameter("pw");
 	String ucheck=request.getParameter("check");
 	
+	String redirectUrl=request.getParameter("redirecUri");
+	
 	HashMap<String, MemberInfo> info= (HashMap<String, MemberInfo>) application.getAttribute(uid);
 	
 	String username=info.get(uid).getUsername();
@@ -35,7 +37,7 @@
 			response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
 		}
 		
-		response.sendRedirect("<c:url value='/member/mypage/mypage.jsp'>");
+		response.sendRedirect(redirectUrl);
 
 	} else {
 		

@@ -51,6 +51,8 @@ td {
 	<%@ include file="/include/header.jsp"%>
 	<div>
 		<form id="form" action="login.jsp" method="post">
+			<input type="text" name="redirecUri" 
+					value="${header.referer}" style=" width : 50% ;" >
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>

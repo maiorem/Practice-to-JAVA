@@ -21,24 +21,25 @@
 </style>
 </head>
 <body>
-	<c:if test="member!=null">
+
 	<%@ include file="/include/header.jsp" %>
+	<c:if test="${member!=null}">
 	<div>
-	
 		<h1>마이페이지</h1>
 		접속자 아이디 : ${member.uid} <br>
 		접속자 이름 : ${member.username}
 		<br>
 
 	</div>
-	
-	<%@ include file="/include/footer.jsp"%>
 	</c:if>
-	<c:if test="member==null">
+	
+	<c:if test="${member==null}">
 		<script>
 		alert('사용자 전용 페이지입니다. \n로그인해주세요.');
 		location.href='<c:url value="/member/loginForm.jsp"/>';
 		</script>
 	</c:if>
+	<%@ include file="/include/footer.jsp"%>
+	
 </body>
 </html>
