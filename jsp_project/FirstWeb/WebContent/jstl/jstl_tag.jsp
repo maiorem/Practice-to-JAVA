@@ -47,5 +47,23 @@
 	<c:forTokens items="손흥민,010-0000-1111,런던" delims="," var="token">
 		${token}<br>
 	</c:forTokens>
+	<h1>
+	url : <c:url value="/index.jsp"/>
+	<a href="<c:url value="/index.jsp"/>">홈</a>
+	<br>
+	url2 : <c:url value="jstl_tag2.jsp"> 
+	 	<c:param name="year" value="1999"/>
+	</c:url>
+	<br>
+	url3 : <c:url value="jstl_tag2.jsp?year=1999" /> 
+	<br>
+	<c:url value="jstl_tag2.jsp?year=1999" var="reurl" /> 
+	url4 : ${reurl} 
+
+	</h1>
+	
+	<c:redirect url="${reurl}" >
+		<c:param name="month">7</c:param>
+	</c:redirect>
 </body>
 </html>

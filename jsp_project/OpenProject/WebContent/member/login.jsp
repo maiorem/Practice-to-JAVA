@@ -20,9 +20,6 @@
 	
 	boolean loginCheck=false;
 	
-
-
-	
 	if(uid.equals(info.get(uid).getUid()) && upw.equals(info.get(uid).getUpw())) {
 		session.setAttribute("member", new MemberInfo(uid, upw, username, userphoto));
 		loginCheck=true;
@@ -35,38 +32,7 @@
 		} else {
 			response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
 		}
-%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/default.css">
-<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
-</head>
-
-<body>
-	<%@ include file="/include/header.jsp"%>
-	<div>
-		<h1>로그인 완료</h1>
-		id : <%=uid %>
-		<br>
-		pw : <%=upw %>
-		<br>
-		<%
-			if(ucheck!=null) {
-				out.println("아이디를 저장합니다.");
-			} else {
-				out.println("아이디를 저장하지 않습니다.");
-			}
-		%>
-
-	</div>
-	<%@ include file="/include/footer.jsp"%>
-</body>
-</html>
-<%
 	} else {
 		
 %>

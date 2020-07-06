@@ -20,8 +20,7 @@
 <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
 <title>로그인 페이지</title>
 
-<link rel="stylesheet"
-	href="<%=request.getContextPath() %>/css/default.css">
+<link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 
 <style>
 
@@ -53,7 +52,7 @@ td {
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>
-					<td><input type="text" name="id" id="id" required value=<%=val %> ></td>
+					<td><input type="text" name="id" id="id" required value=${val} ></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -61,7 +60,7 @@ td {
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="checkbox" name="check" id="check" <%=chk%>> 아이디 저장</td>
+					<td><input type="checkbox" name="check" id="check" ${chk}> 아이디 저장</td>
 				</tr>
 				<tr>
 					<td></td>

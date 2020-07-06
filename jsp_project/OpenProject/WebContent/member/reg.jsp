@@ -1,7 +1,7 @@
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
+<%
 	request.setCharacterEncoding("utf-8");
 %>
 <%
@@ -22,7 +22,7 @@
 <meta charset="UTF-8">
 <title>회원가입 완료</title>
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/default.css">
+<link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 
 <style>
 	
@@ -33,7 +33,7 @@
 	<div>
 		<h1>회원가입이 완료되었습니다.</h1>
 		
-		<a href="<%=request.getContextPath() %>/member/loginForm.jsp">로그인 화면으로</a>
+		<a href='<c:url value="/member/loginForm.jsp"/>'>로그인 화면으로</a>
     
 	</div>
 	<%@ include file="/include/footer.jsp" %>

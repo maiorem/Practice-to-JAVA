@@ -15,7 +15,7 @@
 
 	
 	<h1>로그아웃 되셨습니다.</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp">처음으로</a>
+	<a href='<c:url value="/index.jsp"/>'>처음으로</a>
 	
 
 </body>
