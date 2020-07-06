@@ -3,6 +3,8 @@
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	request.setCharacterEncoding("utf-8");
 %>
@@ -32,6 +34,8 @@
 		} else {
 			response.addCookie(CookieBox.createCookie(cookieName, uid, cookiePath, 0));	//쿠키 삭제
 		}
+		
+		response.sendRedirect("<c:url value='/member/mypage/mypage.jsp'>");
 
 	} else {
 		
