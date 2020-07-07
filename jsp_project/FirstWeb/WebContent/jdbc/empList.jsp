@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Emp"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -5,11 +8,22 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>EMP LIST</title>
+<style>
+	table {
+		width: 80%;
+	}
+	
+	table td {
+		padding: 10px;
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 
@@ -26,6 +40,8 @@
 		Connection conn=null;
 		Statement stmt=null;
 		ResultSet rs=null;
+		
+		List<Emp> empList=new ArrayList();
 		
 		// DB Connection 정보
 		String dburl="jdbc:oracle:thin:@localhost:1521:orcl";
@@ -46,16 +62,44 @@
 			
 			//결과 출력
 			while(rs.next()) {
-				
+				empList.add(new Emp(
+						rs.getInt("empno"),
+						rs.getString("ename"),
+						rs.getInt("sal"),
+						rs.getString("job")
+						)
+				);
 			}
 			
 		} catch(SQLException ex) {
 			//예외처리
 			
 		} finally {
-			
+			rs.close();
+			stmt.close();
+			conn.close();
 		}
+		
+		request.setAttribute("empList", empList);
 	%>
+	
+	<%-- ${empList} --%>
+	<table border=1>
+		<tr>
+			<th>사원 번호</th>
+			<th>사원 이름</th>
+			<th>사원 급여</th>
+			<th>사원 직급</th>
+		</tr>
+		<c:forEach items="${empList}" var="emp">
+		<tr>
+			<td>${emp.empno}</td>
+			<td>${emp.ename}</td>
+			<td>${emp.sal}</td>
+			<td>${emp.job}</td>
+		</tr>
+		</c:forEach>
+	</table>
 
 </body>
 </html>
