@@ -5,7 +5,7 @@
 	request.setCharacterEncoding("utf-8");
 %>
 <jsp:useBean id="requestMessage" class="guestbook.model.Message" scope="request"/>
-<<jsp:setProperty property="*" name="requestMessage"/>
+<jsp:setProperty property="*" name="requestMessage"/>
 <%
 	WriteMessageService writeservice=WriteMessageService.getInstance();
 	int result=writeservice.writeMessage(requestMessage);
