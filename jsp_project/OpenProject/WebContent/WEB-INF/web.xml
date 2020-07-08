@@ -9,13 +9,10 @@
   
     <!-- 데이터베이스 드라이버 로드 -->
   <servlet>
-  	<servlet-name>Loader</servlet-name>
-	<servlet-class>jdbc.Loader</servlet-class>
-	<init-param>
-		<param-name>jdbcDriver</param-name>
-		<param-value>oracle.jdbc.driver.OracleDriver,com.mysql.jdbc.Driver</param-value>
-	</init-param>
+  	<servlet-name>DBCPInit</servlet-name>
+	<servlet-class>guestbook.jdbc.DBCPInit</servlet-class>
 	<load-on-startup>1</load-on-startup>
   </servlet>
+  
   
 </web-app>
