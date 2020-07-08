@@ -30,11 +30,11 @@
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="userName" required></td>
+                <td><input type="text" name="username" required></td>
             </tr>
             <tr>
                 <td>사진</td>
-                <td><input type="file" name="userPhoto"></td>
+                <td><input type="file" name="userphoto"></td>
             </tr>
             <tr>
                 <td></td>
