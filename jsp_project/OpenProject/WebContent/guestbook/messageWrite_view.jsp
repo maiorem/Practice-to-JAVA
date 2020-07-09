@@ -9,10 +9,11 @@
 </head>
 <body>
 	<c:if test="${writeMessage>0}">
-		방명록 업로드
+		방명록 업로드 완료
 	</c:if>
 	<c:if test="${writeMessage==0}">
 		업로드 실패
 	</c:if>
+	<a href="list.jsp">목록 보기</a>
 </body>
 </html>

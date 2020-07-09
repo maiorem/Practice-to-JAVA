@@ -26,7 +26,7 @@ public class MessageDao {
 		PreparedStatement pstmt=null;
 		
 		try {
-			String sql="insert into op_guestbook_message values (message_id_seq.nextVal, ?, ?, ?)";
+			String sql="insert into op_guestbook_message values (op_mid_seq.nextVal, ?, ?, ?)";
 
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, message.getUname());
