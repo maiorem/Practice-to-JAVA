@@ -2,8 +2,11 @@ package guestbook.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import guestbook.model.Message;
 
@@ -23,7 +26,7 @@ public class MessageDao {
 		PreparedStatement pstmt=null;
 		
 		try {
-			String sql="insert into guestbook_message values (message_id_seq.nextVal, ?, ?, ?)";
+			String sql="insert into op_guestbook_message values (message_id_seq.nextVal, ?, ?, ?)";
 
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, message.getUname());
@@ -41,5 +44,79 @@ public class MessageDao {
 		
 		return resultCnt;
 	}
+
+	
+	public int selectTotalCount(Connection conn) throws SQLException {
+		
+		int resultCnt=0;
+		
+		Statement stmt=null;
+		ResultSet rs=null;
+		
+		try {
+			stmt=conn.createStatement();
+			String sql="select count(*) from op_guestbook_message";
+			rs=stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				resultCnt=rs.getInt(1);
+			}
+			
+		} finally {
+			
+			
+		}
+		return resultCnt;
+	}
+
+	
+	
+	public List<Message> selectMessageList(Connection conn, int startRow, int endRow) throws SQLException {
+
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		List<Message> list=new ArrayList<Message>();
+		
+		// 페이지당 시작행부터 끝행까지 출력해주는 쿼리문
+		String sql="select message_id, guest_name, password, message from ( " 
+				+ " 	select rownum rnum, message_id, guest_name, password, message from ( "
+				+ " 		select * from op_guestbook_message m order by m.message_id desc" 
+				+ "		) where rownum <= ? "
+				+ ") where rnum >= ?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, endRow);
+			pstmt.setInt(2, startRow);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Message message=new Message(
+						rs.getInt("message_id"),
+						rs.getString("guest_name"),
+						rs.getString("password"),
+						rs.getString("message")
+						);
+				list.add(message);
+			}
+			
+			
+		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
+			
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+		}
+		
+		return list;
+	}
+	
+	
+	
 	
 }
