@@ -13,12 +13,11 @@ import guestbook.model.MessageListView;
 public class GetMessageListService {
 
 	private GetMessageListService() {}
-	
 	private static GetMessageListService service=new GetMessageListService();
-	
 	public static GetMessageListService getInstance() {
 		return service;
 	}
+
 	
 	private MessageDao dao;
 	
