@@ -69,7 +69,7 @@
 			게시물 번호 : ${message.mid} <br>
 			작성자 : ${message.uname} <br>
 			메시지 : ${message.message} <br>
-			<a>삭제</a>
+			<a href="deleteMessageConfirm.jsp?mid=${message.mid}">삭제</a>
 		</div>
 	</c:forEach>
 	</c:if>
