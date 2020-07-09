@@ -16,6 +16,20 @@
 	input, textarea {
 		padding: 5px;
 	}
+	
+	div.msg_box {
+		width : 200px;
+		border : 3px solid #333;
+		margin : 5px;
+		padding : 10px;
+	}
+	
+	.currentPage {
+		font-size:1.5em;
+		font-weight:bold;
+	}
+	
+	
 
 </style>
 <style>
