@@ -80,7 +80,7 @@
 	<c:if test="${listView.pageTotalCount>0 }">
 		<div class="paging">
 			<c:forEach begin="1" end="${listView.pageTotalCount}" var="num">
-				<a href="list.jsp?page=${num}">${num}</a>
+				<a href="list.jsp?page=${num}"> ${num} </a>
 			</c:forEach>
 		</div>
 	</c:if>
