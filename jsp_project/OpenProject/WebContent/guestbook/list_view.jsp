@@ -83,7 +83,7 @@
 				<a href="list.jsp?page=${num}"> ${num} </a>
 			</c:forEach>
 		</div>
-	</c:if>
+	</c:if>	
 	
 	</div>
 	<%@ include file="/include/footer.jsp" %>
