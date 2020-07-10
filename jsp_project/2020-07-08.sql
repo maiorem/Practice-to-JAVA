@@ -65,7 +65,7 @@ select message_id, guest_name, password, message
 from (
     select rownum rnum, message_id, guest_name, password, message
     from (
-        select * from op_guestbook_message order by guestbook_message.message_id desc
+        select * from op_guestbook_message order by op_guestbook_message.message_id desc
         ) where rownum<=6
 )
 where rnum >= 4
