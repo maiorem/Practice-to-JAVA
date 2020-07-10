@@ -38,8 +38,8 @@ public class GetMessageListService {
 			//전체 게시물 갯수
 			int messageTotalCount=dao.selectTotalCount(conn);
 
-			int startRow=0;	//시작행 
-			int endRow=0;	//마지막행
+			int startRow=0;	//페이지 시작행 
+			int endRow=0;	//페이지 마지막행
 
 			if(messageTotalCount>0) { //전체 게시물이 하나라도 있으면
 
