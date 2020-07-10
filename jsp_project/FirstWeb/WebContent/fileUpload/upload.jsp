@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
 <%@page import="java.util.List"%>
@@ -40,6 +41,17 @@
 				System.out.println("파일 이름 : "+fileName);
 				System.out.println("파일의 사이즈 : "+file_size);
 				System.out.println("파일의 타입 : "+contentType);	
+				
+				//서버 내부의 경로
+				String uri="/file";
+				//시스템의 실제 경로(절대경로)
+				String realPath=request.getSession().getServletContext().getRealPath(uri);
+				System.out.println(realPath);
+				
+				//서버의 저장소에 실제 저장
+				File saveFile=new File(realPath, fileName);
+				item.write(saveFile);
+				System.out.println("저장 완료");
 			}
 		}
 	}
