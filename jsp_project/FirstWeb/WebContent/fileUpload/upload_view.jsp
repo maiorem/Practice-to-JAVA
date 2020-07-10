@@ -12,15 +12,12 @@
 	<c:if test="${result>0}">
 		이름 : ${report.sname} <br>
 		학번 : ${report.sno}<br>
-		<img src=<c:url value="${report.report}"/>>
+		<img src=<c:url value="${report.report}"/> style="width:100px;">
 		
 	</c:if>
 	<c:if test="${result eq 0}">
 	<h1>저장이 되지 않았습니다.</h1>
 	</c:if>
-
-
-
 
 </body>
 </html>
