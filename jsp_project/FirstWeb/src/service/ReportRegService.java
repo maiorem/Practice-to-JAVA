@@ -2,6 +2,8 @@ package service;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -13,6 +15,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import dao.ReportDao;
+import jdbc.ConnectionProvider;
 import model.Report;
 
 public class ReportRegService {
@@ -25,13 +28,15 @@ public class ReportRegService {
 
 	ReportDao dao;
 
-	public int regReport(HttpServletRequest request ) {
+	public int regReport(HttpServletRequest request) {
 
 		int resultCnt=0;
 		
 		String sname="";
 		String sno="";
 		String filePath="";
+		
+		Connection conn=null;
 		
 		try {
 			boolean isMultipart=ServletFileUpload.isMultipartContent(request);
@@ -54,7 +59,7 @@ public class ReportRegService {
 						String paramValue=item.getString("utf-8");
 						System.out.println(paramName+" = "+paramValue);
 						
-						if(paramName.equals("sname")) {
+						if(paramName.equals("username")) {
 							sname=paramValue;
 							
 						}else if(paramName.equals("sno")) {
@@ -98,10 +103,17 @@ public class ReportRegService {
 						
 					}
 				}
+				
 				//데이터베이스 저장
 				Report report=new Report();
+				report.setSname(sname);
+				report.setSno(sno);
+				report.setReport(filePath);
 				
-				
+				conn=ConnectionProvider.getConnection();
+				dao=ReportDao.getInstance();
+				resultCnt=dao.insertReport(conn, report);
+				request.setAttribute("report", report);
 			}
 
 		} catch (FileUploadException e) {
@@ -114,7 +126,14 @@ public class ReportRegService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 
 		return resultCnt;
