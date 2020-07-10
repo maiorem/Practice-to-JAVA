@@ -75,12 +75,14 @@ where rnum >= 4
 
 --op 회원 데이터
 
+drop table memberInfo;
+
 create table memberInfo(
     member_idx number(4) not null primary key,
     member_id varchar(20) not null,
     member_pw varchar(50) not null,
     member_name varchar2(50) not null,
-    member_photo varchar2(50)
+    member_photo varchar2(200)
 );
 
 create sequence memberInfo_idx_seq increment by 1 start with 1;
