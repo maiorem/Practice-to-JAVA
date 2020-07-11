@@ -1,3 +1,4 @@
+<%@page import="member.service.GetMemberService"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
@@ -10,22 +11,21 @@
 %>
 <%	String uid=request.getParameter("id");
 	String upw=request.getParameter("pw");
+
+	GetMemberService service=GetMemberService.getInstance();
+	MemberInfo member=service.getMember(uid);
+	
+	
 	String ucheck=request.getParameter("check");
-	
 	String redirectUrl=request.getParameter("redirecUri");
-	
-	HashMap<String, MemberInfo> info= (HashMap<String, MemberInfo>) application.getAttribute(uid);
-	
-	String username=info.get(uid).getUsername();
-	String userphoto=info.get(uid).getUserphoto();
 	
 	String cookieName="id";
 	String cookiePath=request.getContextPath();
 	
 	boolean loginCheck=false;
 	
-	if(uid.equals(info.get(uid).getUid()) && upw.equals(info.get(uid).getUpw())) {
-		session.setAttribute("member", new MemberInfo(uid, upw, username, userphoto));
+	if(member.getUid().equals(uid) && member.getUpw().equals(upw)) {
+		session.setAttribute("member", member);
 		loginCheck=true;
 	}
 %>

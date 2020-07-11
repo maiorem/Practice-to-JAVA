@@ -14,5 +14,24 @@
 	<load-on-startup>1</load-on-startup>
   </servlet>
   
+  <!-- 로그인 필터 등록 -->
+  <filter>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<filter-class>filter.LoginFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<url-pattern>/member/mypage/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <!-- 파일업로드 경로 등록 -->  
+  <context-param>
+  	<param-name>uploadPath</param-name>
+	<param-value>/member/photo</param-value> 
+ </context-param>
+  
+  
   
 </web-app>

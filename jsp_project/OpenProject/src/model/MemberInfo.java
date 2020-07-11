@@ -40,6 +40,33 @@ public class MemberInfo {
 	public String getUserphoto() {
 		return userphoto;
 	}
+	
+	
+	
+
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+
+
+
+	public void setUpw(String upw) {
+		this.upw = upw;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public void setUserphoto(String userphoto) {
+		this.userphoto = userphoto;
+	}
+
+
 
 	@Override
 	public String toString() {

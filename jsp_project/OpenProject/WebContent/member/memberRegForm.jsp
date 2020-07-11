@@ -18,7 +18,7 @@
 	<div>
 		<h1>회원가입</h1>
 		   <hr>
-    <form action="reg.jsp" method="post">
+    <form action="reg.jsp" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>아이디(이메일)</td>
