@@ -30,11 +30,7 @@ public class GetMemberService {
 			if(member==null) {
 				throw new Exception("존재하지 않는 아이디입니다.");
 			}
-			
-			if(member.getUid().equals(id)) {
-				throw new Exception("아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-			}
-			
+
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

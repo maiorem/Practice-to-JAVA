@@ -27,7 +27,9 @@
 	<div>
 		<h1>마이페이지</h1>
 		접속자 아이디 : ${member.uid} <br>
-		접속자 이름 : ${member.username}
+		접속자 이름 : ${member.username} <br>
+		회원 사진 <br>
+		<img src=<c:url value="${member.userphoto}"/> style="width:100px;">
 		<br>
 
 	</div>

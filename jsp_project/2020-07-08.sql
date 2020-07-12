@@ -87,5 +87,8 @@ create table memberInfo(
 
 create sequence memberInfo_idx_seq increment by 1 start with 1;
 
+select * from memberInfo;
+
+select * from memberInfo where member_id='tttt';
 
 --op 회원게시판

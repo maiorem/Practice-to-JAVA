@@ -53,7 +53,7 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from memberInfo where member_id=?";
+		String sql="select * from memberinfo where member_id=?";
 		
 		
 		try {
@@ -85,7 +85,7 @@ public class MemberDao {
 		
 		
 		
-		return null;
+		return member;
 	}
 
 }
