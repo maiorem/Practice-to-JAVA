@@ -96,16 +96,7 @@ public class FrontController extends HttpServlet{
 //		commands.put("null", new NullServiceImpl());
 	}
 
-	//1. Http의 요청을 받는다
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processRequest(req, resp);
-	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processRequest(req, resp);
-	}
 
 	private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -162,6 +153,15 @@ public class FrontController extends HttpServlet{
 		
 	}
 	
-	
+	//1. Http의 요청을 받는다
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		processRequest(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		processRequest(req, resp);
+	}
 }
 
