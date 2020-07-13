@@ -29,7 +29,7 @@ public class FrontController extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		
-		// 1. commandsService.propertise(외부 설정) => Propertise 
+		// 1. commandsService.propertise(외부 설정) => Properties 
 		// /index=service.IndexServiceImpl
 		// 2. 클래스 정보의 클래스들을 생성 -> 인스턴스 생성
 		// 3. map에 사용자 요청 commands와 인스턴스를 저장
