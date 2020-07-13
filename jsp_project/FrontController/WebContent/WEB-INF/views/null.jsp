@@ -7,14 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>INDEX</h1>
-	
-	<ul>
-		<li><a href="index">index</a></li>
-		<li><a href="greeting">greeting</a></li>
-		<li><a href="date">date</a></li>
-	
-	</ul>
-	
+	<h1>잘못된 요청입니다.</h1>
+	<a href="<%=request.getContextPath()%>/index">홈으로 가기</a>
 </body>
 </html>
