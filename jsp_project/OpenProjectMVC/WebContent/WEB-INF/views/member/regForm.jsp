@@ -19,24 +19,24 @@
         <table>
             <tr>
                 <td>아이디(이메일)</td>
-                <td><input type="text" name="uid" required></td>
+                <td><input type="email" name="uid" placeholder="아이디(이메일)" required></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="upw" required></td>
+                <td><input type="password" name="upw" placeholder="비밀번호" required></td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="username" required></td>
+                <td><input type="text" name="uname" placeholder="이름" required></td>
             </tr>
             <tr>
                 <td>사진</td>
-                <td><input type="file" name="userphoto"></td>
+                <td><input type="file" name="uphoto"></td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="등록">
+                    <input type="submit" value="회원가입">
                     <input type="reset">
                 </td>
             </tr>

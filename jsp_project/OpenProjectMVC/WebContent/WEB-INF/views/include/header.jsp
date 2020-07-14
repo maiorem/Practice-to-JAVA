@@ -4,16 +4,16 @@
 
 <h1 id="header">Open Project</h1>
 <ul id="nav">
-	<li><a href='<c:url value="/member/memberRegForm.jsp"/>'>회원가입</a></li>
+	<li><a href='<c:url value="/member/memberRegForm.do"/>'>회원가입</a></li>
 	<c:if test="${member==null }">
-	<li><a href='<c:url value="/member/loginForm.jsp"/>'>로그인</a></li>
+	<li><a href='<c:url value="/member/loginForm.do"/>'>로그인</a></li>
 	</c:if>
 	<c:if test="${member!=null }">
-	<li><a href='<c:url value="/member/logout.jsp"/>'>로그아웃</a></li>
+	<li><a href='<c:url value="/member/logout.do"/>'>로그아웃</a></li>
 	</c:if>
-	<li><a href='<c:url value="/member/mypage/mypage.jsp"/>'>마이페이지</a></li>
-	<li><a href='<c:url value="/guestbook/list.jsp"/>'>방명록(비회원)</a></li>
-	<li><a href='<c:url value="/board/list.jsp"/>'>게시판(회원제)</a></li>
+	<li><a href='<c:url value="/member/mypage/mypage.do"/>'>마이페이지</a></li>
+	<li><a href='<c:url value="/guestbook/list.do"/>'>방명록(비회원)</a></li>
+	<li><a href='<c:url value="/board/list.do"/>'>게시판(회원제)</a></li>
 </ul>
 
 
