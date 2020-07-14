@@ -9,7 +9,8 @@
 <%
 	request.setCharacterEncoding("utf-8");
 %>
-<%	String uid=request.getParameter("id");
+<%
+	String uid=request.getParameter("id");
 	String upw=request.getParameter("pw");
 
 	GetMemberService service=GetMemberService.getInstance();

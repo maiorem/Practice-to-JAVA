@@ -21,7 +21,7 @@ public class MemberDao {
 		
 		PreparedStatement pstmt=null;
 		
-		String sql="insert into member values (memberInfo_idx_seq.nextVal, ?, ?, ?, ?)";
+		String sql="insert into project.member (uid, upw, uname, uphoto) values (?, ?, ?, ?)";
 
 		try {
 
@@ -33,9 +33,6 @@ public class MemberDao {
 			
 			resultCnt=pstmt.executeUpdate();
 			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (pstmt!=null) {
 				pstmt.close();
@@ -51,7 +48,7 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		
-		String sql="select * from memberinfo where member_id=?";
+		String sql="select * from project.member where uid=?";
 		
 		
 		try {

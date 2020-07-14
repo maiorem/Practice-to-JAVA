@@ -27,7 +27,7 @@ div {
 	padding: 15px 20px;
 }
 
-input [type=email], input[type=password], input[type=text] {
+input[type=email], input[type=password], input[type=text] {
 	padding: 5px;
 }
 

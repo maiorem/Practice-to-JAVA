@@ -24,7 +24,6 @@ public class MemberRegServiceImpl implements Service {
 	
 	MemberDao dao;
 	
-
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		//파일 업로드 - 사진
@@ -93,7 +92,7 @@ public class MemberRegServiceImpl implements Service {
 				dao=MemberDao.getInstance();
 				resultCnt=dao.insertMember(conn, member);
 				request.setAttribute("member", member);
-				
+				request.setAttribute("result", resultCnt);
 			}
 			
 		} catch (FileUploadException e) {
@@ -102,10 +101,13 @@ public class MemberRegServiceImpl implements Service {
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		
 			if(conn!=null) {
 				try {
 					conn.close();
@@ -115,7 +117,7 @@ public class MemberRegServiceImpl implements Service {
 				}
 			}
 		}
-		return "/WEB-INF/views/member/regForm.jsp";
+		return "/WEB-INF/views/member/reg.jsp";
 	}
 
 }
