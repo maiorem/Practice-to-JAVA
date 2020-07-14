@@ -6,7 +6,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
-  <!-- 데이터베이스 드라이버 로드 -->
+  <!-- DBCP 등록 : 초기화 -->
   <servlet>
   	<servlet-name>DBCPInit</servlet-name>
 	<servlet-class>jdbc.DBCPInit</servlet-class>
