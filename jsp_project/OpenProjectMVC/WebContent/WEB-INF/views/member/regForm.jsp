@@ -32,6 +32,7 @@
                 <td>
                 <input type="email" name="uid" id="uid" placeholder="아이디(이메일)" required>
                 <span id="checkmsg"></span>
+                <input type="checkbox" name="idchk">
                 </td>
                 
             </tr>
@@ -67,7 +68,26 @@
 <script>
 
 	$(document).ready(function(){
+		
+		
+		$('#uid').focusin(function(){
+			
+			$(this).val('');
+			
+			$('#checkmsg').text('');
+			$('#checkmsg').removeClass('check_not');
+			$('#checkmsg').removeClass('check_ok');
+		});
+		
 		$('#uid').focusout(function(){
+			
+			if($(this).val().length<1) {
+				$('#checkmsg').text("아이디는 필수 항목입니다.");
+				$('#checkmsg').addClass('check_not');
+				return false;
+			}
+			
+			
 			//비동기 통신
 			$.ajax({
 				url: 'idCheck.do',
@@ -76,9 +96,11 @@
 					if(data=='Y') {
 						$('#checkmsg').text("사용 가능한 아이디입니다.");
 						$('#checkmsg').addClass('check_ok');
+						$('#idchk').attr('checked', true);
 					} else {
 						$('#checkmsg').text("사용 불가능한 아이디입니다.");
 						$('#checkmsg').addClass('check_not');
+						$('#idchk').attr('checked', false);
 					}
 				} 
 			});
