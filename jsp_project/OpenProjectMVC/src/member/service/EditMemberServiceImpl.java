@@ -1,10 +1,19 @@
 package member.service;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import jdbc.ConnectionProvider;
 import member.dao.MemberDao;
@@ -20,37 +29,81 @@ public class EditMemberServiceImpl implements Service {
 		
 		int resultCnt=0;
 		Connection conn=null;
-		Member member=null;
-		String id=req.getParameter("uid");
 		
-		//1.멤버의 idx를 받아서 회원이 존재하는지 확인
-		//2.존재한다면 삭제
+		String editId=null;
+		String editPw=null;
+		String editName=null;
+		String editPhoto=null;
 		
 		try {
-			conn=ConnectionProvider.getConnection();
-			dao=MemberDao.getInstance();
-			member=dao.selectMember(conn, id);
+			boolean isMultipart=ServletFileUpload.isMultipartContent(req);
 			
-			if(member==null) {
-				resultCnt=-1;
-				throw new Exception("삭제 할 회원이 존재하지 않습니다.");
+			if(isMultipart) {
+				DiskFileItemFactory factory=new DiskFileItemFactory();
+				ServletFileUpload upload=new ServletFileUpload(factory);
+				List<FileItem> items=upload.parseRequest(req);
+				Iterator<FileItem> iter=items.iterator();
+				
+				while(iter.hasNext()) {
+					
+					FileItem item=iter.next();
+					
+					if(item.isFormField()) {
+						
+						String paramName=item.getFieldName();
+						String paramValue=item.getString("utf-8");
+						
+						if(paramName.equals("uid")) {
+							editId=paramValue;
+						} else if(paramName.equals("upw")) {
+							editPw=paramValue;
+						} else if(paramName.equals("uname")) {
+							editName=paramValue;
+						} 
+						
+					} else {
+
+						String uri="/upload/users";
+						String realPath=req.getSession().getServletContext().getRealPath(uri);
+						String newFileName=System.nanoTime()+"_"+item.getName();
+
+						File saveFile=new File(realPath, newFileName);
+						item.write(saveFile);
+						
+						System.out.println("저장 완료");
+						
+						editPhoto=uri+"/"+newFileName;
+					}
+					
+				}
+				//데이터베이스 저장
+				Member editMember=new Member();
+				editMember.setUid(editId);
+				editMember.setUpw(editPw);
+				editMember.setUname(editName);
+				editMember.setUphoto(editPhoto);
+				
+				conn=ConnectionProvider.getConnection();
+				dao=MemberDao.getInstance();
+				resultCnt=dao.editMember(conn, editMember);
+				
+				req.setAttribute("editMember", editMember);
+				req.setAttribute("editResult", resultCnt);
 			}
 			
-			if(!member.getUid().equals(id)) {
-				resultCnt=-2;
-				throw new Exception("아이디가 일치하지 않습니다.");
-			}
-			
-			resultCnt=dao.deleteMember(conn, id);
-			
-			
+		} catch (FileUploadException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+		
 			if(conn!=null) {
 				try {
 					conn.close();
@@ -61,9 +114,7 @@ public class EditMemberServiceImpl implements Service {
 			}
 		}
 		
-		req.setAttribute("deleteCode", resultCnt);
-		
-		return "/WEB-INF/views/member/deleteMember.jsp";
+		return "/WEB-INF/views/member/editMember.jsp";
 	}
 
 }

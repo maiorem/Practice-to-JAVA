@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,7 @@
 		color : red;
 	}
 	
-	#idchk {
-		display:none;
-	}
+
 </style>
 <link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 </head>
@@ -32,7 +31,7 @@
             <tr>
                 <td>아이디(이메일)</td>
                 <td>
-                <input type="email" name="uid" id="uid" value="${editMember.uid}" > 아이디는 수정할 수 없습니다.
+                <input type="email" name="uid" id="uid" value="${editMember.uid}" readonly> 아이디는 수정할 수 없습니다.
                 </td>
                 
             </tr>
@@ -54,7 +53,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="회원가입">
+                    <input type="submit" value="정보 수정">
                     <input type="reset">
                 </td>
             </tr>

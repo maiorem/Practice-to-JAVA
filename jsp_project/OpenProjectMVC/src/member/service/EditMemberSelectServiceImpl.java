@@ -22,7 +22,7 @@ public class EditMemberSelectServiceImpl implements Service {
 		Member member=null;
 		String id=req.getParameter("uid");
 		
-		//1.멤버의 idx를 받아서 회원이 존재하는지 확인
+		//1.멤버의 id를 받아서 회원이 존재하는지 확인
 		//2.존재한다면 수정페이지로 이동
 		
 		try {
@@ -32,10 +32,6 @@ public class EditMemberSelectServiceImpl implements Service {
 			
 			if(member==null) {
 				throw new Exception("수정 할 회원이 존재하지 않습니다.");
-			}
-			
-			if(!member.getUid().equals(id)) {
-				throw new Exception("아이디가 일치하지 않습니다.");
 			}
 			
 			

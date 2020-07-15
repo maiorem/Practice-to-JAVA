@@ -213,4 +213,32 @@ public class MemberDao {
 		return resultCnt;
 	}
 
+	public int editMember(Connection conn, Member editMember) throws SQLException {
+		int resultCnt=0;
+		PreparedStatement pstmt=null;
+		
+		String sql="UPDATE project.member "
+				+ "SET upw=?, uname=?, uphoto =? "
+				+ "WHERE uid=?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, editMember.getUpw());
+			pstmt.setString(2, editMember.getUname());
+			pstmt.setString(3, editMember.getUphoto());
+			pstmt.setString(4, editMember.getUid());
+			
+			resultCnt=pstmt.executeUpdate();
+			
+			
+			
+			
+		} finally {
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+		}
+		return resultCnt;
+	}
+
 }
