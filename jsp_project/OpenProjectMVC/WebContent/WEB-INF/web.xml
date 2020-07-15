@@ -25,4 +25,32 @@
   	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
+  
+   
+  <!-- 로그인 필터 등록 -->
+  <filter>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<filter-class>filter.LoginFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<url-pattern>/WEB-INF/views/member/mypage/*</url-pattern>
+  </filter-mapping>
+  
+   <filter-mapping>
+  	<filter-name>loginCheckFilter</filter-name>
+  	<url-pattern>/WEB-INF/views/board/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- 인코딩 필터 등록 -->
+  <filter>
+  	<filter-name>encodingFilter</filter-name>
+	<filter-class>filter.CharacterEncodingFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>encodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

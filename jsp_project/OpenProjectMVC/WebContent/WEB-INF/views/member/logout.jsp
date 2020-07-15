@@ -5,20 +5,31 @@
 <%
 	session.invalidate();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.12.4.js"></script>
-
+<title>로그아웃 확인 페이지</title>
+<link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 </head>
 <body>
-
-	
-	<h1>로그아웃 되셨습니다.</h1>
-	<a href='<c:url value="/index.jsp"/>'>처음으로</a>
-	
-
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<div>
+	<h1>회원</h1>
+	<hr>	
+	<h3>
+	<c:if test="${empty loginMember}">
+		<div>
+		정상적으로 로그아웃을 완료하였습니다
+		</div>
+	</c:if>
+	<c:if test="${not empty loginMember}">
+		로그아웃 실패
+	</c:if>
+	</h3>
+		
+	</div>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>

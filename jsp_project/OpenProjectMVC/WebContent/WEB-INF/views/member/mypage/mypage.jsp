@@ -3,11 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<%
-	request.setCharacterEncoding("utf-8");
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,22 +17,21 @@
 <body>
 
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
-	<c:if test="${member!=null}">
+	<c:if test="${loginMember!=null}">
 	<div>
 		<h1>마이페이지</h1>
-		접속자 아이디 : ${member.uid} <br>
-		접속자 이름 : ${member.username} <br>
+		접속자 아이디 : ${loginMember.uid} <br>
+		접속자 이름 : ${loginMember.uname} <br>
 		회원 사진 <br>
-		<img src=<c:url value="${member.userphoto}"/> style="width:100px;">
+		<img src=<c:url value="${loginMember.uphoto}"/> style="width:100px;">
 		<br>
-
 	</div>
 	</c:if>
 	
-	<c:if test="${member==null}">
+	<c:if test="${loginMember==null}">
 		<script>
 		alert('사용자 전용 페이지입니다. \n로그인해주세요.');
-		location.href='<c:url value="/member/loginForm.jsp"/>';
+		location.href='<c:url value="/member/loginForm.do"/>';
 		</script>
 	</c:if>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
