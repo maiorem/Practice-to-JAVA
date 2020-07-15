@@ -42,11 +42,15 @@
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="upw" placeholder="비밀번호" required></td>
+                <td><input type="password" name="upw" placeholder="비밀번호" required>
+                <span id="checkpw"></span>
+                </td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="uname" placeholder="이름" required></td>
+                <td><input type="text" name="uname" placeholder="이름" required>
+                <span id="checkname"></span>
+                </td>
             </tr>
             <tr>
                 <td>사진</td>
@@ -65,7 +69,6 @@
     </form>
 	</div>
 		
-	</div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>
@@ -121,6 +124,40 @@
 			});
 			
 		});	
+		
+		$('#upw').focusin(function(){			
+			$(this).val('');
+			$('#checkpw').text('');
+			$('#checkpw').removeClass('check_not');
+			$('#checkpw').removeClass('check_ok');
+		});
+		
+		$('#upw').focusout(function(){
+			
+			if($(this).val().length<1) {
+				$('#checkpw').text("비밀번호는 필수 항목입니다.");
+				$('#checkpw').addClass('check_not');
+				return false;
+			}
+			
+		});	
+		
+		$('#uname').focusin(function(){			
+			$(this).val('');
+			$('#checkname').text('');
+			$('#checkname').removeClass('check_not');
+			$('#checkname').removeClass('check_ok');
+		});
+		
+		$('#uname').focusout(function(){
+			
+			if($(this).val().length<1) {
+				$('#checkname').text("회원 이름은 필수 항목입니다.");
+				$('#checkname').addClass('check_not');
+				return false;
+			}
+			
+		});	
 	});
 
-	</script>
+</script>

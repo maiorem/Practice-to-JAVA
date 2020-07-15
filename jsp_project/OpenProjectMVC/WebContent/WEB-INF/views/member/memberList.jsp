@@ -34,29 +34,29 @@
 						<td>${members.idx}</td>
 						<td>${members.uid}</td>
 						<td>${members.uname}</td>
-						<td><img src=<c:url value="${members.uphoto}"/> style="width:100px;"></td>
+						<td><img src=<c:url value="${members.uphoto}"/>
+							style="width: 100px;"></td>
 						<td>${members.regdate}</td>
-						<td><a href="deleteMember.do?uid=${members.uid}">삭제</a></td>
+						<td><a href="editMemberSelect.do?uid=${members.uid}">수정</a> |
+							<a href="deleteMember.do?uid=${members.uid}">삭제</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:if>
 
-		<c:if test="${memberListView.pageTotalCount>0}">
-			<div class="currentPage">
-				<c:forEach begin="1" end="${memberListView.pageTotalCount}"
-					var="num">
-					<a href="memberList.do?page=${num}"
-						${listView.currentPageNumber eq num ? 'class="currentPage"' : '' }>[${num}]</a>
-				</c:forEach>
-			</div>
+
+		<c:if test="${empty memberListView.memberList}">
+
+			<h3>회원이 존재하지 않습니다.</h3>
 
 		</c:if>
-		<c:if test="${empty memberListView.memberList}">
-		
-			<h3>회원이 존재하지 않습니다.</h3>
-			
-		</c:if>
+		<div>
+			<c:forEach begin="1" end="${memberListView.pageTotalCount}" var="num">
+				<a href="memberList.do?page=${num}"
+					${listView.currentPageNumber eq num ? 'class="currentPage"' : '' }>[${num}]</a>
+			</c:forEach>
+		</div>
+
 	</div>
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 </body>

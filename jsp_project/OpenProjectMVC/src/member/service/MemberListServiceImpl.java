@@ -20,12 +20,11 @@ public class MemberListServiceImpl implements Service {
 	private MemberDao dao;
 	
 	//한 페이지에 표현할 회원의 수
-	private final int MESSAGE_COUNT_PER_PAGE=50;
+	private final int MESSAGE_COUNT_PER_PAGE=10;
 	
 	@Override
 	public String getViewPage(HttpServletRequest request, HttpServletResponse response) {
 		
-		int pageNum=1;
 		Connection conn=null;
 		MemberList memberListview=null;
 		
@@ -40,22 +39,31 @@ public class MemberListServiceImpl implements Service {
 			// 전체 회원의 수
 			int memberTotalCount=dao.selectTotalCount(conn);
 			
+			// 시작 행
 			int startRow=0;
+			
+			//현재 페이지 번호
+			int currentPage=1;
+			String page=request.getParameter("page");
+			
+			if(page!=null) {
+				currentPage=Integer.parseInt(page);
+			}
 
 			
 			if(memberTotalCount>0) {
 				
 				//시작 행
-				startRow=(pageNum-1)*MESSAGE_COUNT_PER_PAGE+1;
+				startRow=(currentPage-1)*MESSAGE_COUNT_PER_PAGE+1;
 				
 				memberList=dao.selectMemberList(conn, startRow, MESSAGE_COUNT_PER_PAGE);
 				
 			} else {
-				pageNum=0;
+				currentPage=0;
 				memberList=Collections.emptyList();
 			}
 			
-			memberListview=new MemberList(memberTotalCount, pageNum, memberList, MESSAGE_COUNT_PER_PAGE, startRow);
+			memberListview=new MemberList(memberTotalCount, currentPage, memberList, MESSAGE_COUNT_PER_PAGE, startRow);
 			request.setAttribute("memberListView", memberListview);
 			
 		} catch (SQLException e) {
