@@ -10,9 +10,6 @@
 	String uid=request.getParameter("id");
 	String upw=request.getParameter("pw");
 
-	GetMemberService service=GetMemberService.getInstance();
-	MemberInfo member=service.getMember(uid);
-	
 	
 	String ucheck=request.getParameter("check");
 	String redirectUrl=request.getParameter("redirecUri");

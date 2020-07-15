@@ -15,6 +15,10 @@
 	.check_not {
 		color : red;
 	}
+	
+	#idchk {
+		display:none;
+	}
 </style>
 <link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 </head>
@@ -25,14 +29,14 @@
 	<h1>회원가입</h1>
 	<hr>
 	<br>
-    <form action="memberReg.do" method="post" enctype="multipart/form-data">
+    <form id="regForm" action="memberReg.do" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>아이디(이메일)</td>
                 <td>
                 <input type="email" name="uid" id="uid" placeholder="아이디(이메일)" required>
                 <span id="checkmsg"></span>
-                <input type="checkbox" name="idchk">
+                <input type="checkbox" name="idchk" id="idchk">
                 </td>
                 
             </tr>
@@ -69,12 +73,23 @@
 
 	$(document).ready(function(){
 		
+		$('#regForm').submit(function(){
+			if(!$('#idchk').prop('checked')) {
+				alert('아이디 중복 체크는 필수 항목 입니다.');
+				$('#uid').focus();
+				return false;
+			}			
+		
+		});
+		
 		
 		$('#uid').focusin(function(){
 			
 			$(this).val('');
+			$('#idchk').prop('checked', false);
 			
 			$('#checkmsg').text('');
+			
 			$('#checkmsg').removeClass('check_not');
 			$('#checkmsg').removeClass('check_ok');
 		});
@@ -96,11 +111,11 @@
 					if(data=='Y') {
 						$('#checkmsg').text("사용 가능한 아이디입니다.");
 						$('#checkmsg').addClass('check_ok');
-						$('#idchk').attr('checked', true);
+						$('#idchk').prop('checked', true);
 					} else {
 						$('#checkmsg').text("사용 불가능한 아이디입니다.");
 						$('#checkmsg').addClass('check_not');
-						$('#idchk').attr('checked', false);
+						$('#idchk').prop('checked', false);
 					}
 				} 
 			});

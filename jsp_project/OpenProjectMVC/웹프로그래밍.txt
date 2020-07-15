@@ -34,3 +34,6 @@
 	
 3. 아이디 체크
 	Service, Dao(select), view(html(x) -> text(Y/N))
+	
+회원리스트 출력
+Service -> Dao -> ListView -> view

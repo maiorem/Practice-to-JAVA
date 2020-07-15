@@ -11,17 +11,20 @@ import member.dao.MemberDao;
 import member.model.Member;
 import service.Service;
 
-
-public class MemberLoginServiceImpl implements Service {
+public class DeleteMemberServiceImpl implements Service {
 
 	MemberDao dao;
-
+	
 	@Override
 	public String getViewPage(HttpServletRequest req, HttpServletResponse resp) {
+		
+		int resultCnt=0;
 		Connection conn=null;
 		Member member=null;
-		String id=req.getParameter("id");
-		String pw=req.getParameter("pw");
+		String id=req.getParameter("uid");
+		
+		//1.멤버의 idx를 받아서 회원이 존재하는지 확인
+		//2.존재한다면 삭제
 		
 		try {
 			conn=ConnectionProvider.getConnection();
@@ -29,9 +32,18 @@ public class MemberLoginServiceImpl implements Service {
 			member=dao.selectMember(conn, id);
 			
 			if(member==null) {
-				throw new Exception("존재하지 않는 아이디입니다.");
+				resultCnt=-1;
+				throw new Exception("삭제 할 회원이 존재하지 않습니다.");
 			}
-
+			
+			if(!member.getUid().equals(id)) {
+				resultCnt=-2;
+				throw new Exception("아이디가 일치하지 않습니다.");
+			}
+			
+			resultCnt=dao.deleteMember(conn, id);
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -49,6 +61,9 @@ public class MemberLoginServiceImpl implements Service {
 			}
 		}
 		
-		return "/WEB-INF/views/member/login.jsp";
+		req.setAttribute("deleteCode", resultCnt);
+		
+		return "/WEB-INF/views/member/deleteMember.jsp";
 	}
+
 }
