@@ -1,0 +1,36 @@
+웹 프로그래밍
+
+1. 데이터베이스 생성
+2. 웹 프로젝트 생성
+3. 라이브러리 등록
+	-JDBC
+	-Connection POOL
+	-File upload
+	-JSTL
+4. MVC 패턴 구현
+	- Front Controller
+	- Command 패턴 => Service Interface
+	- Dao 패턴  => Dao Class
+	- View JSP -> EL, JSTL
+	
+5. DBCP POOL 등록 Servlet
+	
+-> Server Start
+	
+각 기능 추가
+1. 사용자의 요청을 처리 할 핵심 로직 구현 클래스
+	- Service 인터페이스를 구현한 클래스
+2. Dao에 기능 추가 
+3. View 생성 => JSP
+4. 설정 파일에 사용자 요청 URI와 실행 클래스 등록
+
+
+회원가입
+1. 가입 폼 페이지
+	Service, view
+
+2. 회원 데이터 처리 페이지(가입처리)
+	Service, Dao(insert), view
+	
+3. 아이디 체크
+	Service, Dao(select), view(html(x) -> text(Y/N))

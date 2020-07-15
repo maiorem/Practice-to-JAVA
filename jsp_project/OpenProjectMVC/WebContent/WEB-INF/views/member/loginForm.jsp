@@ -1,4 +1,3 @@
-<%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -48,15 +47,15 @@ td {
 </style>
 </head>
 <body>
-	<%@ include file="/include/header.jsp"%>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	<div>
-		<form id="form" action="login.jsp" method="post">
+		<form id="form" action="memberlogin.do" method="post">
 			<input type="hidden" name="redirecUri" value="${header.referer}" >
 			
 			<table id="loginTable">
 				<tr>
 					<td>아이디(이메일)</td>
-					<td><input type="text" name="id" id="id" required value=${val} ></td>
+					<td><input type="email" name="id" id="id" required placeholder="아이디(이메일)" value=${val} ></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
@@ -75,7 +74,7 @@ td {
 		</form>
 
 	</div>
-	<%@ include file="/include/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 
 </html>

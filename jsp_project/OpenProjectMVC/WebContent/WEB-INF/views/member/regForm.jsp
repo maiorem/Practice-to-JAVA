@@ -15,6 +15,7 @@
 		
 	<h1>회원가입</h1>
 	<hr>
+	<br>
     <form action="memberReg.do" method="post" enctype="multipart/form-data">
         <table>
             <tr>

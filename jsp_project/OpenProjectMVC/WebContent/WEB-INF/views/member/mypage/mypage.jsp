@@ -1,5 +1,4 @@
 <%@page import="java.util.HashMap"%>
-<%@page import="model.MemberInfo"%>
 <%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -22,7 +21,7 @@
 </head>
 <body>
 
-	<%@ include file="/include/header.jsp" %>
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 	<c:if test="${member!=null}">
 	<div>
 		<h1>마이페이지</h1>
@@ -41,7 +40,7 @@
 		location.href='<c:url value="/member/loginForm.jsp"/>';
 		</script>
 	</c:if>
-	<%@ include file="/include/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 	
 </body>
 </html>

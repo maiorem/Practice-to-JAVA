@@ -17,7 +17,7 @@
 	<h3>
 	<c:if test="${result gt 0 && member ne null}">
 		<div>
-			회원가입 완료
+		회원가입 완료
 		</div>
 		${member}
 		

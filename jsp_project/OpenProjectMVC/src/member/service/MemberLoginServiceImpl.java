@@ -12,7 +12,7 @@ import member.model.Member;
 import service.Service;
 
 
-public class GetMemberServiceImpl implements Service {
+public class MemberLoginServiceImpl implements Service {
 
 	MemberDao dao;
 	
@@ -56,6 +56,6 @@ public class GetMemberServiceImpl implements Service {
 	@Override
 	public String getViewPage(HttpServletRequest req, HttpServletResponse resp) {
 		// TODO Auto-generated method stub
-		return null;
+		return "/WEB-INF/views/member/login.jsp";
 	}
 }
