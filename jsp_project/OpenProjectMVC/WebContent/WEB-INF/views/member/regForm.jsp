@@ -7,6 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style>
+	.check_ok {
+		color : green;
+	}
+	.check_not {
+		color : red;
+	}
+</style>
 <link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 </head>
 <body>
@@ -20,7 +29,11 @@
         <table>
             <tr>
                 <td>아이디(이메일)</td>
-                <td><input type="email" name="uid" placeholder="아이디(이메일)" required></td>
+                <td>
+                <input type="email" name="uid" id="uid" placeholder="아이디(이메일)" required>
+                <span id="checkmsg"></span>
+                </td>
+                
             </tr>
             <tr>
                 <td>비밀번호</td>
@@ -51,3 +64,26 @@
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>
+<script>
+
+	$(document).ready(function(){
+		$('#uid').focusout(function(){
+			//비동기 통신
+			$.ajax({
+				url: 'idCheck.do',
+				data: {	uid : $(this).val()},
+				success: function(data){
+					if(data=='Y') {
+						$('#checkmsg').text("사용 가능한 아이디입니다.");
+						$('#checkmsg').addClass('check_ok');
+					} else {
+						$('#checkmsg').text("사용 불가능한 아이디입니다.");
+						$('#checkmsg').addClass('check_not');
+					}
+				} 
+			});
+			
+		});	
+	});
+
+	</script>
