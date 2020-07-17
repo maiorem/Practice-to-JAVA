@@ -31,7 +31,7 @@
 	<c:if test="${loginMember==null}">
 		<script>
 		alert('사용자 전용 페이지입니다. \n로그인해주세요.');
-		location.href='<c:url value="/member/loginForm.do"/>';
+		location.href='<c:url value="/WEB-INT/views/member/loginForm.do"/>';
 		</script>
 	</c:if>
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
