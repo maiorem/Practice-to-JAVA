@@ -25,6 +25,8 @@
 		회원 사진 <br>
 		<img src=<c:url value="${loginMember.uphoto}"/> style="width:100px;">
 		<br>
+		<a href="/member/editConfirm.do?idx=${loginMember.idx}">회원정보 수정</a>
+		<a href="/member/deleteConfirm.do?idx=${loginMember.idx}">회원 탈퇴</a>
 	</div>
 	</c:if>
 	
