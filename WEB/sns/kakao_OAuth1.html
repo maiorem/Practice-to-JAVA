@@ -12,6 +12,7 @@
     width="222"
   />
 </a>
+    <button class="api-btn" onclick="kakaoLogout()">로그아웃</button>
 <script type="text/javascript">
   // 웹 플랫폼 도메인 등 초기화한 앱의 설정이 그대로 적용됩니다.
   // 초기화한 앱에 현재 도메인이 등록되지 않은 경우 에러가 발생합니다.
@@ -19,14 +20,15 @@
 
 // SDK 초기화 여부를 판단합니다.
 console.log(Kakao.isInitialized());
+    
   function loginWithKakao() {
     Kakao.Auth.login({
       success: function(authObj) {
-        alert(JSON.stringify(authObj))
+        console.log(JSON.stringify(authObj))
         Kakao.API.request({
             url: '/v2/user/me',
             success: function(res) {
-            alert(JSON.stringify(res))
+            console.log(JSON.stringify(res))
             },
             fail: function(error) {
             alert(
@@ -39,6 +41,16 @@ console.log(Kakao.isInitialized());
       fail: function(err) {
         alert(JSON.stringify(err))
       },
+    })
+  }
+    
+  function kakaoLogout() {
+    if (!Kakao.Auth.getAccessToken()) {
+      alert('Not logged in.')
+      return
+    }
+    Kakao.Auth.logout(function() {
+      alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken())
     })
   }
 </script></body>
