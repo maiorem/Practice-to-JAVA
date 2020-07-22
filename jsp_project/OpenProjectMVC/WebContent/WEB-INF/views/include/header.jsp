@@ -15,6 +15,8 @@
 	<li><a href='<c:url value="/guestbook/list.do"/>'>방명록(비회원)</a></li>
 	<li><a href='<c:url value="/board/list.do"/>'>게시판(회원제)</a></li>
 	<li><a href='<c:url value="/member/memberList.do"/>'>회원 관리</a></li>
+	<li><a href='<c:url value="/message/writeMessage.do"/>'>쪽지보내기</a></li>
+	<li><a href='<c:url value="/message/messageList.do"/>'>쪽지함</a></li>
 </ul>
 
 
