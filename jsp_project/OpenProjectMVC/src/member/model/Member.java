@@ -1,6 +1,10 @@
 package member.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import message.model.Message;
 
 public class Member {
 	
@@ -10,6 +14,7 @@ public class Member {
 	private String uname;
 	private String uphoto;
 	private Date regdate;
+	private List<Message> myMsgList;
 	
 	
 	public Member() {
@@ -23,6 +28,7 @@ public class Member {
 		this.uname = uname;
 		this.uphoto = uphoto;
 		this.regdate = regdate;
+		myMsgList=new ArrayList<>();
 	}
 
 
@@ -85,6 +91,19 @@ public class Member {
 		this.regdate = regdate;
 	}
 
+	
+	
+	
+	public List<Message> getMyMsgList() {
+		return myMsgList;
+	}
+
+
+	public void setMyMsgList(List<Message> myMsgList) {
+		this.myMsgList = myMsgList;
+	}
+
+
 	//java.sql.Date -> java.util.Date
 	public java.util.Date getToDate(){ //${member.toDate}
 		return new java.util.Date(regdate.getTime());
@@ -96,6 +115,5 @@ public class Member {
 				+ ", regdate=" + regdate + "]";
 	}
 
-	
-	
+
 }

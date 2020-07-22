@@ -24,19 +24,24 @@
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 	<div id="note">
-		<form action="<c:url value='/message/sendMessage.do'/>" method="get">
+		<form action="<c:url value='/message/sendMessage.do'/>" method="post">
+			<input type="hidden" name="idx" value="${loginMember.idx}">
 			<table>
 				<tr>
 					<td>보내는 사람</td>
-					<td>${loginMember.uid}</td>
+					<td><input type="email" name="senderId" id="noteId" value="${loginMember.uid}" readonly></td>
 				</tr>
 				<tr>
 					<td>받는 사람</td>
-					<td><input type="email" name="noteId" id="noteId" required></td>
+					<td><input type="email" name="receiverId" id="noteId" required></td>
 				</tr>
 				<tr>
 					<td>내용</td>
 					<td><input type="text" name="noteText" required></td>
+				</tr>
+				<tr>
+					<td>이미지</td>
+					<td><input type="file" name="noteImage"></td>
 				</tr>
 				<tr>
 					<td></td>
