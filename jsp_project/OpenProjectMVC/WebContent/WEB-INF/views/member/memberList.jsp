@@ -53,7 +53,7 @@
 		<div>
 			<c:forEach begin="1" end="${memberListView.pageTotalCount}" var="num">
 				<a href="memberList.do?page=${num}"
-					${listView.currentPageNumber eq num ? 'class="currentPage"' : '' }>[${num}]</a>
+					${memberListView.currentPageNumber eq num ? 'class="currentPage"' : '' }>[${num}]</a>
 			</c:forEach>
 		</div>
 

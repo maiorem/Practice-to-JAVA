@@ -19,7 +19,7 @@ public class Message {
 	
 	
 	
-	public Message(int msg_idx, String msg_receiver, int msg_writer, String msg_text, String msg_img, Date msg_date,
+	public Message(int msg_idx, int msg_writer, String msg_receiver, String msg_text, String msg_img, Date msg_date,
 			int msg_readcheck) {
 		this.msg_idx = msg_idx;
 		this.msg_receiver = msg_receiver;

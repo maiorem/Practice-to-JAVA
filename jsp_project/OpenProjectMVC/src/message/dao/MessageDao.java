@@ -2,7 +2,11 @@ package message.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import message.model.Message;
 
@@ -44,6 +48,78 @@ public class MessageDao {
 		}
 		
 		return resultCnt;
+	}
+
+	public int selectTotalCount(Connection conn) throws SQLException {
+		int resultCnt=0;
+		
+		Statement stmt=null;
+		ResultSet rs=null;
+		
+		try {
+			stmt=conn.createStatement();
+			String sql="select count(*) from project.message";
+			
+			rs=stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				resultCnt=rs.getInt(1);
+			}
+			
+		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
+			
+			if(stmt!=null) {
+				stmt.close();
+			}
+			
+		}
+		return resultCnt;
+	}
+
+	public List<Message> selectMessageList(Connection conn, int startrow, int MESSAGE_COUNT_PER_PAGE) throws SQLException {
+		
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		List<Message> list=new ArrayList<Message>();
+		
+		String sql="select * from project.message order by msg_date desc limit ?, ?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, MESSAGE_COUNT_PER_PAGE);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+				Message msg=new Message(
+						rs.getInt("msg_idx"),
+						rs.getInt("msg_writer"),
+						rs.getString("msg_receiver"),
+						rs.getString("msg_text"),
+						rs.getString("msg_img"),
+						rs.getDate("msg_date"),
+						rs.getInt("msg_readcheck")
+						);
+				
+				list.add(msg);
+			}
+			
+		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
+			
+			if(pstmt!=null) {
+				pstmt.close();
+			}
+		}
+		
+		return list;
 	}
 	
 
