@@ -14,16 +14,16 @@
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	<c:if test="${noteList.messageList != null}">
-		<table>
+		<table border="1">
 			<tr>
 				<th>No.</th>
-				<th>보낸 사람</th>
+				<th>보낸이</th>
 				<th>메시지</th>
 				<th>이미지</th>
-				<th>보낸 날짜</th>
-				<th>읽음 여부</th>
+				<th>날짜</th>
+				<th>읽음</th>
 			</tr>
-			<c:forEach items="${notelist.messageList}" var="notes">
+			<c:forEach items="${noteList.messageList}" var="notes">
 				<tr>
 					<td>${notes.msg_idx}</td>
 					<td>${notes.msg_writer}</td>
@@ -40,15 +40,15 @@
 
 
 
-	<c:if test="${notelist.memberList==null}">
+	<c:if test="${noteList.messageList==null}">
 
 		<h3>쪽지가 존재하지 않습니다.</h3>
 
 	</c:if>
 	<div>
-		<c:forEach begin="1" end="${notelist.pageTotalCount}" var="num">
+		<c:forEach begin="1" end="${noteList.pageTotalCount}" var="num">
 			<a href="messageList.do?page=${num}"
-				${notelist.currentPageNumber eq num ? 'class="currentPage"' : '' }>[${num}]</a>
+				${noteList.currentPageNumber eq num ? 'class="currentPage"' : '' }>[${num}]</a>
 		</c:forEach>
 	</div>
 
