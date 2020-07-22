@@ -5,8 +5,8 @@ import java.sql.Date;
 public class Message {
 	
 	private int msg_idx;
-	private String msg_receiver;
 	private int msg_writer;
+	private String msg_receiver;
 	private String msg_text;
 	private String msg_img;
 	private Date msg_date;
@@ -21,7 +21,6 @@ public class Message {
 	
 	public Message(int msg_idx, String msg_receiver, int msg_writer, String msg_text, String msg_img, Date msg_date,
 			int msg_readcheck) {
-		super();
 		this.msg_idx = msg_idx;
 		this.msg_receiver = msg_receiver;
 		this.msg_writer = msg_writer;

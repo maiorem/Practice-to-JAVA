@@ -17,7 +17,6 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import jdbc.ConnectionProvider;
 import member.dao.MemberDao;
-import member.model.Member;
 import message.dao.MessageDao;
 import message.model.Message;
 import service.Service;
@@ -40,13 +39,14 @@ public class SendingMessageServiceImpl implements Service {
 		int check=0; //안읽은 상태
 		
 		Connection conn=null;
-		member=MemberDao.getInstance();
 		
 		try {
-			
+
 			boolean isMultipart=ServletFileUpload.isMultipartContent(req);
+			System.out.println("메시지 업로드 시작");
 			
 			if(isMultipart) {
+				System.out.println("서블릿 파일 업로드 확인");
 				DiskFileItemFactory factory=new DiskFileItemFactory();
 				ServletFileUpload upload=new ServletFileUpload(factory);
 				List<FileItem> items=upload.parseRequest(req);
@@ -59,18 +59,25 @@ public class SendingMessageServiceImpl implements Service {
 					if(item.isFormField()) {
 						String paramName=item.getFieldName();
 						String paramValue=item.getString("utf-8");
+						
+						conn=ConnectionProvider.getConnection();
+						member=MemberDao.getInstance();
 
 						if(paramName.equals("idx")) {
 							senderIdx=Integer.parseInt(paramValue);
+							System.out.println(paramName+ " : " +paramValue);
 							
 						} else if(paramName.equals("receiverId")) {
 							if(member.existId(conn, paramValue)) {
 								receiverId=paramValue;
+								System.out.println(paramName+ " : " +paramValue);
 								System.out.println("아이디 존재 확인");
+								
 							} else {
 								throw new Exception("쪽지를 보낼 상대가 존재하지 않습니다.");
 							}
 						} else if(paramName.equals("noteText")) {
+							System.out.println(paramName+ " : " +paramValue);
 							text=paramValue;
 						} 
 						
@@ -96,7 +103,6 @@ public class SendingMessageServiceImpl implements Service {
 				msg.setMsg_img(img);
 				msg.setMsg_readcheck(check);
 				
-				conn=ConnectionProvider.getConnection();
 				dao=MessageDao.getInstance();
 				resultCnt=dao.sendMessage(conn, msg);
 				req.setAttribute("note", msg);
@@ -121,8 +127,17 @@ public class SendingMessageServiceImpl implements Service {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} finally {
 		
+			if(conn!=null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		
 		
 		return "/WEB-INF/views/message/sendingmessage.jsp";

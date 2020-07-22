@@ -24,8 +24,8 @@
 	<%@ include file="/WEB-INF/views/include/header.jsp" %>
 
 	<div id="note">
-		<form action="<c:url value='/message/sendMessage.do'/>" method="post">
-			<input type="hidden" name="idx" value="${loginMember.idx}">
+		<form action="<c:url value='/message/sendMessage.do'/>" method="post" enctype="multipart/form-data">
+			<input type="text" name="idx" value="${loginMember.idx}">
 			<table>
 				<tr>
 					<td>보내는 사람</td>
