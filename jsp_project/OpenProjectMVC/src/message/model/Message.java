@@ -5,7 +5,10 @@ import java.sql.Date;
 public class Message {
 	
 	private int msg_idx;
-	private int msg_writer;
+	private int msg_writerIdx;
+	
+	private String msg_writerId;
+	
 	private String msg_receiver;
 	private String msg_text;
 	private String msg_img;
@@ -19,15 +22,52 @@ public class Message {
 	
 	
 	
-	public Message(int msg_idx, int msg_writer, String msg_receiver, String msg_text, String msg_img, Date msg_date,
+	public Message(int msg_idx, int msg_writerIdx, String msg_receiver, String msg_text, String msg_img, Date msg_date,
 			int msg_readcheck) {
 		this.msg_idx = msg_idx;
 		this.msg_receiver = msg_receiver;
-		this.msg_writer = msg_writer;
+		this.msg_writerIdx = msg_writerIdx;
 		this.msg_text = msg_text;
 		this.msg_img = msg_img;
 		this.msg_date = msg_date;
 		this.msg_readcheck = msg_readcheck;
+	}
+
+
+	
+	
+	
+
+	public Message(int msg_idx, String msg_writerId, String msg_receiver, String msg_text, String msg_img,
+			Date msg_date, int msg_readcheck) {
+		this.msg_idx = msg_idx;
+		this.msg_writerId = msg_writerId;
+		this.msg_receiver = msg_receiver;
+		this.msg_text = msg_text;
+		this.msg_img = msg_img;
+		this.msg_date = msg_date;
+		this.msg_readcheck = msg_readcheck;
+	}
+
+
+
+
+	public String getMsg_writerId() {
+		return msg_writerId;
+	}
+
+
+
+
+	public void setMsg_writerId(String msg_writerId) {
+		this.msg_writerId = msg_writerId;
+	}
+
+
+
+
+	public void setMsg_writerIdx(int msg_writerIdx) {
+		this.msg_writerIdx = msg_writerIdx;
 	}
 
 
@@ -61,15 +101,15 @@ public class Message {
 
 
 
-	public int getMsg_writer() {
-		return msg_writer;
+	public int getMsg_writerIdx() {
+		return msg_writerIdx;
 	}
 
 
 
 
-	public void setMsg_writer(int msg_writer) {
-		this.msg_writer = msg_writer;
+	public void setMsg_writer(int msg_writerIdx) {
+		this.msg_writerIdx = msg_writerIdx;
 	}
 
 
@@ -133,7 +173,7 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [msg_idx=" + msg_idx + ", msg_receiver=" + msg_receiver + ", msg_writer=" + msg_writer
+		return "Message [msg_idx=" + msg_idx + ", msg_receiver=" + msg_receiver + ", msg_writerIdx=" + msg_writerIdx
 				+ ", msg_text=" + msg_text + ", msg_img=" + msg_img + ", msg_date=" + msg_date + ", msg_readcheck="
 				+ msg_readcheck + "]";
 	}

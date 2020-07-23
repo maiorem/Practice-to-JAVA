@@ -31,7 +31,7 @@ public class MessageDao {
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			pstmt.setInt(1, msg.getMsg_writer());
+			pstmt.setInt(1, msg.getMsg_writerIdx());
 			pstmt.setString(2, msg.getMsg_receiver());
 			pstmt.setString(3, msg.getMsg_text());
 			pstmt.setString(4, msg.getMsg_img());
@@ -86,7 +86,7 @@ public class MessageDao {
 		
 		List<Message> list=new ArrayList<Message>();
 		
-		String sql="select * from project.message order by msg_date desc limit ?, ?";
+		String sql="select msg.msg_idx, mem.uid, msg.msg_receiver, msg.msg_text, msg.msg_img, msg.msg_date, msg.msg_readcheck from (project.message msg inner join project.member mem on msg.msg_writer=mem.idx) order by msg_date desc limit ?,?"; 
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -97,13 +97,13 @@ public class MessageDao {
 			
 			while(rs.next()) {
 				Message msg=new Message(
-						rs.getInt("msg_idx"),
-						rs.getInt("msg_writer"),
-						rs.getString("msg_receiver"),
-						rs.getString("msg_text"),
-						rs.getString("msg_img"),
-						rs.getDate("msg_date"),
-						rs.getInt("msg_readcheck")
+						rs.getInt("msg.msg_idx"),
+						rs.getString("mem.uid"),
+						rs.getString("msg.msg_receiver"),
+						rs.getString("msg.msg_text"),
+						rs.getString("msg.msg_img"),
+						rs.getDate("msg.msg_date"),
+						rs.getInt("msg.msg_readcheck")
 						);
 				
 				list.add(msg);

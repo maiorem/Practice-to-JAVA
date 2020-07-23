@@ -54,7 +54,7 @@ public class MemberListServiceImpl implements Service {
 			if(memberTotalCount>0) {
 				
 				//시작 행
-				startRow=(currentPage-1)*MESSAGE_COUNT_PER_PAGE+1;
+				startRow=(currentPage-1)*MESSAGE_COUNT_PER_PAGE;
 				
 				memberList=dao.selectMemberList(conn, startRow, MESSAGE_COUNT_PER_PAGE);
 				

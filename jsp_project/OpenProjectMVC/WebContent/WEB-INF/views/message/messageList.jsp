@@ -23,21 +23,24 @@
 				<th>메시지</th>
 				<th>이미지</th>
 				<th>날짜</th>
-				<th>읽음</th>
+				<th>답장하기</th>
+				<th>삭제</th>
 			</tr>
 			<c:forEach items="${noteList.messageList}" var="notes">
 				<c:if test="${loginMember.uid eq notes.msg_receiver}">
 					<tr>
 						<td>${notes.msg_idx}</td>
-						<td>${notes.msg_writer}</td>
-						<td>${notes.msg_text}</td>
+						<td>${notes.msg_writerId}</td>
+						<td><a>${notes.msg_text}</a></td>
 						<td><img src=<c:url value="${notes.msg_img}"/>
 							style="width: 100px;"></td>
 						<td>${notes.msg_date}</td>
-						<td>${notes.msg_readcheck }</td>
+						<td><a href="repMessage.do?toPerson=${notes.msg_writerId}">답장</a></td>
+						<td><a href="">삭제</a></td>
 					</tr>
 				</c:if>
 			</c:forEach>
+		</table>
 	</c:if>
 
 

@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<td>받는 사람</td>
-					<td><input type="email" name="receiverId" id="noteId" required></td>
+					<td><input type="email" name="receiverId" id="noteId" value="${param.toPerson}" readonly></td>
 				</tr>
 				<tr>
 					<td>내용</td>
