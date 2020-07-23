@@ -45,7 +45,7 @@ public class MessageListServiceImpl implements Service {
 			
 			if(messageTotalCount>0) {
 				
-				startrow=(currentPage-1)*MESSAGE_COUNT_PER_PAGE+1;
+				startrow=(currentPage-1)*MESSAGE_COUNT_PER_PAGE;
 				messageList=dao.selectMessageList(conn, startrow, MESSAGE_COUNT_PER_PAGE);
 				
 			} else {
