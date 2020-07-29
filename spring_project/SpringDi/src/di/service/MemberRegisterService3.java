@@ -2,19 +2,21 @@ package di.service;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import di.dao.Dao;
 import di.domain.Member;
 import di.domain.RegisterRequest;
 import di.exception.AlreadyExistingMemberException;
 
-public class MemberRegisterService2 {
+@Component
+public class MemberRegisterService3 {
 	
+	@Resource(name="dao")
 	private Dao dao;
-	
-	//메서드 주입 방식
-	public void setDao(Dao dao) {
-		this.dao=dao;
-	}
 	
 
 

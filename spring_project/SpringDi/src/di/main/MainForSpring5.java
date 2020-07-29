@@ -8,24 +8,20 @@ import di.domain.RegisterRequest;
 import di.exception.AlreadyExistingMemberException;
 import di.exception.IdPasswordNotMatchingException;
 import di.exception.MemberNotFoundException;
-import di.service.ChangePasswordService2;
-import di.service.MemberRegisterService2;
+import di.service.ChangePasswordService3;
+import di.service.MemberRegisterService3;
 
-public class MainForSpring2 {
+public class MainForSpring5 {
 	
 	private static GenericXmlApplicationContext ctx = null;
 
 	public static void main(String[] args) {
 		
-//		ctx = new GenericXmlApplicationContext("classpath:appCtx2.xml");
-//		ctx = new GenericXmlApplicationContext("classpath:appCtx3.xml");
-//		ctx = new GenericXmlApplicationContext("classpath:appCtx4.xml");
-//		ctx = new GenericXmlApplicationContext("classpath:appCtx5.xml");
-		ctx = new GenericXmlApplicationContext("classpath:appCtx6.xml");
+		ctx = new GenericXmlApplicationContext("classpath:appCtx8.xml");
 
 		Scanner reader = new Scanner(System.in);
 		while (true) {
-			System.out.println("명렁어를 입력하세요:");
+			System.out.println("명령어를 입력하세요:");
 			String command = reader.nextLine();
 			if (command.equalsIgnoreCase("exit")) {
 				System.out.println("종료합니다.");
@@ -50,7 +46,7 @@ public class MainForSpring2 {
 		}
 		
 		//Spring Container 객체 저장 타입은 object
-		MemberRegisterService2 regSvc = ctx.getBean("memberregSvc", MemberRegisterService2.class);
+		MemberRegisterService3 regSvc = ctx.getBean("memberRegisterService3", MemberRegisterService3.class);
 		RegisterRequest req = new RegisterRequest();
 		req.setEmail(arg[1]);
 		req.setName(arg[2]);
@@ -73,7 +69,7 @@ public class MainForSpring2 {
 			printHelp();
 			return;
 		}
-		ChangePasswordService2 changePwdSvc = ctx.getBean("memberPwSvc", ChangePasswordService2.class);
+		ChangePasswordService3 changePwdSvc = ctx.getBean("memberPwSvc1", ChangePasswordService3.class);
 		try {
 			changePwdSvc.changePassword(arg[1], arg[2], arg[3]);
 			System.out.println("암호를 변경했습니다.\n");
