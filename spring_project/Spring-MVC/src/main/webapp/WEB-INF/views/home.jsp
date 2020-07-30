@@ -12,6 +12,8 @@
 	<ul> 
 		<li><a href="<c:url value='/hello' />">/hello</a></li>
 		<li><a href="bye">/bye</a></li>
+		<li><a href="<c:url value='/login/login' />">/loginForm(get)</a></li>
+		
 	</ul>
 	
 	
