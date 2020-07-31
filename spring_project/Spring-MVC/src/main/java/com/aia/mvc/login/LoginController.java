@@ -47,7 +47,4 @@ public class LoginController {
 		return "login/login"; // /WEB-INF/views/login/login.jsp
 	}
 	
-	
-	
-	
 }
