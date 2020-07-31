@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,12 +27,12 @@
 	<h1>회원가입</h1>
 	<hr>
 	<br>
-    <form id="regForm" action="memberReg.do" method="post" enctype="multipart/form-data">
+    <form id="regForm" method="post" enctype="multipart/form-data">
         <table>
             <tr>
                 <td>아이디(이메일)</td>
                 <td>
-                <input type="email" name="uid" id="uid" placeholder="아이디(이메일)" required>
+                <input type="email" name="email" id="uid" placeholder="아이디(이메일)" required>
                 <span id="checkmsg"></span>
                 <input type="checkbox" name="idchk" id="idchk">
                 </td>
@@ -42,19 +40,19 @@
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="upw" placeholder="비밀번호" required>
+                <td><input type="password" name="pw" placeholder="비밀번호" required>
                 <span id="checkpw"></span>
                 </td>
             </tr>
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="uname" placeholder="이름" required>
+                <td><input type="text" name="name" placeholder="이름" required>
                 <span id="checkname"></span>
                 </td>
             </tr>
             <tr>
                 <td>사진</td>
-                <td><input type="file" name="uphoto"></td>
+                <td><input type="file" name="photo"></td>
             </tr>
             <tr>
                 <td></td>
@@ -73,6 +71,7 @@
 </body>
 </html>
 <script>
+
 	$(document).ready(function(){
 		
 		$('#regForm').submit(function(){
@@ -124,38 +123,7 @@
 			
 		});	
 		
-		$('#upw').focusin(function(){			
-			$(this).val('');
-			$('#checkpw').text('');
-			$('#checkpw').removeClass('check_not');
-			$('#checkpw').removeClass('check_ok');
-		});
-		
-		$('#upw').focusout(function(){
-			
-			if($(this).val().length<1) {
-				$('#checkpw').text("비밀번호는 필수 항목입니다.");
-				$('#checkpw').addClass('check_not');
-				return false;
-			}
-			
-		});	
-		
-		$('#uname').focusin(function(){			
-			$(this).val('');
-			$('#checkname').text('');
-			$('#checkname').removeClass('check_not');
-			$('#checkname').removeClass('check_ok');
-		});
-		
-		$('#uname').focusout(function(){
-			
-			if($(this).val().length<1) {
-				$('#checkname').text("회원 이름은 필수 항목입니다.");
-				$('#checkname').addClass('check_not');
-				return false;
-			}
-			
-		});	
+
 	});
+
 </script>
