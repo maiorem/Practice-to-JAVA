@@ -11,7 +11,7 @@
 <c:if test="${loginMember==null }">
 	<script>
 		alert('로그인한 회원만 이용이 가능합니다.');
-		location.href="<c:url value='/index'/>";
+		location.href="<c:url value='/'/>";
 	</script>
 </c:if>
 <c:if test="${loginMember!=null }">

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/board/board")
 public class BoardListController {
 
-	@RequestMapping(value="/board/boardForm", method = RequestMethod.GET)
+	@RequestMapping(value="/board/boardForm")
 	public String boardForm() {
 		
 		return "/board/boardForm";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping
 	public String boardView() {
 		
 		return "board/board";

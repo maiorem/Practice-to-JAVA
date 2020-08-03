@@ -9,6 +9,12 @@
 <link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
 </head>
 <body>
+	<c:if test="${loginMember==null }">
+		<script>
+			alert('로그인한 회원만 이용이 가능합니다.');
+			location.href = "<c:url value='/'/>";
+		</script>
+	</c:if>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	<div>
 

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1 id="header">Open Project Spring MVC@</h1>
+<h1 id="header"><a href="<c:url value='/' />">Open Project Spring MVC@</a></h1>
 <ul id="nav">
 	<c:if test="${loginMember==null }">
 		<li><a href="<c:url value='/member/reg' />">회원가입</a></li>
