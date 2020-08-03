@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 커뮤니티</title>
+<link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
+
 </head>
 <body>
 <c:if test="${loginMember==null }">
@@ -15,7 +17,8 @@
 	</script>
 </c:if>
 <c:if test="${loginMember!=null }">
-
+	<%@ include file="/WEB-INF/views/include/header.jsp" %>
+	<div>
 	<h1>회원제 게시판</h1>
 	<hr>
 	<button><a href="/boardForm">글쓰기</a></button>
@@ -36,13 +39,9 @@
 	</table>
 	<hr>
 	
-	
-	
-	
-	
-	
-	
-	
+
+	</div>
+	<%@ include file="/WEB-INF/views/include/footer.jsp" %>	
 
 </c:if>
 

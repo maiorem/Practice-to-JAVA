@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/guestbook/book")
 public class GuestBookListController {
 
 	@RequestMapping("/guestbook/bookForm")
@@ -13,7 +14,7 @@ public class GuestBookListController {
 	}
 	
 	
-	@RequestMapping(value="/guestbook/book", method=RequestMethod.POST)
+	@RequestMapping
 	public String bookList() {
 		
 		

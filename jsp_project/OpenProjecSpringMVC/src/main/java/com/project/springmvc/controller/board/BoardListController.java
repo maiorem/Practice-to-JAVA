@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/board/board")
 public class BoardListController {
 
-	@RequestMapping(value="/board/boardForm")
+	@RequestMapping("/board/boardForm")
 	public String boardForm() {
 		
 		return "/board/boardForm";
