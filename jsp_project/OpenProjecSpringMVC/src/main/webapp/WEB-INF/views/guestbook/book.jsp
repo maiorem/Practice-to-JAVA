@@ -13,7 +13,7 @@
 	<div>
 
 	<h1>비회원 방명록</h1>
-	<hr>
+
 	<button><a href="/bookForm">글쓰기</a></button>
 	<hr>
 	<div class="bookList">
