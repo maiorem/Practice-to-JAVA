@@ -1,9 +1,6 @@
 package com.project.springmvc.controller.member;
 
 
-
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +29,7 @@ public class MemberRegisterController {
 	public String registerMember(HttpServletRequest request, RegMemberRequest regMember, Model model){
 		
 		
-		model.addAttribute("regMember", regService.getMember(request, regMember));		
+		model.addAttribute("result", regService.getMember(request, regMember));		
 		
 		return "/member/regMember";
 	}

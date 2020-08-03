@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.springmvc.dao.member.MemberDao;
@@ -15,15 +16,18 @@ import com.project.springmvc.jdbc.ConnectionProvider;
 import com.project.springmvc.model.member.Member;
 import com.project.springmvc.model.member.RegMemberRequest;
 
+@Service
 public class MemberRegService {
 	
 	@Autowired
 	MemberDao dao;
 	
-	public Member getMember(HttpServletRequest request, RegMemberRequest regMember)  {
+	public int getMember(HttpServletRequest request, RegMemberRequest regMember)  {
 		
 		int resultCnt=0;
+
 		Connection conn=null;
+		String photoPath=null;
 		
 		Member member=new Member(regMember.getEmail(), regMember.getPw(), regMember.getName());
 		
@@ -37,15 +41,16 @@ public class MemberRegService {
 				String uri=request.getSession().getServletContext().getInitParameter("memberUploadPhoto");
 				String realPath=request.getSession().getServletContext().getRealPath(uri); // 절대경로
 				
-				String newFileName=System.nanoTime()+"_"+photo.getOriginalFilename();
+				photoPath=System.nanoTime()+"_"+photo.getOriginalFilename();
 				
-				File saveFile=new File(realPath, newFileName);
+				File saveFile=new File(realPath, photoPath);
 				photo.transferTo(saveFile);
 				System.out.println("저장 완료");
+
 				
 			} 
 			
-			member.setPhoto(photo);
+			member.setPhotoPath(photoPath);
 			resultCnt=dao.insertMember(conn, member);
 
 		} catch (SQLException e) {
@@ -70,7 +75,7 @@ public class MemberRegService {
 		
 		
 		
-		return member;
+		return resultCnt;
 		
 		
 	}

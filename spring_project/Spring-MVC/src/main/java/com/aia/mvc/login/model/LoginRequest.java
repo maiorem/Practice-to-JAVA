@@ -4,6 +4,7 @@ public class LoginRequest {
 	
 	private String uid; //변수명은 파라미터 네임과 일치해야 함
 	private String upw;
+	private String redirecUri;
 
 	//반드시 디폴트 생성자가 있어야함
 	
@@ -21,6 +22,17 @@ public class LoginRequest {
 
 	public void setUpw(String upw) {
 		this.upw = upw;
+	}
+	
+	
+	
+
+	public String getRedirecUri() {
+		return redirecUri;
+	}
+
+	public void setRedirecUri(String redirecUri) {
+		this.redirecUri = redirecUri;
 	}
 
 	@Override

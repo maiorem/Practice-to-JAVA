@@ -45,6 +45,15 @@
 	</servlet-mapping>
 
 
+	<!-- DBCP 등록 -->
+	<servlet>
+		<servlet-name>DBCPInit</servlet-name>
+		<servlet-class>com.project.springmvc.jdbc.DBCPInit</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+
 	<!-- 인코딩 필터 설정 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
