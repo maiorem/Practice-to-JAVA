@@ -9,14 +9,14 @@
 </head>
 <body>
 
-	<c:if test="${loginInfo==null }">
+	<c:if test="${loginMember==null }">
 		<script>
 			alert('로그인에 실패하였습니다.');
 			location.href=${referer};
 		</script>
 
 	</c:if>
-	<c:if test="${loginInfo!=null}">
+	<c:if test="${loginMember!=null}">
 		<script>
 			alert('로그인에 성공하였습니다.');
 			location.href="<c:url value='/'/>";
