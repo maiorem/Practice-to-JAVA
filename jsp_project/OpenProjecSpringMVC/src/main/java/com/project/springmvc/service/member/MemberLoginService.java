@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class MemberLoginService {
 	@Autowired
 	MemberDao dao;
 	
-	public Member loginMember(HttpServletRequest request, LoginRequest logRequest) {
+	public Member loginMember(HttpSession session, LoginRequest logRequest) {
 		
 		Member member=null;
 		Connection conn=null;
@@ -35,7 +36,7 @@ public class MemberLoginService {
 			
 			
 			if(logRequest.getUpw().equals(member.getPw())) {
-				request.getSession().setAttribute("loginMember", member);
+				session.setAttribute("loginMember", member);
 			} else {
 				throw new Exception("아이디 혹은 비밀번호가 잘못되었습니다.");
 			}

@@ -1,6 +1,7 @@
 package com.project.springmvc.controller.member;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,10 +28,10 @@ public class MemberLoginController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String loginMember(HttpServletRequest request, LoginRequest logRequest, Model model) {
+	public String loginMember(HttpSession session, LoginRequest logRequest, Model model) {
 		
 		model.addAttribute("referer", logRequest.getRedirecUri());
-		model.addAttribute("loginInfo", loginService.loginMember(request, logRequest));
+		model.addAttribute("loginInfo", loginService.loginMember(session, logRequest));
 		return "/member/login";
 	}
 	
