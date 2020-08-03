@@ -1,10 +1,11 @@
 package com.project.springmvc.controller.member;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.springmvc.service.member.MemberListService;
 
@@ -16,9 +17,9 @@ public class MemberListController {
 	MemberListService memListService;
 	
 	@RequestMapping
-	public String memberListView(@RequestParam String page, Model model) {
+	public String memberListView(HttpServletRequest request, Model model) {
 		
-		model.addAttribute("memberListView", memListService.getMemberListView(page));
+		model.addAttribute("memberListView", memListService.getMemberListView(request));
 		return "/member/memberList";
 	}
 

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class MemberListService {
 	//한 페이지에 표현할 회원의 수
 	private final int MESSAGE_COUNT_PER_PAGE=10;
 
-	public MemberListView getMemberListView(String page) {
+	public MemberListView getMemberListView(HttpServletRequest request) {
 		
 		Connection conn=null;
 		MemberListView memberListView=null;
@@ -40,6 +42,7 @@ public class MemberListService {
 			
 			//현재 페이지
 			int currentPage=1;
+			String page=request.getParameter("page");
 			
 			if(page!=null) {
 				currentPage=Integer.parseInt(page);
