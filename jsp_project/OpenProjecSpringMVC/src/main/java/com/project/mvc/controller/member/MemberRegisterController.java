@@ -2,33 +2,32 @@ package com.project.mvc.controller.member;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.project.mvc.model.member.Member;
+
+import com.project.mvc.model.member.RegMemberRequest;
+import com.project.mvc.service.member.MemberRegService;
 
 @Controller
 public class MemberRegisterController {
+	
+	@Autowired
+	private MemberRegService regService;
 
-	@RequestMapping("/member/regForm")
+	@RequestMapping(value="/member/regForm", method=RequestMethod.GET)
 	public String regForm() {
 		
 		return "/member/regForm";
 	}
 	
 	@RequestMapping(value="/member/reg", method=RequestMethod.POST)
-	public String registerMember(Member member) {
+	public String registerMember(@ModelAttribute RegMemberRequest regMember) {
 		
-		String email=member.getEmail();
-		String pw=member.getPw();
-		String name=member.getName();
-		MultipartFile photo=member.getPhoto();
 		
-		String photoName=photo.getOriginalFilename();
-	
 		
 		
 		return "/member/regMember";
