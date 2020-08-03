@@ -1,4 +1,4 @@
-package com.project.mvc.service.member;
+package com.project.springmvc.service.member;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.mvc.dao.member.MemberDao;
-import com.project.mvc.jdbc.ConnectionProvider;
-import com.project.mvc.model.member.Member;
-import com.project.mvc.model.member.RegMemberRequest;
+import com.project.springmvc.dao.member.MemberDao;
+import com.project.springmvc.jdbc.ConnectionProvider;
+import com.project.springmvc.model.member.Member;
+import com.project.springmvc.model.member.RegMemberRequest;
 
 public class MemberRegService {
 	

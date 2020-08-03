@@ -1,4 +1,4 @@
-package com.project.mvc.controller.member;
+package com.project.springmvc.controller.member;
 
 
 
@@ -12,8 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.project.mvc.model.member.RegMemberRequest;
-import com.project.mvc.service.member.MemberRegService;
+import com.project.springmvc.model.member.RegMemberRequest;
+import com.project.springmvc.service.member.MemberRegService;
 
 @Controller
 @RequestMapping("/member/reg")

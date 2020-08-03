@@ -1,12 +1,12 @@
-package com.project.mvc.dao.member;
+package com.project.springmvc.dao.member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.project.mvc.dao.Dao;
-import com.project.mvc.model.member.Member;
-import com.project.mvc.model.member.RegMemberRequest;
+import com.project.springmvc.dao.Dao;
+import com.project.springmvc.model.member.Member;
+import com.project.springmvc.model.member.RegMemberRequest;
 
 public class MemberDao{
 

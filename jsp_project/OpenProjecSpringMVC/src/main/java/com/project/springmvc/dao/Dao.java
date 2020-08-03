@@ -1,10 +1,10 @@
-package com.project.mvc.dao;
+package com.project.springmvc.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import com.project.mvc.model.member.Member;
-import com.project.mvc.model.member.RegMemberRequest;
+import com.project.springmvc.model.member.Member;
+import com.project.springmvc.model.member.RegMemberRequest;
 
 public interface Dao {
 

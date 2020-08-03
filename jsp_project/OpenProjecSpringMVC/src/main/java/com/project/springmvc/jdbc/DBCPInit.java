@@ -1,4 +1,4 @@
-package com.project.mvc.jdbc;
+package com.project.springmvc.jdbc;
 
 import java.sql.DriverManager;
 

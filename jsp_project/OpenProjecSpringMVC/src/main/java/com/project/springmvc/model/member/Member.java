@@ -1,4 +1,4 @@
-package com.project.mvc.model.member;
+package com.project.springmvc.model.member;
 
 import java.sql.Date;
 
