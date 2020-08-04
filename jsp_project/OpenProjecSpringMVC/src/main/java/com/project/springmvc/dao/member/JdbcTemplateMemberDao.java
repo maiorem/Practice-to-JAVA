@@ -51,7 +51,7 @@ public class JdbcTemplateMemberDao{
 
 	public Member selectLoginMemberByEmail(String umail) throws SQLException {
 
-		return jdbcTemplate.queryForObject("select * from project.member where uid=?", new Object[] {umail}, new MemberRowMapper());
+		return jdbcTemplate.queryForObject("select * from project.member where uid=?", new MemberRowMapper(), umail);
 	}
 
 
