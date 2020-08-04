@@ -48,15 +48,23 @@ public class JdbcTemplateMemberDao{
 
 
 
-
 	public Member selectLoginMemberByEmail(String umail) throws SQLException {
 
 		return jdbcTemplate.queryForObject("select * from project.member where uid=?", new MemberRowMapper(), umail);
 	}
 
 
+	public String selectIdByIdx(int idx) {
+		
+		return jdbcTemplate.queryForObject("select uid from project.member where idx=?", String.class, idx);
+	}
 
 
+	public int updateMember(Member member) {
+		return jdbcTemplate.update("update project.member set upw=?, uname=?, uphoto=? where uid=?", 
+				member.getPw(), member.getName(), member.getPhotoPath(), member.getEmail());
+
+	}
 
 
 }

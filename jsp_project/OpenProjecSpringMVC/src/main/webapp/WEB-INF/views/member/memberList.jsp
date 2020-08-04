@@ -31,7 +31,9 @@
 					<td>${members.name }</td>
 					<td>${members.regdate }</td>
 					<td><img src=<c:url value="${members.photoPath}"/> style="width: 50px;"></td>
-					<td>수정 | 삭제</td>
+					<td>
+					<a href="<c:url value='member/editMember?idx=${members.idx}'/>">수정</a> | 
+					<a href="<c:url value='member/deleteMember?idx=${members.idx}'/>">삭제</a></td>
 				</tr>
 			</c:forEach>
 
