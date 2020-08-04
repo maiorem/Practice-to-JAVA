@@ -1,6 +1,5 @@
 package com.project.springmvc.service.member;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.springmvc.dao.member.JdbcTemplateMemberDao;
-import com.project.springmvc.jdbc.ConnectionProvider;
 import com.project.springmvc.model.member.Member;
 import com.project.springmvc.model.member.MemberListView;
 

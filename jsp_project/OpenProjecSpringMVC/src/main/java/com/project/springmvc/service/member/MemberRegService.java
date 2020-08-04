@@ -2,7 +2,6 @@ package com.project.springmvc.service.member;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.springmvc.dao.member.JdbcTemplateMemberDao;
-import com.project.springmvc.jdbc.ConnectionProvider;
 import com.project.springmvc.model.member.Member;
 import com.project.springmvc.model.member.RegMemberRequest;
 
