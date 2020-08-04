@@ -1,34 +1,30 @@
 package com.project.springmvc.service.member;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.springmvc.dao.member.MemberDao;
-import com.project.springmvc.jdbc.ConnectionProvider;
+import com.project.springmvc.dao.member.JdbcTemplateMemberDao;
 import com.project.springmvc.model.member.LoginRequest;
 import com.project.springmvc.model.member.Member;
 
 @Service
 public class MemberLoginService {
 	
+//	@Autowired
+//	MemberDao dao;
+	
 	@Autowired
-	MemberDao dao;
+	JdbcTemplateMemberDao dao;
 	
 	public Member loginMember(HttpSession session, LoginRequest logRequest) {
 		
 		Member member=null;
-		Connection conn=null;
-		
-		
 		try {
-			conn=ConnectionProvider.getConnection();
-			member=dao.selectLoginMemberByEmail(conn, logRequest.getUmail());
+			member=dao.selectLoginMemberByEmail(logRequest.getUmail());
 			
 			if(member==null) {
 				throw new Exception("존재하지 않는 회원입니다.");
@@ -47,18 +43,7 @@ public class MemberLoginService {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			if(conn!=null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		
-		
+		} 
 		
 		return member;
 	}

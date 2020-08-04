@@ -3,9 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.project</groupId>
-	<artifactId>springmvc</artifactId>
-	<name>OpenProjecSpringMVC</name>
+	<groupId>com.aia</groupId>
+	<artifactId>op</artifactId>
+	<name>Spring-OpenProject</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -117,43 +117,23 @@
 			<version>4.12</version>
 		</dependency>
 
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${org.springframework-version}</version>
-			<scope>test</scope>
 		</dependency>
 
 
 
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.7</version>
-		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.4</version>
-		</dependency>
 
+		<!-- ### 데이터 베이스 사용 설정 1. Mysql Connector 2. commons-dbcp2 3. commons-pool2 
+			4. commons-logging -->
 		<!-- mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.21</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
-		<!-- commons-pool2 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-			<version>2.8.0</version>
 		</dependency>
 
 		<!-- commons-dbcp2 -->
@@ -163,8 +143,13 @@
 			<version>2.7.0</version>
 		</dependency>
 
+		<!-- commons-pool2 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-pool2</artifactId>
+			<version>2.8.0</version>
+		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
 		<!-- commons-logging -->
 		<dependency>
 			<groupId>commons-logging</groupId>
@@ -172,18 +157,41 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- Hikari CP -->
+		<!-- HikariCP Pool  -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>3.4.5</version>
 		</dependency>
-
+		
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+
+
+
+		<!-- ### 파일 업로드 사용 설정 1. commons-fileupload 2. commons-io -->
+
+		<!-- commons-fileupload : 파일 업로드 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+
+
 
 
 	</dependencies>
@@ -208,8 +216,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>

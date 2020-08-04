@@ -11,6 +11,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.project.springmvc.model.member.Member;
@@ -20,6 +22,13 @@ public class JdbcTemplateMemberDao{
 
 	@Inject
 	JdbcTemplate jdbcTemplate;
+		
+
+	public int insertMember(Member member) throws SQLException {
+		
+		return jdbcTemplate.update("insert  into project.member (uid, upw, uname, uphoto) values (?,?,?,?)", 
+				member.getEmail(), member.getPw(), member.getName(), member.getPhotoPath());
+	}
 	
 
 	public int selectTotalCount() throws SQLException {
@@ -45,6 +54,12 @@ public class JdbcTemplateMemberDao{
 	}
 
 
+
+
+	public Member selectLoginMemberByEmail(String umail) throws SQLException {
+
+		return jdbcTemplate.queryForObject("select * from project.member where uid=?", new Object[] {umail}, new MemberRowMapper());
+	}
 
 
 
