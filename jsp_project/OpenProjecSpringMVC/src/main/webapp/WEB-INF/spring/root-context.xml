@@ -6,17 +6,24 @@
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<!-- Hikari Cp -->
 	<bean id="dataSource"
 		class="com.zaxxer.hikari.HikariDataSource" 
-		p:driverClassName="com.mysql.jc.jdbc.Driver"
+		p:driverClassName="com.mysql.cj.jdbc.Driver"
 		p:jdbcUrl="jdbc:mysql://aia-project.cxrwxtibywdh.ap-northeast-2.rds.amazonaws.com:3306/project?serverTimezone=UTC"
 		p:username="bit"
 		p:password="bit"
 	>
-	
 	</bean>
 	
+	<!-- JDBC Template -->
+	<bean id="JdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource"
+	></bean>
 	
+	
+	<!-- DBCP -->
 	<!-- <bean 
 		id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
