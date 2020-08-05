@@ -45,7 +45,7 @@
 		</c:if>
 		<div>
 			<c:forEach begin="1" end="${memberListView.pageTotalCount }" var="num">
-				<a href="/memberList?page=${num}">[${num}]</a>
+				<a href="<c:url value='/member/memberList?page=${num}'/>">[${num}]</a>
 			</c:forEach>
 		</div>
 	</div>
