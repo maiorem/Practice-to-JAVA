@@ -10,6 +10,6 @@
 <c:if test="${deleteResult==0 }">
 	<script>
 		alert('회원 삭제에 실패하였습니다.');
-		location.href="<c:url value='/'/>";
+		history.go(-1);
 	</script>
 </c:if>
