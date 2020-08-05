@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL 설정 : sql문, 반환타입, 파라미터 설정 -->
+<mapper	namespace="com.project.springmvc.mybatis.mapper.MemberMapper">
+
+	<insert id="insertMember"
+		parameterType="com.project.springmvc.model.member.Member">
+		insert into project.member (uid, upw, uname, uphoto)
+		values (#{email}, #{pw},#{name}, #{photoPath})
+	</insert>
+
+
+</mapper>

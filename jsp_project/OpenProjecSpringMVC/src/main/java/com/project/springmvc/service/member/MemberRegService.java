@@ -10,15 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.springmvc.dao.member.JdbcTemplateMemberDao;
+import com.project.springmvc.dao.member.MyBatisMemberDao;
 import com.project.springmvc.model.member.Member;
 import com.project.springmvc.model.member.RegMemberRequest;
 
 @Service
 public class MemberRegService {
 	
+//	@Autowired
+//	JdbcTemplateMemberDao dao;
+	
 	@Autowired
-	JdbcTemplateMemberDao dao;
+	MyBatisMemberDao dao;
+	
 	
 	public int getMember(HttpServletRequest request, RegMemberRequest regMember)  {
 		
@@ -43,7 +47,6 @@ public class MemberRegService {
 				photo.transferTo(saveFile);
 				System.out.println("저장 완료");
 
-				
 			} 
 			
 			member.setPhotoPath(photoPath);

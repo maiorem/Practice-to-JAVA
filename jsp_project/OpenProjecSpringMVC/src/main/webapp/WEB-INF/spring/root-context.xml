@@ -17,11 +17,28 @@
 	</bean>
 	
 	<!-- JDBC Template -->
-	<bean id="JdbcTemplate"
+ 	<bean id="JdbcTemplate"
 		class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource"
-	></bean>
+	></bean> 
 	
+	<!-- 
+	sqlSessionFactory 생성
+	MyBatis-Spring : sqlSessionFactoryBean
+	: dataSource 설정, mapper 설정	
+	 -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:mapperLocations="classpath:com/project/springmvc/mybatis/mapper/*.xml"
+		>
+	</bean> 
+	
+	<!-- MyBatis를 이용하는 template 클래스  => SqlSessionTemplate -->
+	 <bean id="sqlSession"
+	 		class="org.mybatis.spring.SqlSessionTemplate">
+	 		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	 </bean>
 	
 	<!-- DBCP -->
 	<!-- <bean 

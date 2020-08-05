@@ -4,10 +4,11 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpSession;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.springmvc.dao.member.JdbcTemplateMemberDao;
+import com.project.springmvc.dao.member.MemberDaoInteface;
 import com.project.springmvc.model.member.LoginRequest;
 import com.project.springmvc.model.member.Member;
 
@@ -17,10 +18,21 @@ public class MemberLoginService {
 //	@Autowired
 //	MemberDao dao;
 	
+//	@Autowired
+//	JdbcTemplateMemberDao dao;
+	
+	private MemberDaoInteface dao;
+	
 	@Autowired
-	JdbcTemplateMemberDao dao;
+	private SqlSessionTemplate sessionTemplate;
+	
 	
 	public Member loginMember(HttpSession session, LoginRequest logRequest) {
+		
+		
+		//interface의 mapper객체 생성
+		dao=sessionTemplate.getMapper(MemberDaoInteface.class);
+		
 		
 		Member member=null;
 		try {
@@ -33,6 +45,7 @@ public class MemberLoginService {
 			
 			if(logRequest.getUpw().equals(member.getPw())) {
 				session.setAttribute("loginMember", member);
+				
 			} else {
 				throw new Exception("아이디 혹은 비밀번호가 잘못되었습니다.");
 			}
