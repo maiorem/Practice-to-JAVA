@@ -8,7 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.springmvc.dao.member.MemberDaoInteface;
+import com.project.springmvc.dao.member.MemberDaoInterface;
 import com.project.springmvc.model.member.LoginRequest;
 import com.project.springmvc.model.member.Member;
 
@@ -21,7 +21,7 @@ public class MemberLoginService {
 //	@Autowired
 //	JdbcTemplateMemberDao dao;
 	
-	private MemberDaoInteface dao;
+	private MemberDaoInterface dao;
 	
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
@@ -31,7 +31,7 @@ public class MemberLoginService {
 		
 		
 		//interface의 mapper객체 생성
-		dao=sessionTemplate.getMapper(MemberDaoInteface.class);
+		dao=sessionTemplate.getMapper(MemberDaoInterface.class);
 		
 		
 		Member member=null;
