@@ -21,6 +21,7 @@ public class MemberListController {
 	@RequestMapping
 	public String memberListView(HttpServletRequest request, Model model) throws SQLException {
 		
+		
 		model.addAttribute("memberListView", memListService.getMemberListView(request));
 		return "/member/memberList";
 	}

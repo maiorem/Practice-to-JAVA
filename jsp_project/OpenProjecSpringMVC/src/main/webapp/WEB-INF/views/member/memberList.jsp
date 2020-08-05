@@ -8,13 +8,32 @@
 <meta charset="UTF-8">
 <title>회원 리스트 관리</title>
 <link rel="stylesheet" href='<c:url value="/css/default.css"/>'>
+<style>
+div.searchBox {
+	border : 1px solid #DDD;
+	
+}
+
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/include/header.jsp"%>
 	<div>
-		회원 리스트
-		<hr>
 		<c:if test="${memberListView.memberList!=null}">
+		회원 리스트 : 전체 ${memberListView.totalMemberCount}명
+		<hr>	
+		<div class="searchBox">
+		<form>
+		<select name="searchType">
+			<option value="id">ID</option>
+			<option value="name">NAME</option>
+			<option value="both">ID + NAME</option>
+		</select>
+		<input type="text" name="keyword">
+		<input type="submit" value="검색">
+		</form>
+		
+		</div>
 		<table>
 			<tr>
 				<th>아이디</th>
@@ -33,7 +52,8 @@
 					<td><img src=<c:url value="${members.photoPath}"/> style="width: 50px;"></td>
 					<td>
 					<a href="<c:url value='member/editMember?idx=${members.idx}'/>">수정</a> | 
-					<a href="<c:url value='member/deleteMember?idx=${members.idx}'/>">삭제</a></td>
+					<a href="<c:url value='member/deleteMember?idx=${members.idx}'/>">삭제</a>
+					</td>
 				</tr>
 			</c:forEach>
 
