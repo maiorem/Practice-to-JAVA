@@ -24,79 +24,94 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<!-- 검색 : id, name, id or name 
-	map.put("searchType", "id") name, both 
-	map.put("keyword", "cool") -->
+	<!-- 검색 : id, name, id or name map.put("searchType", "id") name, both map.put("keyword", 
+		"cool") -->
 	<!-- map ==> HashMap -->
-	<select id="totalCount" 
-			parameterType="map"	
-			resultType="int">
+	<select id="totalCount" parameterType="map" resultType="int">
 
-	<!-- #{search.searchType} -->
-	select count(*) from project.member
+		<!-- #{search.searchType} -->
+		select count(*) from project.member
 
-	<where>
-		<if test="searchType != null and keyword != null">
-			<if test="searchType=='both'">
-				<include refid="whereID"></include>
-				<include refid="whereName"></include>
+		<where>
+			<if test="searchType != null and keyword != null">
+				<if test="searchType=='both'">
+					<include refid="whereID"></include>
+					<include refid="whereName"></include>
+				</if>
+				<if test="searchType=='id'">
+					<include refid="whereID"></include>
+				</if>
+				<if test="searchType=='name'">
+					<include refid="whereName"></include>
+				</if>
 			</if>
-			<if test="searchType=='id'">
-				<include refid="whereID"></include>
-			</if>
-			<if test="searchType=='name'">
-				<include refid="whereName"></include>
-			</if>
-		</if>
-	
-	</where>
+
+		</where>
 	</select>
-	
-	
-	<select id="selectMemberList"
+
+
+	<select id="selectMemberList" 
 			parameterType="map"
-			resultMap="resultMember"
-	>
-	select * from project.member
-	<where>
-		<if test="searchType != null and keyword != null">
-			<if test="searchType=='both'">
-				<include refid="whereID"></include>
-				<include refid="whereName"></include>
+			resultMap="resultMember">
+		select * from project.member
+		<where>
+			<if test="searchType != null and keyword != null">
+				<if test="searchType=='both'">
+					<include refid="whereID"></include>
+					<include refid="whereName"></include>
+				</if>
+				<if test="searchType=='id'">
+					<include refid="whereID"></include>
+				</if>
+				<if test="searchType=='name'">
+					<include refid="whereName"></include>
+				</if>
 			</if>
-			<if test="searchType=='id'">
-				<include refid="whereID"></include>
-			</if>
-			<if test="searchType=='name'">
-				<include refid="whereName"></include>
-			</if>
-		</if>
-	
-	</where>
-	limit #{startRow}, #{count}
-	
+
+		</where>
+		limit #{startRow}, #{count}
+
 	</select>
-	
-	
-	
+
+
+
 	<sql id="whereID">
 		or uid LIKE concat('%',#{keyword},'%')
 	</sql>
 	<sql id="whereName">
 		or uname LIKE concat('%',#{keyword},'%')
 	</sql>
-	
-	
+
+
 	<insert id="insertMember"
 		parameterType="com.project.springmvc.model.member.Member"
-		useGeneratedKeys="true"
-		keyProperty="idx"
-		>
-		insert into project.member (uid, upw, uname, uphoto)
+		useGeneratedKeys="true" 
+		keyProperty="idx">
+		
+		insert into project.member
+		(uid, upw, uname, uphoto)
 		values (#{email}, #{pw},#{name}, #{photoPath})
 	</insert>
+	
+	
+	<select id="selectIdByIdx"
+			parameterType="int"
+			resultType="String"
+			>
+			
+			select uid from project.member where idx=#{param1}
+	
+	</select>
 
 
+	<update id="updateMember"
+		parameterType="com.project.springmvc.model.member.Member"
+		useGeneratedKeys="true" 
+		keyProperty="idx">
+		
+		update project.member set upw=#{pw}, uname=#{name}, uphoto=#{photoPath} where uid=#{param1}		
+		
+	</update>
 
 </mapper>
 
