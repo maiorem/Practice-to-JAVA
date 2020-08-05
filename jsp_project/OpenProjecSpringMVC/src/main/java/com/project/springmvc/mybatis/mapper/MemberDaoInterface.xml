@@ -4,11 +4,83 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- SQL 설정 : sql문, 반환타입, 파라미터 설정 -->
-<mapper	namespace="com.project.springmvc.dao.member.MemberDaoInterface">
+<mapper
+	namespace="com.project.springmvc.dao.member.MemberDaoInterface">
+
+	<!-- select의 결과를 객체에 바인딩 역할 : 데이터테이블의 컬럼명과 java beans의 변수의 이름이 틀린 경우 -->
+	<resultMap id="resultMember"
+		type="com.project.springmvc.model.member.Member">
+		<id property="idx" column="idx" />
+		<result property="email" column="uid" />
+		<result property="pw" column="upw" />
+		<result property="name" column="uname" />
+		<result property="photoPath" column="uphoto" />
+	</resultMap>
 
 	<select id="selectLoginMemberByEmail"
-			resultType="com.project.springmvc.model.member.Member">
+		resultType="com.project.springmvc.model.member.Member"
+		resultMap="resultMember">
 		select * from project.member where uid=#{param1}
 	</select>
 
+
+	<!-- 검색 : id, name, id or name map.put("searchType", "id") name, both map.put("keyword", 
+		"cool") -->
+	<select id="selectByKeyword"
+			parameterType="map"
+			resultMap="resultMember">
+
+		select * from project.member
+		<where>
+			<if test="searchType != null and keyword != null">
+				<if test="searchType=='both'">
+					<!-- uid like concat('%',#{keyword},'%') or uname like concat('%',#{keyword},'%') -->
+					<include refid="whereID"/>
+					<include refid="whereName"/>
+				</if>
+				<if test="searchType=='id'">
+					<!-- uid like concat('%',#{keyword},'%') -->
+					<include refid="whereID"/>
+				</if>
+				<if test="searchType=='name'">
+					<!-- uname like concat('%',#{keyword},'%') -->
+					<include refid="whereName"/>
+				</if>
+			</if>
+		</where>
+
+	</select>
+	
+	
+	<sql id="whereID">
+		or uid LIKE concat('%',#{keyword},'%')
+	</sql>
+	<sql id="whereName">
+		or uname LIKE concat('%',#{keyword},'%')
+	</sql>
+	
+	
+	<insert id="insertMember"
+		parameterType="com.project.springmvc.model.member.Member"
+		useGeneratedKeys="true"
+		keyProperty="idx"
+		>
+		insert into project.member (uid, upw, uname, uphoto)
+		values (#{email}, #{pw},#{name}, #{photoPath})
+	</insert>
+
+
+
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,11 +6,12 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.springmvc.dao.member.MyBatisMemberDao;
+import com.project.springmvc.dao.member.MemberDaoInterface;
 import com.project.springmvc.model.member.Member;
 import com.project.springmvc.model.member.RegMemberRequest;
 
@@ -20,18 +21,22 @@ public class MemberRegService {
 //	@Autowired
 //	JdbcTemplateMemberDao dao;
 	
-	@Autowired
-	MyBatisMemberDao dao;
+//	@Autowired
+//	MyBatisMemberDao dao;
 	
+	private MemberDaoInterface dao;
+	
+	@Autowired
+	private SqlSessionTemplate sessionTemplate;
 	
 	public int getMember(HttpServletRequest request, RegMemberRequest regMember)  {
 		
+		System.out.println(regMember);
+		dao=sessionTemplate.getMapper(MemberDaoInterface.class);
 		int resultCnt=0;
-
 		String photoPath=null;
-		
 		Member member=new Member(regMember.getEmail(), regMember.getPw(), regMember.getName());
-		
+		System.out.println("입력 전 IDX ========> " +member.getIdx());
 		
 		try {
 			
@@ -51,10 +56,9 @@ public class MemberRegService {
 			
 			member.setPhotoPath(photoPath);
 			resultCnt=dao.insertMember(member);
+			System.out.println("입력 후 IDX ==============> "+member.getIdx());
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
