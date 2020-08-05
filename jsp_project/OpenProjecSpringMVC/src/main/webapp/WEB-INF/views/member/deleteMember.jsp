@@ -4,10 +4,12 @@
 <c:if test="${deleteResult==1 }">
 	<script>
 		alert('회원 삭제가 완료되었습니다.');
+		location.href="<c:url value='/'/>";
 	</script>
 </c:if>
 <c:if test="${deleteResult==0 }">
 	<script>
 		alert('회원 삭제에 실패하였습니다.');
+		location.href="<c:url value='/'/>";
 	</script>
 </c:if>
