@@ -18,5 +18,8 @@ public interface MemberDaoInterface {
 	//전체 회원의 List<Member>로 반환
 	public List<Member> selectMemberList(Map search);
 	
+	
+	public int deleteMember(int idx);
+	
 
 }

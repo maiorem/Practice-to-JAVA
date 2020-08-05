@@ -95,7 +95,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<select id="selectIdByIdx"
-			parameterType="int"
 			resultType="String"
 			>
 			
@@ -112,6 +111,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update project.member set upw=#{pw}, uname=#{name}, uphoto=#{photoPath} where uid=#{param1}		
 		
 	</update>
+	
+	<delete id="deleteMember">
+	
+		delete from project.member where idx=#{param1}
+	
+	</delete>
 
 </mapper>
 
