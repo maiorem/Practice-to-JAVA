@@ -33,6 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from project.member
 
 		<where>
+
 			<if test="searchType != null and keyword != null">
 				<if test="searchType=='both'">
 					<include refid="whereID"></include>
@@ -117,9 +118,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 </mapper>
-
-
-
+		<!-- idx<10 and idx>0 =====> 꺽쇠를 태그표현으로 받아들이므로 비교표현에는 반드시 CDATA 표기-->
+		<!-- <![CDATA[idx<10 and idx>0]]> =======> 엘리먼트<>를 엘리먼트의 시작과 끝으로 인식하지 않도록 처리. sql문 전체를 넣어도 됨-->
+		<!-- 
+		<![CDATA[
+			<insert id="insertMember"
+			parameterType="com.project.springmvc.model.member.Member"
+			useGeneratedKeys="true" 
+			keyProperty="idx">
+			
+			insert into project.member
+			(uid, upw, uname, uphoto)
+			values (#{email}, #{pw},#{name}, #{photoPath})
+			</insert>
+		]] 
+		-->
 
 
 
