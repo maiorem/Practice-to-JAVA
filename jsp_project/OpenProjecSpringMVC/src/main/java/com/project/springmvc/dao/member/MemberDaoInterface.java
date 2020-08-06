@@ -4,8 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.springmvc.model.member.Member;
+import com.project.springmvc.model.member.MemberXML;
 
 public interface MemberDaoInterface {
+	
+
+	//전체 회원리스트 반환
+	public List<Member> selectTotalList();
+	
+	//전체 Xml 회원리스트 반환
+	public List<MemberXML> selectTotalListXml();
 	
 	//로그인
 	public Member selectLoginMemberByEmail(String umail);

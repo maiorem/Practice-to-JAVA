@@ -17,6 +17,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="photoPath" column="uphoto" />
 	</resultMap>
 	
+	<resultMap id="resultMemberXml"
+		type="com.project.springmvc.model.member.MemberXML">
+		<id property="idx" column="idx" />
+		<result property="email" column="uid" />
+		<result property="pw" column="upw" />
+		<result property="name" column="uname" />
+		<result property="photoPath" column="uphoto" />
+	</resultMap>
+	
+	<select id="selectTotalList"
+			resultMap="resultMember">	
+		select * from project.member order by idx desc
+		
+	</select>
+	
+	
+	<select id="selectTotalListXml"
+			resultMap="resultMemberXml">
+			
+		select * from project.member order by idx desc
+	
+	</select>
+	
 	
 	
 	<select id="selectByIdx"
@@ -31,7 +54,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<select id="selectLoginMemberByEmail"
-		resultType="com.project.springmvc.model.member.Member"
 		resultMap="resultMember">
 		select * from project.member where uid=#{param1}
 	</select>
