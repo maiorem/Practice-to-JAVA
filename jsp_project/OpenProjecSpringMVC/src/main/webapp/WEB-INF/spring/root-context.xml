@@ -17,10 +17,10 @@
 	</bean>
 	
 	<!-- JDBC Template -->
-<!--  	<bean id="JdbcTemplate"
+ 	<bean id="JdbcTemplate"
 		class="org.springframework.jdbc.core.JdbcTemplate"
 		p:dataSource-ref="dataSource"
-	></bean>  -->
+	></bean> 
 	
 	
 	<!-- MyBatis 설정 -->

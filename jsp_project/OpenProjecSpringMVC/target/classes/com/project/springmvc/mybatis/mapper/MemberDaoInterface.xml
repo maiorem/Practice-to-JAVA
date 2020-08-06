@@ -16,6 +16,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="name" column="uname" />
 		<result property="photoPath" column="uphoto" />
 	</resultMap>
+	
+	
+	
+	<select id="selectByIdx"
+			resultMap="resultMember">
+		
+		select * from project.member where idx=#{num}
+		
+	</select>
+	
+	
+	
+	
 
 	<select id="selectLoginMemberByEmail"
 		resultType="com.project.springmvc.model.member.Member"
@@ -95,6 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
+	
 	<select id="selectIdByIdx"
 			resultType="String"
 			>
@@ -116,6 +130,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from project.member where idx=#{param1}
 	
 	</delete>
+
+	
 
 </mapper>
 		<!-- idx<10 and idx>0 =====> 꺽쇠를 태그표현으로 받아들이므로 비교표현에는 반드시 CDATA 표기-->

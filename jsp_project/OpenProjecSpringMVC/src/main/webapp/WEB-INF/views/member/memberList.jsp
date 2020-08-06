@@ -52,7 +52,8 @@ div.searchBox {
 					<td><img src=<c:url value="${members.photoPath}"/> style="width: 50px;"></td>
 					<td>
 					<a href="<c:url value='/member/editMember?idx=${members.idx}'/>">수정</a> | 
-					<a href="<c:url value='/member/deleteMember?idx=${members.idx}'/>">삭제</a></td>
+					<a href="<c:url value='/member/deleteMember?idx=${members.idx}'/>">삭제</a> |
+					<a href="<c:url value='view/${members.idx}'/>">상세보기</a></td>
 				</tr>
 			</c:forEach>
 
