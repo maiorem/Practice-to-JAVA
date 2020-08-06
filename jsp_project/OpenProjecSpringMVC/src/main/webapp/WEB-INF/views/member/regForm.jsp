@@ -33,7 +33,7 @@
             <tr>
                 <td>아이디(이메일)</td>
                 <td>
-                <input type="email" name="email" id="uid" placeholder="아이디(이메일)" required>
+                <input type="email" name="email" id="email" placeholder="아이디(이메일)" required>
                 <span id="checkmsg"></span>
                 <input type="checkbox" name="idchk" id="idchk">
                 </td>
@@ -71,7 +71,7 @@
 	<%@ include file="/WEB-INF/views/include/footer.jsp" %>
 </body>
 </html>
-<!-- <script>
+<script>
 
 	$(document).ready(function(){
 		
@@ -107,7 +107,7 @@
 			
 			//비동기 통신
 			$.ajax({
-				url: 'idCheck.do',
+				url: 'idCheck',
 				data: {	uid : $(this).val()},
 				success: function(data){
 					if(data=='Y') {
@@ -127,4 +127,4 @@
 
 	});
 
-</script> -->
+</script> 
