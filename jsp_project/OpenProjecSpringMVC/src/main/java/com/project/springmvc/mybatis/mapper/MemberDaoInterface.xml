@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- SQL 설정 : sql문, 반환타입, 파라미터 설정 -->
-<mapper
+<mapper 
 	namespace="com.project.springmvc.dao.member.MemberDaoInterface">
 
 	<!-- select의 결과를 객체에 바인딩 역할 : 데이터테이블의 컬럼명과 java beans의 변수의 이름이 틀린 경우 -->
@@ -104,11 +104,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<update id="updateMember"
-		parameterType="com.project.springmvc.model.member.Member"
-		useGeneratedKeys="true" 
-		keyProperty="idx">
+		parameterType="com.project.springmvc.model.member.Member">
 		
-		update project.member set upw=#{pw}, uname=#{name}, uphoto=#{photoPath} where uid=#{param1}		
+		update project.member set upw=#{pw}, uname=#{name}, uphoto=#{photoPath} where uid=#{email}		
 		
 	</update>
 	
