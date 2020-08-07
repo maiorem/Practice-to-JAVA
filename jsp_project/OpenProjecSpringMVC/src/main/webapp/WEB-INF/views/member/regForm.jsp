@@ -78,7 +78,7 @@
 		$('#regForm').submit(function(){
 			if(!$('#idchk').prop('checked')) {
 				alert('아이디 중복 체크는 필수 항목 입니다.');
-				$('#uid').focus();
+				$('#email').focus();
 				return false;
 			}			
 		
