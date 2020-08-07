@@ -54,27 +54,41 @@ div.card>ul>li {
 		
 	});
 	
+	function deleteConfirm(idx){
+		if(confirm('정말로 삭제하시겠습니까?')){
+			$.ajax({
+				url: 'http://localhost:8080/member/members/'+idx,
+				type: 'DELETE',
+				success : function(data){
+					alert(data);
+					memberlist();
+				}
+			});
+		}
+	}
+	
 	
 	function editSubmit(){
-		var regFormData=new FormData();
-		regFormData.append('editEmail', $('#editEmail').val());
-		regFormData.append('editPw', $('#epw').val());
-		regFormData.append('editName', $('#ename').val());
-		regFormData.append('oldFile', $('#oldFile').val());
+		var editFormData=new FormData();
+		editFormData.append('idx', $('#idx').val());		
+		editFormData.append('editEmail', $('#editEmail').val());
+		editFormData.append('editPw', $('#epw').val());
+		editFormData.append('editName', $('#ename').val());
+		editFormData.append('oldFile', $('#oldFile').val());
 
 		// 파일 첨부
 		if($('#ephoto')[0].files[0] != null) {
-			regFormData.append('editPhoto', $('#ephoto')[0].files[0]);
+			editFormData.append('editPhoto', $('#ephoto')[0].files[0]);
 		}
 	
 		
 		$.ajax({
 			url : 'http://localhost:8080/member/members/'+$('#idx').val(),
-			type : 'PUT',
+			type : 'POST',
 			processData:false,
-			contestType:false,
+			contentType:false,
 			
-			data : regFormData,
+			data : editFormData,
 /* 			{
 				email : $('#email').val(),
 				pw : $('#pw').val(),
@@ -83,7 +97,7 @@ div.card>ul>li {
 			success : function(data){
 				alert(data);
 				memberlist();
-				document.getElementById('#regForm').reset();
+				document.getElementById('editForm').reset();
 			}
 		});		
 		
@@ -154,7 +168,7 @@ div.card>ul>li {
 					html+='		<li>Regdate : '+data[i].regdate+'</li>';
 					html+='		<li>Photo : '+data[i].photoPath+'</li>';
 					html+='		<li><input type="button" value="수정" onclick="editForm('+data[i].idx+')">';
-					html+='		<input type="button" id="deleteMember" value="삭제"></li>';
+					html+='		<input type="button" id="deleteMember" value="삭제" onclick="deleteConfirm('+data[i].idx+')"></li>';
 					html+='</ul>';
 					html+='</div>';
 				}

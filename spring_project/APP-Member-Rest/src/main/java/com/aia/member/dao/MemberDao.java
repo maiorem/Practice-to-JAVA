@@ -13,6 +13,8 @@ public interface MemberDao {
 	Member selectByIdx(int idx);
 
 	int updateMember(Member member);
+
+	int deleteMember(int idx);
 	
 	
 

@@ -27,15 +27,15 @@ public class MemberEditService {
 		dao=template.getMapper(MemberDao.class);
 
 		int result=0;
-
 		String photoPath=null;
+		System.out.println(editMember);
 		Member member=new Member(editMember.getEditEmail(), editMember.getEditPw(), editMember.getEditName());
 		try {
 			MultipartFile photo=editMember.getEditPhoto();
 
 			if(photo!=null) {
 
-				String uri=request.getSession().getServletContext().getInitParameter("memberUploadPhoto");
+				String uri="/upload";
 				String realPath=request.getSession().getServletContext().getRealPath(uri); // 절대경로
 
 				photoPath=System.nanoTime()+"_"+photo.getOriginalFilename();
@@ -43,14 +43,12 @@ public class MemberEditService {
 				File saveFile=new File(realPath, photoPath);
 
 				photo.transferTo(saveFile);
-
+				member.setPhotoPath(photoPath);
 				System.out.println("저장 완료");			
 
 			}
 
-			member.setPhotoPath(photoPath);
-
-
+			
 			result=dao.updateMember(member);
 		} catch (IllegalStateException e) {
 			// TODO Auto-generated catch block
