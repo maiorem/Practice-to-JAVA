@@ -39,4 +39,7 @@ public interface MemberDaoInterface {
 	//idx기반으로 검색한 회원의 정보를 반환
 	public Member selectByIdx(int idx);
 
+	//id 중복 체크
+	public int countByEmail(String email);
+
 }
