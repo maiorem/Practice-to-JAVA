@@ -25,11 +25,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertMember"
-			parameterType="com.aia.member.model.Member"
+			parameterType="com.aia.member.model.Member" 
+			useGeneratedKeys="true" 
 			keyProperty="idx">
-		insert project.member (uid, upw, uname, uphoto)
-		values (#{email}, #{pw}, #{name}, #{photoPath})
+		insert into project.member (uid, upw, uname, uphoto) values (#{email}, #{pw}, #{name}, #{photoPath})
 	</insert>
 
+	<select id="selectByIdx"
+			resultMap="resultMember">
+		
+		select * from project.member where idx=#{idx}
+			
+	</select>
 
 </mapper>

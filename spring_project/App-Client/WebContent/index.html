@@ -5,58 +5,132 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <style>
-	
-	#memberlist{
-		overflow: hidden;
-	}
+#memberlist {
+	overflow: hidden;
+}
 
-	div.card {
-		width : 33%;
-		float : left;
-		
-		border: 1px solid #DDD;
-	}
-	
-	div.card>ul>li {
-		list-style: none;
-		font-size: 12px;
-	}
+div.card {
+	width: 33%;
+	float: left;
+	border: 1px solid #DDD;
+}
+
+div.card>ul>li {
+	list-style: none;
+	font-size: 12px;
+}
 </style>
 </head>
 <body>
 
- 	<h1>회원리스트</h1>
+	<h1>회원리스트</h1>
 	<hr>
-	<h1>회원 가입 </h1>
-	<form id="regForm" onsubmit="return false">
-		<input type="email" name="email" id="email"> <br>
-		<input type="password" name="pw" id="pw"><br>
-		<input type="text" name="name" id="name"><br>
-		<input type="file" name="photo" id="photo"><br>
-		<input type="submit" value="회원가입" onclick="regSubmit();"><br>
+	<h1>회원 수정</h1>
+	<form id="editForm" onsubmit="return false">
+		idx <input type="text" name="idx" id="idx" readonly> 
+		아이디<input type="email" name="email" id="editEmail" readonly> <br>
+		비밀번호 <input type="password" name="pw" id="epw"><br>
+		이름 <input type="text" name="name" id="ename"><br>
+		사진 <input type="file" name="photo" id="ephoto"><br>
+		현재사진 <input type="text" name="oldFile" id="oldFile">
+		<input type="submit" value="회원수정" onclick="editSubmit();"><br>
 	</form>
 	<hr>
+		<h1>회원 가입</h1>
+	<form id="regForm" onsubmit="return false">
+		아이디(이메일) <input type="email" name="email" id="email"> <br> 
+		비밀번호 <input type="password" name="pw" id="pw"><br> 
+		이름<input type="text" name="name" id="name"><br> 
+		사진<input type="file" name="photo" id="photo"><br> 
+		<input type="submit" value="회원가입" onclick="regSubmit();"><br>
+	</form>
 	<div id="memberlist"></div>
-	
+
 	<script>
 	$(document).ready(function(){
 		
 		memberlist();
+
 		
 	});
 	
 	
-	function regSubmit(){
+	function editSubmit(){
+		var regFormData=new FormData();
+		regFormData.append('email', $('#email').val());
+		regFormData.append('pw', $('#pw').val());
+		regFormData.append('name', $('#name').val());
+		regFormData.append('oldFile', $('#oldFile').val());
+
+		// 파일 첨부
+		if($('#photo')[0].files[0] != null) {
+			regFormData.append('photo', $('#photo')[0].files[0]);
+		}
+	
+		
 		$.ajax({
-			url : 'http://localhost:8080/member/members',
-			type : 'post',
-			data : {
+			url : 'http://localhost:8080/member/members/'+$('#idx').val(),
+			type : 'PUT',
+			processData:false,
+			contestType:false,
+			
+			data : regFormData,
+/* 			{
 				email : $('#email').val(),
 				pw : $('#pw').val(),
 				name : $('#name').val()
-			},
+			}, */
 			success : function(data){
 				alert(data);
+				memberlist();
+				document.getElementById('#regForm').reset();
+			}
+		});		
+		
+	}
+	
+	
+	function editForm(idx) {
+		$.ajax({
+			url : 'http://localhost:8080/member/members/'+idx,
+			type : 'get',
+			success : function(data){
+				$('#idx').val(data.idx);
+				$('#editEmail').val(data.email);
+				$('#ename').val(data.name);
+				$('#oldFile').val(data.photoPath);
+				$('#epw').focus();
+			}
+		});
+	}
+	
+	
+	function regSubmit(){
+		var regFormData=new FormData();
+		regFormData.append('email', $('#email').val());
+		regFormData.append('pw', $('#pw').val());
+		regFormData.append('name', $('#name').val());
+		// 파일 첨부
+		if($('#photo')[0].files[0] != null) {
+			regFormData.append('photo', $('#photo')[0].files[0]);
+		}
+	
+		$.ajax({
+			url : 'http://localhost:8080/member/members',
+			type : 'post',
+			processData:false, //파일 전송시 필수
+			contentType:false,	// = multipart/form-data
+			
+			data : regFormData,
+/* 			{
+				email : $('#email').val(),
+				pw : $('#pw').val(),
+				name : $('#name').val()
+			}, */
+			success : function(data){
+				alert(data);
+				memberlist();
+				document.getElementById('regForm').reset();
 			}
 		});		
 		
@@ -79,7 +153,8 @@
 					html+='		<li>Name : '+data[i].name+'</li>';
 					html+='		<li>Regdate : '+data[i].regdate+'</li>';
 					html+='		<li>Photo : '+data[i].photoPath+'</li>';
-					html+='		<li><input type="button" value="수정"><input type="button" value="삭제"></li>';
+					html+='		<li><input type="button" value="수정" onclick="editForm('+data[i].idx+')">';
+					html+='		<input type="button" id="deleteMember" value="삭제"></li>';
 					html+='</ul>';
 					html+='</div>';
 				}
@@ -91,9 +166,11 @@
 	
 	
 	
+	
+	
 	</script>
-	
-	
-	
+
+
+
 </body>
 </html>

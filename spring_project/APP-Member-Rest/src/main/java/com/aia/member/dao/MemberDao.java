@@ -9,6 +9,8 @@ public interface MemberDao {
 	List<Member> selectList();
 
 	int insertMember(Member member);
+
+	Member selectByIdx(int idx);
 	
 	
 
