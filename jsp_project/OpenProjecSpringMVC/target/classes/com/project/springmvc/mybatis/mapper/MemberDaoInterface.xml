@@ -45,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="countByEmail"
 			resultType="int">
-		select count(*) from project.member where uid=${email}
+		select count(*) from project.member where uid=#{param1}
 	
 	</select>
 	

@@ -18,13 +18,12 @@ public class IdCheckService {
 	public String idcheck(String email) {
 		dao=template.getMapper(MemberDaoInterface.class);
 		String data="N";
+		
 		int idCount=dao.countByEmail(email);
 		
-		if(idCount==0) {
+		if(idCount<1) {
 			data="Y";
 		}
-		
-		
 		return data;
 	}
 

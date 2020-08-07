@@ -108,7 +108,7 @@
 			//비동기 통신
 			$.ajax({
 				url: 'idCheck',
-				data: {	uid : $(this).val()},
+				data: {	email : $(this).val()},
 				success: function(data){
 					if(data=='Y') {
 						$('#checkmsg').text("사용 가능한 아이디입니다.");
