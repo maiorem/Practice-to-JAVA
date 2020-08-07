@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aia.member.model.EditMemberRequest;
 import com.aia.member.model.Member;
 import com.aia.member.model.RegMemberRequest;
+import com.aia.member.service.MemberEditService;
 import com.aia.member.service.MemberListService;
 import com.aia.member.service.MemberRegService;
 import com.aia.member.service.MemberViewService;
@@ -32,6 +33,9 @@ public class MemberRestController {
 	
 	@Autowired
 	MemberViewService viewService;
+	
+	@Autowired
+	MemberEditService editService;
 	
 	
 	// 회원의 리스트 : Json으로 응답
@@ -60,8 +64,8 @@ public class MemberRestController {
 			EditMemberRequest editRequest,
 			HttpServletRequest request
 			) {
-		
-		return 0;
+		editRequest.setIdx(idx);
+		return editService.editMemberInfo(request, editRequest);
 	}
 	
 	// 한명의 회원 삭제

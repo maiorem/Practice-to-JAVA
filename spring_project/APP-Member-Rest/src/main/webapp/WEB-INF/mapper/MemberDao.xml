@@ -37,5 +37,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from project.member where idx=#{idx}
 			
 	</select>
+	
+	<update id="updateMember"
+			parameterType="com.aia.member.model.Member">
+			
+		update project.member set upw=#{pw}, uname=#{name}, uphoto=#{photoPath} where uid=#{email}		
+			
+	</update>
 
 </mapper>

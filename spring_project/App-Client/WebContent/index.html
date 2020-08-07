@@ -27,11 +27,11 @@ div.card>ul>li {
 	<hr>
 	<h1>회원 수정</h1>
 	<form id="editForm" onsubmit="return false">
-		idx <input type="text" name="idx" id="idx" readonly> 
-		아이디<input type="email" name="email" id="editEmail" readonly> <br>
-		비밀번호 <input type="password" name="pw" id="epw"><br>
-		이름 <input type="text" name="name" id="ename"><br>
-		사진 <input type="file" name="photo" id="ephoto"><br>
+		idx <input type="text" name="idx" id="idx" readonly> <br>
+		아이디<input type="email" name="editEmail" id="editEmail" readonly> <br>
+		비밀번호 <input type="password" name="editPw" id="epw"><br>
+		이름 <input type="text" name="editName" id="ename"><br>
+		사진 <input type="file" name="editPhoto" id="ephoto"><br>
 		현재사진 <input type="text" name="oldFile" id="oldFile">
 		<input type="submit" value="회원수정" onclick="editSubmit();"><br>
 	</form>
@@ -57,14 +57,14 @@ div.card>ul>li {
 	
 	function editSubmit(){
 		var regFormData=new FormData();
-		regFormData.append('email', $('#email').val());
-		regFormData.append('pw', $('#pw').val());
-		regFormData.append('name', $('#name').val());
+		regFormData.append('editEmail', $('#editEmail').val());
+		regFormData.append('editPw', $('#epw').val());
+		regFormData.append('editName', $('#ename').val());
 		regFormData.append('oldFile', $('#oldFile').val());
 
 		// 파일 첨부
-		if($('#photo')[0].files[0] != null) {
-			regFormData.append('photo', $('#photo')[0].files[0]);
+		if($('#ephoto')[0].files[0] != null) {
+			regFormData.append('editPhoto', $('#ephoto')[0].files[0]);
 		}
 	
 		

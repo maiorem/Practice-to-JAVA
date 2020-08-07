@@ -11,6 +11,8 @@ public interface MemberDao {
 	int insertMember(Member member);
 
 	Member selectByIdx(int idx);
+
+	int updateMember(Member member);
 	
 	
 
