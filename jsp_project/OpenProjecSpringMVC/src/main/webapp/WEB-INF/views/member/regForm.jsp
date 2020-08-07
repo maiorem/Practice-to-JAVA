@@ -85,7 +85,7 @@
 		});
 		
 		
-		$('#uid').focusin(function(){
+		$('#email').focusin(function(){
 			
 			$(this).val('');
 			$('#idchk').prop('checked', false);
@@ -96,7 +96,7 @@
 			$('#checkmsg').removeClass('check_ok');
 		});
 		
-		$('#uid').focusout(function(){
+		$('#email').focusout(function(){
 			
 			if($(this).val().length<1) {
 				$('#checkmsg').text("아이디는 필수 항목입니다.");
