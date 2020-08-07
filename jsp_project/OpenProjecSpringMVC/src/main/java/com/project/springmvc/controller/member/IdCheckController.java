@@ -14,7 +14,7 @@ public class IdCheckController {
 	@Autowired
 	IdCheckService idService;
 	
-	@RequestMapping
+	@RequestMapping("/idCheck")
 	@ResponseBody
 	public String idCheck(@RequestParam("email") String email) {
 		return idService.idcheck(email);
