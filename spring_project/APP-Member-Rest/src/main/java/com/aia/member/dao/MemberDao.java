@@ -7,6 +7,8 @@ import com.aia.member.model.Member;
 public interface MemberDao {
 
 	List<Member> selectList();
+
+	int insertMember(Member member);
 	
 	
 

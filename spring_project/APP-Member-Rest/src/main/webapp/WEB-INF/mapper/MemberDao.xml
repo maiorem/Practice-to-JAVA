@@ -23,6 +23,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from project.member order by uname
 		
 	</select>
+	
+	<insert id="insertMember"
+			parameterType="com.aia.member.model.Member"
+			keyProperty="idx">
+		insert project.member (uid, upw, uname, uphoto)
+		values (#{email}, #{pw}, #{name}, #{photoPath})
+	</insert>
 
 
 </mapper>

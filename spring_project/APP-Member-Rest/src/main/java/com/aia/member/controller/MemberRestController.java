@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.aia.member.model.Member;
+import com.aia.member.model.RegMemberRequest;
 import com.aia.member.service.MemberListService;
+import com.aia.member.service.MemberRegService;
 
 @RestController
 @RequestMapping("/members")
@@ -19,6 +21,9 @@ public class MemberRestController {
 	
 	@Autowired
 	MemberListService listService;
+	
+	@Autowired
+	MemberRegService regService;
 	
 	// 회원의 리스트 : Json으로 응답
 	@GetMapping		// GET | /members
@@ -28,8 +33,8 @@ public class MemberRestController {
 
 	// 회원 가입
 	@PostMapping	// POST | /members
-	public int reg() {
-		return 0;
+	public int reg(RegMemberRequest regRequest) {
+		return regService.regMember(regRequest);
 	}
 	
 	// 한명의 회원 정보 출력
