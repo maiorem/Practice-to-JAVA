@@ -10,8 +10,8 @@
 	</c:if>
 	<c:if test="${loginMember!=null }">
 		<li><a href='<c:url value="/member/logout"/>'>로그아웃</a></li>
-		<li><a href='<c:url value="/member/mypage/mypage"/>'>마이페이지</a></li>
 	</c:if>
+	<li><a href='<c:url value="/member/mypage/mypage"/>'>마이페이지</a></li>
 	<li><a href='<c:url value="/member/memberList"/>'>회원관리(리스트)</a></li>
 	<li><a href='<c:url value="/member/memberList.xml"/>'>회원관리(리스트) XML </a></li>
 	<li><a href='<c:url value="/member/memberList.json"/>'>회원관리(리스트) JSON </a></li>

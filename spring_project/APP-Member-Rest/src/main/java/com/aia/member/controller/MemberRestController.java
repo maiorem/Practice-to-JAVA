@@ -68,7 +68,7 @@ public class MemberRestController {
 			EditMemberRequest editRequest,
 			HttpServletRequest request
 			) {
-		editRequest.setIdx(idx);
+		//editRequest.setIdx(idx);
 		return editService.editMemberInfo(request, editRequest);
 	}
 	
