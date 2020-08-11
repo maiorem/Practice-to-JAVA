@@ -10,7 +10,7 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.8</java-version>
-		<org.springframework-version>4.3.18.RELEASE</org.springframework-version>
+		<org.springframework-version>5.1.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
@@ -127,10 +127,7 @@
 
 
 
-		<!-- ### 데이터 베이스 사용 설정 
-			1. Mysql Connector 
-			2. commons-dbcp2 
-			3. commons-pool2 
+		<!-- ### 데이터 베이스 사용 설정 1. Mysql Connector 2. commons-dbcp2 3. commons-pool2 
 			4. commons-logging -->
 		<!-- mysql-connector-java -->
 		<dependency>
@@ -179,15 +176,15 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
-		</dependency> 
-		
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.4.1</version>
-		</dependency> 
-		
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -216,16 +213,30 @@
 
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.11.2</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.2</version>
 		</dependency>
-		<!--
-		Jackson-databind :
-		Json -> Java Object
-		Java Object -> Json
-		 -->
+		<!-- Jackson-databind : Json -> Java Object Java Object -> Json -->
 
+		<!--스프링시큐리티 web 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!--스프링시큐리티 core 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<!--스프링시큐리티 config 라이브러리 -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 
 	</dependencies>
