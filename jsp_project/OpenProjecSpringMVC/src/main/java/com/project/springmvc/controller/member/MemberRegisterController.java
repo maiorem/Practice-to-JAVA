@@ -46,19 +46,19 @@ public class MemberRegisterController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String registerMember(HttpServletRequest request, RegMemberRequest regMember, Model model) throws NoSuchAlgorithmException, UnsupportedEncodingException, GeneralSecurityException{
 		
-		System.out.println("SHA 암호화");
-		System.out.println(sha256.encrypt(regMember.getPw()));
-		System.out.println(sha256.encrypt(regMember.getPw()).length());
-		System.out.println("----------------------------------------------");
-		System.out.println("AES 암호화");
-		System.out.println(aes256util.encrypt(regMember.getPw()));
-		System.out.println(aes256util.encrypt(regMember.getPw()).length());
-		System.out.println("----------------------------------------------");
-		System.out.println("Spring Security 암호화");
-		System.out.println(passwordEncoder.encode(regMember.getPw()));
-		System.out.println(passwordEncoder.encode(regMember.getPw()).length());
+//		System.out.println("SHA 암호화");
+//		System.out.println(sha256.encrypt(regMember.getPw()));
+//		System.out.println(sha256.encrypt(regMember.getPw()).length());
+//		System.out.println("----------------------------------------------");
+//		System.out.println("AES 암호화");
+//		System.out.println(aes256util.encrypt(regMember.getPw()));
+//		System.out.println(aes256util.encrypt(regMember.getPw()).length());
+//		System.out.println("----------------------------------------------");
+//		System.out.println("Spring Security 암호화");
+//		System.out.println(passwordEncoder.encode(regMember.getPw()));
+//		System.out.println(passwordEncoder.encode(regMember.getPw()).length());
 		
-		//model.addAttribute("result", regService.getMember(request, regMember));		
+		model.addAttribute("result", regService.getMember(request, regMember));		
 		
 		return "/member/regMember";
 	}
