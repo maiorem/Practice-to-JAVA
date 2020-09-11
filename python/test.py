@@ -15,7 +15,7 @@ print('number_list1 :', type(number_list1))
 print('number_list2 :', number_list2)
 print('number_list3 :', number_list3)
 
-for  in number_list1 : 
+for i in number_list1 : 
     print(i)
 
 
